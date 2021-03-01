@@ -118,6 +118,15 @@ Feature: Template
     And "dolor" is one variable name
     And "sit" is one variable name
 
+  Scenario: variable variable key
+    Given the template
+      """
+      lorem {{ ipsum[ dolor ] }}
+      """
+    Then I should get 2 variables
+    And "ipsum" is one variable name
+    And "dolor" is one variable name
+
   Scenario: Set variables should be ignored
     Given the template
       """
@@ -157,3 +166,16 @@ Feature: Template
     And "dolor.sit.amet" is one variable name
     And "lorem" is one variable name
     And "lorem.sit" is one variable name
+
+  @cur
+  Scenario: For loop template
+    Given the template
+      """
+      {% for x in lorem %}
+        {{ loop.index }}: ipsum {{ x.dolor }} sit {{ x.amet }}
+      {% endfor %}
+      """
+    Then I should get 3 variables
+    And "lorem" is one variable name
+    And "lorem.sit" is one variable name
+    And "lorem.amet" is one variable name

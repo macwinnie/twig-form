@@ -1,0 +1,19 @@
+name: Run Documentation
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test_and_tag:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ToDo
+        run: echo "Workflow to be defined ..."
+        shell: bash

@@ -16,11 +16,11 @@
         "macwinnie/regexfunctions": "^1.0"
     },
     "require-dev": {
-        "behat/behat": "^3.8",
-        "phpunit/phpunit": "^9.5",
-        "friends-of-behat/mink-extension": "^2.5",
-        "behat/mink-goutte-driver": "^1.2",
-        "wikimedia/composer-merge-plugin": "^2.0"
+        "behat/behat": ">=3.8",
+        "phpunit/phpunit": ">=9.5",
+        "friends-of-behat/mink-extension": ">=2.5",
+        "behat/mink-goutte-driver": ">=1.2",
+        "wikimedia/composer-merge-plugin": ">=2.0"
     },
     "autoload": {
         "psr-4" : {

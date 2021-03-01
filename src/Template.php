@@ -1,6 +1,7 @@
 <?php
 /**
- * macwinnie\TwigForm
+ * Class that does the analysis of the Twig templates.
+ * An instance of this class represents one Twig template.
  */
 
 namespace macwinnie\TwigForm;
@@ -29,6 +30,8 @@ class Template {
     private $loader;
     /** @var array       tree of variables */
     private $variables;
+    /** @var array       list of fors with children */
+    private $fors;
     /** @var array       list of default values */
     private $defaults;
     /** @var boolean     status if set variables should be ignored */
@@ -37,6 +40,8 @@ class Template {
     private $localTemplate      = 'localTemplate';
     /** @var string      prefix for block names */
     private static $blockPrefix = 'block.inc_';
+    /** @var string      default format string for template include */
+    private static $include_tpl = '*||%s||*';
     /** @var array       list of Twig reseverd variables */
     private static $twigReservedVars = [
         'loop.*',
@@ -49,13 +54,13 @@ class Template {
      * @param String $template_string template string to be translated
      */
     public function __construct ( $template_string ) {
+        $this->fullTemplate = $template_string;
         $this->loader = $this->analyzeTemplate( $template_string );
         $loader = new ArrayLoader( $this->loader );
         $this->twig = new Environment( $loader );
         $this->twig->addExtension(
             new StringLoaderExtension()
         );
-        $this->fullTemplate = $template_string;
     }
 
     /**
@@ -67,6 +72,7 @@ class Template {
     private function analyzeTemplate ( $template_string ) {
         $templates = static::extractBlocks( $template_string );
         $templates[ $this->localTemplate ] = $template_string;
+        $this->getNestedFors();
         return $templates;
     }
 
@@ -76,21 +82,27 @@ class Template {
      * @return array    list of variables
      */
     public function getVariables () {
+
         if ( $this->variables == null ) {
             $data = $this->basicVarFetch();
             $this->deepFetchVars( $data );
             $this->variables = $data;
         }
+
+        $this->appendForVariables( $this->variables );
+
         return static::flattenVariables( $this->variables );
     }
 
     /**
-     * create . representation of variable names
+     * create representation of variable names
      *
      * @param  mixed    $variables variable array to work with
+     * @param  string   $glue      glue for flat path representation
+     *
      * @return array               dot representation of variables
      */
-    protected static function flattenVariables ( $variables ) {
+    protected static function flattenVariables ( $variables, $glue = '.' ) {
         $vars = [];
         if ( ! empty( $variables ) ) {
             foreach ($variables as $key => $sub) {
@@ -100,13 +112,40 @@ class Template {
                     ! empty( $sub )
                 ) {
                     foreach ( static::flattenVariables( $sub ) as $subvar ) {
-                        $vars[] = $var . '.' . $subvar;
+                        $vars[] = $var . $glue . $subvar;
                     }
                 }
                 $vars[] = $var;
             }
         }
         return $vars;
+    }
+
+    /**
+     * function to build up tree structure of array from path
+     *
+     * @param  string $path      path to build representation from
+     * @param  string $separator separator within path representation
+     *
+     * @return array             tree array
+     */
+    protected static function treeFromFlattened ( $path, $separator = '.' ) {
+
+        $keys  = array_reverse( explode( $separator, $path ) );
+        $array = [];
+
+        for ( $i = 0; $i < count( $keys ); $i++ ) {
+            if ( $i == 0 ) {
+                $array[ $keys[ $i ] ] = [];
+            }
+            else {
+                $helper = $array;
+                $array  = [];
+                $array[ $keys[ $i ] ] = $helper;
+            }
+        }
+
+        return $array;
     }
 
     /**
@@ -234,43 +273,6 @@ class Template {
     }
 
     /**
-     * Get nested array deepest key
-     * @param array       $array
-     * @param string|null $key
-     * @return string|null
-     */
-    private function getNestedKey( &$array, &$key = null ) {
-        $keys = array_keys( $array );
-        if ( count( $keys ) > 0 ) {
-            $key   = $keys[ 0 ];
-            $array = &$array[ $keys[ 0 ] ];
-            $this->getNestedKey( $array, $key );
-        }
-
-        return $key;
-    }
-
-    /**
-     * Set nested array key value
-     *
-     * @param $array
-     * @param $key
-     * @param $value
-     */
-    private function setNestedValue( &$array, $key, $value ) {
-        $keys = array_keys( $array );
-        if ( count( $keys ) > 0) {
-            if ( $key === $keys[ 0 ] ) {
-                $array[ $key ] = $value;
-                return;
-            }
-
-            $array = &$array[ $keys[ 0 ] ];
-            $this->setNestedValue( $array, $key, $value );
-        }
-    }
-
-    /**
      * function to analyse the template and extract blocks to separate templates
      *
      * @param  string  &$template the template to be analyzed and the blocks
@@ -307,6 +309,126 @@ class Template {
         }
 
         return $templates;
+    }
+
+    /**
+     * get nested for loops from full template
+     *
+     * @return all for loops of the main template
+     */
+    private function getNestedFors () {
+
+        $fstarts = static::getForStarts( $this->fullTemplate );
+        $fends   = static::getForEnds( $this->fullTemplate );
+        $c       = count( $fstarts );
+
+        if ( $c > 0 ) {
+            list( $all_offsets, $all_marks ) = static::orderMarks( $fstarts, $fends );
+            static::addPreAndPostToMarks ( $all_offsets, $all_marks, $this->fullTemplate );
+
+            $template = null;
+            $for_persisted = [];
+            while ( ! empty( $all_offsets ) ) {
+                $first_offset = strval( reset( $all_offsets ) );
+                $template     = static::extractSubTemplate ( $first_offset, $all_marks, $all_offsets, $fors, $template, null, null, $for_persisted, array_keys( static::$for_attributes ) );
+            }
+
+            $nested = [];
+            static::findNestedFors( $template, $fors, $nested, $for_persisted );
+
+            if ( count( $fors ) > 0 ) {
+                throw new Exception("The template contains unmapped for loops.", 7);
+            }
+
+            static::analyseForVariables( $nested );
+
+            $this->fors = $nested;
+        }
+    }
+
+    /**
+     * function that is used by `getVariables` function to append variable trees from fors
+     *
+     * @param  array &$vars existing list of given variables
+     *
+     * @return void
+     */
+    private function appendForVariables ( &$vars = [] ) {
+        // if there were found for loops ...
+        if (
+            isset( $this->fors ) and
+            is_array( $this->fors ) and
+            ! empty( $this->fors )
+        ) {
+            // ... we'll run through the top most fors ...
+            foreach ( $this->fors as $top_for ) {
+                // ... to check if there were found variable paths ...
+                if (
+                    isset( $top_for[ 'vars' ] ) and
+                    is_array( $top_for[ 'vars' ] ) and
+                    ! empty( $top_for[ 'vars' ] )
+                ) {
+                    // ... that we want to add to our vars array.
+                    foreach ( $top_for[ 'vars' ] as $flat ) {
+                        $vars = array_merge_recursive ( $vars, static::treeFromFlattened( $flat ) );
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * function to finally get and map the variable names from for loops
+     *
+     * @param  array &$nested list of fors to work on
+     *
+     * @return void
+     */
+    private static function analyseForVariables ( &$nested ) {
+
+        foreach ( $nested as $key => &$for ) {
+            // start with the children
+            if ( !empty( $for[ 'children' ] ) ) {
+                static::analyseForVariables( $for[ 'children' ] );
+            }
+
+            $vars = [];
+            static::fetchDictionaryNames ( $for[ 'element' ], $for[ 'for' ], $vars );
+
+            foreach ( $for[ 'children' ] as $child ) {
+                $helper = '{{ ' . implode( ' }} {{ ', $child[ 'vars' ] ) . ' }}';
+                static::fetchDictionaryNames ( $for[ 'element' ], $helper, $vars );
+            }
+
+            $for[ 'vars' ] = [];
+            foreach ( static::flattenVariables( $vars ) as $var) {
+                $for[ 'vars' ][] = $for[ 'array' ] . '.' . $var;
+            }
+        }
+    }
+
+    /**
+     * find nested fors and their children fors
+     *
+     * @param  string $tpl     current search template
+     * @param  array  &$fors   fors to be reduced / spread
+     * @param  array  &$nested result array
+     *
+     * @return void
+     */
+    private static function findNestedFors ( $tpl, &$fors, &$nested, $for_persisted ) {
+
+        $regex  = rf\format2regex( static::$include_tpl );
+        preg_match_all( $regex, $tpl, $cur_fors );
+
+        foreach ( $cur_fors[1] as $key ) {
+            $nested[ $key ] = array_merge( [
+                'children' => [],
+                'for'      => $fors[ $key ],
+            ], $for_persisted[ $key ] );
+            unset( $fors[ $key ] );
+            static::findNestedFors( $nested[ $key ][ 'for' ], $fors, $nested[ $key ][ 'children' ], $for_persisted );
+        }
     }
 
     /**
@@ -380,40 +502,38 @@ class Template {
         }
     }
 
-    private function getNestedFors (  ) {
-        $fstarts = static::getForStarts( $this->fullTemplate );
-        $fends   = static::getForEnds( $this->fullTemplate );
-        $c       = count( $fstarts );
-
-        if ( $c > 0 ) {
-            list( $all_offsets, $all_marks ) = static::orderMarks( $fstarts, $fends );
-            static::addPreAndPostToMarks ( $all_offsets, $all_marks, $template );
-        }
-    }
-
     /**
      * function to extract a sub template – like blocks and for loops
      *
-     * @param  string      $key            current offset to start with
-     * @param  array       &$all_marks     list of all existing block marks (starts and ends)
-     * @param  array       &$all_offsets   list of all existing offsets
-     * @param  array       &$templates     list of templates defined
-     * @param  array|null  &$pre           null by default, string if something should be
-     *                                     prepended to inner content of sub template
-     * @param  string      $include_tpl    format string of how to replace the template within template
-     * @param  string|null $template_name  "name" key of the current sub template
+     * @param  string      $key                current offset to start with
+     * @param  array       &$all_marks         list of all existing block marks (starts and ends)
+     * @param  array       &$all_offsets       list of all existing offsets
+     * @param  array       &$templates         list of templates defined
+     * @param  array|null  &$pre               null by default, string if something should be
+     *                                         prepended to inner content of sub template
+     * @param  string      $include_tpl        format string of how to replace the template within template
+     * @param  string|null $template_name      "name" key of the current sub template
+     * @param  array       &$persisted_keys    the result-array of persisted keys from marks, identified by
+     *                                         same identifier as sub template
+     * @param  array       $persist_start_keys keys of start marks to be persisted into result
+     * @param  array       $persist_end_keys   keys of end marks to be persisted into result
      *
-     * @return string                      outer template containing replace string for inner template
+     * @return string                          outer template containing replace string for inner template
      */
-    protected static function extractSubTemplate ( $key, &$all_marks, &$all_offsets, &$templates, $pre = null, $include_tpl = '*||%s||*', $name_key = null ) {
+    protected static function extractSubTemplate ( $key, &$all_marks, &$all_offsets, &$templates, $pre = null, $include_tpl = null, $name_key = null, &$persisted_keys = [], $persist_start_keys = [], $persist_end_keys = [] ) {
 
         $cur_mark  = $all_marks[ $key ];
 
         if ( $name_key === null ) {
-            $template_name = bin2hex( random_bytes( 32 ) );
+            $random_length = 32;
+            $template_name = bin2hex( random_bytes( $random_length ) );
         }
         else {
             $template_name = $cur_mark[ $name_key ];
+        }
+
+        if ( $include_tpl === null ) {
+            $include_tpl = static::$include_tpl;
         }
         $include_string = sprintf( $include_tpl, addslashes( $template_name ) );
 
@@ -431,6 +551,13 @@ class Template {
             throw new Exception("Template " . $template_name . " seems to be defined twice", 4);
         }
 
+        if ( !is_array( $persisted_keys[ $template_name ] ) ) {
+            $persisted_keys[ $template_name ] = [];
+        }
+        foreach ( $persist_start_keys as $k ) {
+             $persisted_keys[ $template_name ][ $k ] = $cur_mark[ $k ];
+        }
+
         unset( $all_marks[ $key ] );
         unset( $all_offsets[ array_search( $key, $all_offsets ) ] );
 
@@ -438,13 +565,17 @@ class Template {
 
         $content  = null;
         while ( $all_marks[ strval( $next_key ) ][ 'type' ] == 'start' ) {
-            $content  = static::extractSubTemplate( $next_key, $all_marks, $all_offsets, $templates, $content, $include_tpl, $name_key );
+            $content  = static::extractSubTemplate( $next_key, $all_marks, $all_offsets, $templates, $content, $include_tpl, $name_key, $persisted_keys, $persist_start_keys, $persist_end_keys );
             $next_key = reset( $all_offsets );
         }
 
         // from here, $next_key is the $closing_key
         $closing_key  = strval( $next_key );
         $closing_mark = $all_marks[ $closing_key ];
+
+        foreach ( $persist_end_keys as $k ) {
+             $persisted_keys[ $template_name ][ $k ] = $closing_mark[ $k ];
+        }
 
         unset( $next_key );
         unset( $all_marks[ $closing_key ] );
@@ -494,6 +625,16 @@ class Template {
         return rf\getRegexOccurences( $regex, $template );
     }
 
+    /** @var array key-group-mapping for "for" loop regex – see function `getForStarts` */
+    protected static $for_attributes = [
+        'key'     => [  2 ],
+        'element' => [  3 ],
+        'from'    => [  6 ],
+        'to'      => [  7 ],
+        'array'   => [  8 ],
+        'filter'  => [ 10 ],
+    ];
+
     /**
      * function to fetch all Twig For loop startings
      *
@@ -511,15 +652,7 @@ class Template {
      */
     protected static function getForStarts( $template ) {
         $regex = rf\REGEX_DELIMITER . '\{\%\s*for\s+(([^\s,]+?)\s*,\s*)?([^\s]+?)\s+in\s+((([^\s]+?)\.\.([^\s]+?)|([^\s\|]+?))(\s*\|\s*([^\s]+?))?)\s*\%\}' . rf\REGEX_DELIMITER . 'im';
-        $for_attributes = [
-            'key'     => [  2 ],
-            'element' => [  3 ],
-            'from'    => [  6 ],
-            'to'      => [  7 ],
-            'array'   => [  8 ],
-            'filter'  => [ 10 ],
-        ];
-        return rf\getRegexOccurences( $regex, $template, $for_attributes );
+        return rf\getRegexOccurences( $regex, $template, static::$for_attributes );
     }
 
     /**
@@ -678,7 +811,7 @@ class Template {
         # fetch dictionary names
         foreach ( $vars as $var => &$subs ) {
             foreach ( $this->loader as $tpl ) {
-                $this->fetchDictionaryNames( $var, $tpl, $subs );
+                static::fetchDictionaryNames( $var, $tpl, $subs );
             }
         }
         unset( $subs );
@@ -698,12 +831,12 @@ class Template {
      *
      * @return void
      */
-    private function fetchDictionaryNames ( $var, $tpl, &$subs ) {
+    protected static function fetchDictionaryNames ( $var, $tpl, &$subs ) {
         $regex = static::$fetchDictionaryNamesRegex1 .
                  rf\delimiter_preg_quote( $var ) .
                  static::$fetchDictionaryNamesRegex2;
         $proceed = preg_match_all( $regex, $tpl, $matches );
-        if ( $proceed === 1 ) {
+        if ( is_integer( $proceed ) and $proceed >= 1 ) {
             foreach ( $matches[1] as $match ) {
                 $s = explode( '.', $match );
                 $x = &$subs;
@@ -721,7 +854,8 @@ class Template {
     /**
      * if option is activated remove variables that are set from within the template
      *
-     * @param  array.   &$vars list of main variable names
+     * @param  array &$vars list of main variable names
+     *
      * @return void
      */
     private function removeSetVarsIfSet ( &$vars ) {

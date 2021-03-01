@@ -74,4 +74,13 @@ class DefaultContext implements Context {
         Assert::assertTrue( $this->template->checkDefaultValue( $var ) );
         Assert::assertNull( $this->template->defaultValue( $var, false ) );
     }
+
+    /**
+     * @Given ignoring set variables
+     */
+    public function ignoringSetVariables() {
+        $this->template->ignoreSetVariables();
+        $this->variables = $this->template->getVariables();
+        Assert::assertTrue( $this->template->checkIgnoringSetVariables() );
+    }
 }

@@ -100,3 +100,60 @@ Feature: Template
       """
     Then I should get 2 variables
     And default value for "consetetur" exists but is inherited
+
+  Scenario: Simple template variable in function
+    Given the template
+      """
+      Lorem ipsum {{ "now"|date( dolor ) }} sit
+      """
+    Then I should get 1 variables
+    And "dolor" is one variable name
+
+  Scenario: Simple template variables in function
+    Given the template
+      """
+      Lorem ipsum {{ dolor | date( sit ) }} sit
+      """
+    Then I should get 2 variables
+    And "dolor" is one variable name
+    And "sit" is one variable name
+
+  Scenario: Set variables should be ignored
+    Given the template
+      """
+      {% set lorem = "ipsum" %}
+      """
+    And ignoring set variables
+    Then I should get 0 variables
+
+  Scenario: Simple template dict
+    Given the template
+      """
+      Lorem ipsum {{ dolor.sit }}
+      """
+    Then I should get 2 variables
+    And "dolor" is one variable name
+    And "dolor.sit" is one variable name
+
+  Scenario: Simple template nested dict
+    Given the template
+      """
+      Lorem ipsum {{ dolor.sit.amet }}
+      """
+    Then I should get 3 variables
+    And "dolor" is one variable name
+    And "dolor.sit" is one variable name
+    And "dolor.sit.amet" is one variable name
+
+  Scenario: template two nested dicts
+    Given the template
+      """
+      {{ lorem }} ipsum dolor {{ lorem.sit }}
+      Lorem ipsum {{ dolor.sit.amet }}
+      """
+    Then I should get 5 variables
+    And "dolor" is one variable name
+    And "dolor.sit" is one variable name
+    And "dolor.sit.amet" is one variable name
+    And "lorem" is one variable name
+    And "lorem.sit" is one variable name

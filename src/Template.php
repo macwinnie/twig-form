@@ -17,6 +17,8 @@ class Template {
 
     private $twig;
     private $loader;
+    private $variables;
+    private $defaults;
     private $localTemplate = 'localTemplate';
     private static $blockPrefix   = 'block.inc_';
 
@@ -57,12 +59,41 @@ class Template {
      * @return [string] list of variables
      */
     public function getVariables () {
-        $all_templates = array_keys( $this->loader );
-        $data = [];
-        foreach ($all_templates as $template_name) {
-            $data = array_replace( $data, $this->analyse( $template_name ) );
+        if ( $this->variables == null ) {
+            $all_templates = array_keys( $this->loader );
+            $data = [];
+            foreach ($all_templates as $template_name) {
+                $data = array_replace( $data, $this->analyse( $template_name ) );
+            }
+            $this->variables = $data;
         }
-        return array_keys( $data );
+
+        return static::flattenVariables( $this->variables );
+    }
+
+    /**
+     * create . representation of variable names
+     *
+     * @param  mixed    $variables variable array to work with
+     * @return [string]            dot representation of variables
+     */
+    protected static function flattenVariables ( $variables ) {
+        $vars = [];
+        if ( ! empty( $variables ) ) {
+            foreach ($variables as $key => $sub) {
+                $var    = $key;
+                if (
+                    is_array( $sub ) and
+                    ! empty( $sub )
+                ) {
+                    foreach ( static::flattenVariables( $sub ) as $subvar ) {
+                        $vars[] = $var . '.' . $subvar;
+                    }
+                }
+                $vars[] = $var;
+            }
+        }
+        return $vars;
     }
 
     /**
@@ -110,9 +141,11 @@ class Template {
                     $ast->hasAttribute( 'always_defined' ) &&
                     ! $ast->getAttribute( 'always_defined' )
                 ) {
-                    $variables = array_replace_recursive( $variables, [
-                        $ast->getAttribute('name') => [],
-                    ] );
+                    $variables = array_replace_recursive(
+                        $variables, [
+                            $ast->getAttribute('name') => [],
+                        ]
+                    );
                 }
                 break;
 
@@ -129,8 +162,8 @@ class Template {
                 break;
 
             default:
-                if ($ast->count()) {
-                    foreach ($ast as $node) {
+                if ( $ast->count() ) {
+                    foreach ( $ast as $node ) {
                         $variables = array_replace_recursive(
                             $variables, $this->walkThrough( $node, $for )
                         );
@@ -454,4 +487,92 @@ class Template {
         return rf\getRegexOccurences( $regex, $template );
     }
 
+    /**
+     * check if given variable has a default value
+     *
+     * @param  string  $var_name variable name
+     * @return boolean           true if variable has a default value, false if not
+     *
+     * @throws Exception         if variable var_name not existent
+     */
+    public function checkDefaultValue ( $var_name ) {
+        if ( ! in_array( $var_name, $this->getVariables() ) ) {
+            throw new Exception("Variable \"" .$var_name. "\" does not exist", 6);
+        }
+        if ( $this->defaults == null ) {
+            $this->checkDefaults();
+        }
+        return array_key_exists( $var_name, $this->defaults );
+    }
+
+    /**
+     * check for default values of variables
+     *
+     * @return void
+     */
+    private function checkDefaults() {
+
+        $vars       = $this->getVariables();
+        $f_regex    = $re = '/\{\{\s*%s\s*\|\s*default\s*\((.*?)\)\s*\}\}/mi';
+        $str_quotes = ['"', "'"];
+
+        foreach ( $vars as $var ) {
+            $regex     = sprintf( $f_regex, preg_quote( $var ) );
+            $templates = array_keys( $this->loader );
+            $i = 0;
+            while ( ! isset( $this->defaults[ $var ] ) and $i < count( $templates ) ) {
+                $default = rf\getRegexOccurences(
+                    $regex,
+                    $this->loader[ $templates[ $i ] ],
+                    [ 'default' => [ 1 ] ]
+                );
+
+                $first = trim( $default[0][ 'default' ] );
+
+                if ( ( $x = substr( $first , -1 ) ) == substr( $first, 0, 1) and in_array( $x, $str_quotes ) ) {
+                    $this->defaults[ $var ] = substr( $first, 1, -1 );
+                }
+                else {
+                    $this->defaults[ $var ] = [
+                        'lookup' => $first,
+                    ];
+                }
+                $i++;
+            }
+        }
+    }
+
+    /**
+     * fetch default value of variable
+     *
+     * @param  string  $var_name name of variable
+     * @param  boolean $lookup   defaults to true – false if only directly defined default
+     *                           values should be returned
+     * @return mixed             default value of variable defined within the template
+     *
+     * @throws Exception         if variable var_name not existent
+     */
+    public function defaultValue ( $var_name, $lookup = true ) {
+        try {
+            $break = ! $this->checkDefaultValue( $var_name );
+        } catch (Exception $e) {
+            throw $e;
+        }
+        if ( $break ) {
+            return null;
+        }
+        $val = $this->defaults[ $var_name ];
+        if (
+            is_array( $val ) and
+            array_key_exists( 'lookup', $val )
+        ) {
+            if ( $lookup ) {
+                $val = $this->defaultValue( $val[ 'lookup' ] );
+            }
+            else {
+                $val = null;
+            }
+        }
+        return $val;
+    }
 }

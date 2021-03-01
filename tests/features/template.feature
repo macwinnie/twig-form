@@ -74,3 +74,29 @@ Feature: Template
     And "dolor" is one variable name
     And "amet" is one variable name
     And "p_color" is one variable name
+
+  Scenario: Simple template variable extract with default value
+    Given the template
+      """
+      Lorem ipsum {{ dolor | default('sit') }}
+      """
+    Then I should get 1 variables
+    And variable "dolor" has default value "sit"
+
+  Scenario: Simple template variable extract with inherited default value
+    Given the template
+      """
+      Lorem ipsum {{ dolor | default('sit') }} amet,
+      {{ consetetur | default( dolor ) }} sadipscing elitr
+      """
+    Then I should get 2 variables
+    And variable "consetetur" has default value "sit"
+
+  Scenario: Simple template variable extract without inherited default value
+    Given the template
+      """
+      Lorem ipsum {{ dolor | default('sit') }} amet,
+      {{ consetetur | default( dolor ) }} sadipscing elitr
+      """
+    Then I should get 2 variables
+    And default value for "consetetur" exists but is inherited

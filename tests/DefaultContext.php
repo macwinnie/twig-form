@@ -58,4 +58,20 @@ class DefaultContext implements Context {
     public function iShouldGetBlocks( $number ) {
         Assert::assertEquals( intval( $number ), count( $this->blocks ));
     }
+
+    /**
+     * @Then variable :var has default value :value
+     */
+    public function variableHasDefaultValue( $var, $value ) {
+        Assert::assertTrue( $this->template->checkDefaultValue( $var ) );
+        Assert::assertEquals( $value, $this->template->defaultValue( $var ) );
+    }
+
+    /**
+     * @Then default value for :var exists but is inherited
+     */
+    public function defaultValueForExistsButIsInherited( $var ) {
+        Assert::assertTrue( $this->template->checkDefaultValue( $var ) );
+        Assert::assertNull( $this->template->defaultValue( $var, false ) );
+    }
 }

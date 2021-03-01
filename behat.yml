@@ -1,0 +1,44 @@
+---
+
+default: &default
+
+  autoload:
+    '': "%paths.base%/tests"
+
+  extensions:
+    Behat\MinkExtension:
+      base_url:  'http://localhost'
+      sessions:
+        default:
+          goutte: ~
+
+  suites:
+
+    default: &default_suite
+
+      # Default should not run scenarios with @skip tag
+      filters:
+        tags: "~@skip"
+
+      paths:
+        - "%paths.base%/tests/features"
+
+      contexts:
+        - "macwinnie\\TwigFormTests\\DefaultContext"
+
+
+  formatters:
+
+    pretty: true
+
+# Same as default – but now execute only scenarios with @skip tag
+# Can be run by using `vendor/bin/behat --profile skipped`
+skipped:
+  << : *default
+  suites:
+    default:
+      << : *default_suite
+      filters:
+        tags: "@skip"
+
+...

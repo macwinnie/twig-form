@@ -1,0 +1,22 @@
+{
+    "1": {
+        "fkt": "extractBlocks",
+        "file": "macwinnie\\TwigForm\\Template"
+    },
+    "2": {
+        "fkt": "createBlockTemplate",
+        "file": "macwinnie\\TwigForm\\Template"
+    },
+    "3": {
+        "fkt": "createBlockTemplate",
+        "file": "macwinnie\\TwigForm\\Template"
+    },
+    "4": {
+        "fkt": "createBlockTemplate",
+        "file": "macwinnie\\TwigForm\\Template"
+    },
+    "5": {
+        "fkt": "createBlockTemplate",
+        "file": "macwinnie\\TwigForm\\Template"
+    }
+}

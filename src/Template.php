@@ -19,8 +19,9 @@ class Template {
     private $loader;
     private $variables;
     private $defaults;
-    private $localTemplate = 'localTemplate';
-    private static $blockPrefix   = 'block.inc_';
+    private $ignoreSet          = false;
+    private $localTemplate      = 'localTemplate';
+    private static $blockPrefix = 'block.inc_';
 
     private static $twigReservedVars = [
         'loop.*',
@@ -60,14 +61,10 @@ class Template {
      */
     public function getVariables () {
         if ( $this->variables == null ) {
-            $all_templates = array_keys( $this->loader );
-            $data = [];
-            foreach ($all_templates as $template_name) {
-                $data = array_replace( $data, $this->analyse( $template_name ) );
-            }
+            $data = $this->basicVarFetch();
+            $this->deepFetchVars( $data );
             $this->variables = $data;
         }
-
         return static::flattenVariables( $this->variables );
     }
 
@@ -103,7 +100,7 @@ class Template {
      */
     public function getBlocks() {
         $all_templates    = array_keys( $this->loader );
-        $block_name_regex = '/^' . preg_quote( static::$blockPrefix ) . '.+$/im';
+        $block_name_regex = rf\REGEX_DELIMITER . '^' . rf\delimiter_preg_quote( static::$blockPrefix ) . '.+$' . rf\REGEX_DELIMITER . 'im';
         $all_blocks       = preg_grep( $block_name_regex, $all_templates );
 
         return array_intersect_key( $this->loader, array_flip( $all_blocks ) );
@@ -189,10 +186,10 @@ class Template {
         $attr = $ast->getNode('attribute')->getAttribute('value');
         if (get_class($node) === NameExpression::class) {
             $key = $node->getAttribute('name');
-            // special vars
-            if (in_array($key, ['loop', '_self'])) {
-                return [];
-            }
+            // // special vars
+            // if (in_array($key, ['loop', '_self'])) {
+            //     return [];
+            // }
 
             if ($subKey) {
                 $subVar = [
@@ -327,57 +324,13 @@ class Template {
         $bstarts = static::getBlockStarts( $template );
         $bends   = static::getBlockEnds( $template );
 
-        if ( ($c = count( $bstarts ) ) != count( $bends ) ) {
-            throw new Exception("Count of block openings and closings do not match", 1);
-        }
-
+        $c         = count( $bstarts );
         $templates = [];
 
         if ( $c > 0 ) {
 
-            // prepare the block data for further steps
-            foreach ( [ 'start', 'end' ] as $var ) {
-
-                $v1 = 'block_' . $var . '_marks';
-                $v2 = 'b' . $var . 's';
-
-                $$v1 = [];
-
-                foreach ( $$v2 as $bmark ) {
-                    $bmark[ 'type' ]           = $var;
-                    $$v1[ $bmark[ 'offset' ] ] = $bmark;
-                }
-
-                unset( $$v2 );
-            }
-
-            // fetch template snippets – pre and post mark
-            // – no mark has the same offset / key as another one ...
-            $all_marks = array_replace( $block_start_marks, $block_end_marks );
-            // we need them sorted by their offset, so the key
-            ksort( $all_marks );
-            $all_offsets = array_keys( $all_marks );
-
-            $old_end_offset = 0;
-            foreach ( $all_offsets as $i => $offset ) {
-
-                $bmark       = $all_marks[ $offset ];
-                $next_offset = ( $i + 1 < count( $all_offsets ) ) ? $all_offsets[ $i + 1 ] : strlen( $template );
-
-                // $v1 = 'block_' . $bmark[ 'type' ] . '_marks';
-                $v1 = 'all_marks';
-
-                $$v1[ $offset ]['snippets']           = [];
-
-                // the pre-snippet
-                $length = $bmark[ 'offset' ] - $old_end_offset;
-                $$v1[ $offset ]['snippets'][ 'pre' ] = mb_strcut( $template, $old_end_offset, $length );
-
-                // the post-snippet
-                $old_end_offset = $offset + $bmark[ 'length' ];
-                $length = $next_offset - $old_end_offset;
-                $$v1[ $offset ]['snippets'][ 'post' ] = mb_strcut( $template, $old_end_offset, $length );
-            }
+            list( $all_offsets, $all_marks ) = static::orderMarks( $bstarts, $bends, $template );
+            static::addPreAndPostToMarks ( $all_offsets, $all_marks, $template );
 
             $template = null;
             while ( ! empty( $all_offsets ) ) {
@@ -387,6 +340,77 @@ class Template {
         }
 
         return $templates;
+    }
+
+    /**
+     * function to sort and group found marks
+     *
+     * @param  [mixed] $start_marks result of rf\getRegexOccurences
+     * @param  [mixed] $end_marks   result of rf\getRegexOccurences
+     *
+     * @return [mixed]              two arrays as array:
+     *                               * first:  a list of all offsets
+     *                               * second: all marks
+     */
+    private static function orderMarks ( $start_marks, $end_marks ) {
+
+        if ( count( $start_marks ) != count( $end_marks ) ) {
+            throw new Exception("Count of opening and closing marks do not match", 1);
+        }
+
+        // prepare the block data for further steps
+        foreach ( [ 'start', 'end' ] as $var ) {
+
+            $v1 = 'local_' . $var . '_marks';
+            $v2 = $var . '_marks';
+
+            $$v1 = [];
+
+            foreach ( $$v2 as $bmark ) {
+                $bmark[ 'type' ]           = $var;
+                $$v1[ $bmark[ 'offset' ] ] = $bmark;
+            }
+
+            unset( $$v2 );
+        }
+
+        // no mark has the same offset / key as another one ...
+        $all_marks = array_replace( $local_start_marks, $local_end_marks );
+        // we need them sorted by their offset, so the key
+        ksort( $all_marks );
+        $all_offsets = array_keys( $all_marks );
+
+        return [ $all_offsets, $all_marks ];
+    }
+
+    /**
+     * add pre and post content to marks
+     *
+     * @param  [type]  $all_offsets list of offsets – the currently viewed mark
+     * @param  [type]  &$all_marks  all marks by their offsets
+     * @param  string  $template    template string to work on
+     *
+     * @return void
+     */
+    private static function addPreAndPostToMarks ( $all_offsets, &$all_marks, $template ) {
+
+        $old_end_offset = 0;
+        foreach ( $all_offsets as $i => $offset ) {
+
+            $bmark       = $all_marks[ $offset ];
+            $next_offset = ( $i + 1 < count( $all_offsets ) ) ? $all_offsets[ $i + 1 ] : strlen( $template );
+
+            $all_marks[ $offset ]['snippets'] = [];
+
+            // the pre-snippet
+            $length = $bmark[ 'offset' ] - $old_end_offset;
+            $all_marks[ $offset ]['snippets'][ 'pre' ] = mb_strcut( $template, $old_end_offset, $length );
+
+            // the post-snippet
+            $old_end_offset = $offset + $bmark[ 'length' ];
+            $length = $next_offset - $old_end_offset;
+            $all_marks[ $offset ]['snippets'][ 'post' ] = mb_strcut( $template, $old_end_offset, $length );
+        }
     }
 
     /**
@@ -472,7 +496,7 @@ class Template {
      * @return [mixed]           see \macwinnie\RegexFunctions\getRegexOccurences – with `name` attribute
      */
     protected static function getBlockStarts( $template ) {
-        $regex = '/\{%\s*block\s+(("([^"\\\\]*(\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(\\\\.[^\'\\\\]*)*)\')|([^\s]+))\s*%\}/im';
+        $regex = rf\REGEX_DELIMITER . '\{%\s*block\s+(("([^"\\\\]*(\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(\\\\.[^\'\\\\]*)*)\')|([^\s]+))\s*%\}' . rf\REGEX_DELIMITER . 'im';
         return rf\getRegexOccurences( $regex, $template, [ 'name' => [ 3, 5, 7 ] ] );
     }
 
@@ -483,7 +507,7 @@ class Template {
      * @return [mixed]           see \macwinnie\RegexFunctions\getRegexOccurences
      */
     protected static function getBlockEnds( $template ) {
-        $regex = '/\{%\s*endblock\s*%\}/im';
+        $regex = rf\REGEX_DELIMITER . '\{%\s*endblock\s*%\}' . rf\REGEX_DELIMITER . 'im';
         return rf\getRegexOccurences( $regex, $template );
     }
 
@@ -513,11 +537,11 @@ class Template {
     private function checkDefaults() {
 
         $vars       = $this->getVariables();
-        $f_regex    = $re = '/\{\{\s*%s\s*\|\s*default\s*\((.*?)\)\s*\}\}/mi';
+        $f_regex    = $re = rf\REGEX_DELIMITER . '\{\{\s*%s\s*\|\s*default\s*\((.*?)\)\s*\}\}' . rf\REGEX_DELIMITER . 'mi';
         $str_quotes = ['"', "'"];
 
         foreach ( $vars as $var ) {
-            $regex     = sprintf( $f_regex, preg_quote( $var ) );
+            $regex     = sprintf( $f_regex, rf\delimiter_preg_quote( $var ) );
             $templates = array_keys( $this->loader );
             $i = 0;
             while ( ! isset( $this->defaults[ $var ] ) and $i < count( $templates ) ) {
@@ -574,5 +598,120 @@ class Template {
             }
         }
         return $val;
+    }
+
+    /**
+     * function to ignore set variables
+     *
+     * @return void
+     */
+    public function ignoreSetVariables () {
+        $this->ignoreSet = true;
+        $this->variables = null;
+        $this->getVariables();
+    }
+
+    /**
+     * check if ignoring set variables is activ
+     *
+     * @return boolean
+     */
+    public function checkIgnoringSetVariables () {
+        return $this->ignoreSet;
+    }
+
+    /**
+     * basic variable fetch
+     *
+     * @return [mixed] list of main variable names
+     */
+    private function basicVarFetch() {
+        $all_templates = array_keys( $this->loader );
+        $data = [];
+        foreach ($all_templates as $template_name) {
+            $data = array_replace( $data, $this->analyse( $template_name ) );
+        }
+        return array_keys( $data );
+    }
+
+    /**
+     * deeply fetch variables from template(s)
+     *
+     * @param  [mixed] &$vars array of variables
+     * @return void
+     */
+    private function deepFetchVars( &$vars ) {
+
+        # ignore set variables, if set
+        $this->removeSetVarsIfSet( $vars );
+
+        # until now, the variables should be values in
+        # an array, now let's flip them
+        $vars = array_map(
+            function( $item ) {
+                return is_array( $item ) ?: [];
+            }, array_flip( $vars )
+        );
+
+        # fetch dictionary names
+        foreach ( $vars as $var => &$subs ) {
+            foreach ( $this->loader as $tpl ) {
+                $this->fetchDictionaryNames( $var, $tpl, $subs );
+            }
+        }
+        unset( $subs );
+    }
+
+    private static $fetchDictionaryNamesRegex1 = rf\REGEX_DELIMITER . '\{\{\s*';
+    private static $fetchDictionaryNamesRegex2 = '\.([^\s]+)\s*\}\}' . rf\REGEX_DELIMITER . 'im';
+    /**
+     * [fetchDictionaryNames description]
+     *
+     * @param  [type] $var   [description]
+     * @param  [type] $tpl   [description]
+     * @param  [type] &$subs [description]
+     *
+     * @return [type]        [description]
+     */
+    private function fetchDictionaryNames ( $var, $tpl, &$subs ) {
+        $regex = static::$fetchDictionaryNamesRegex1 .
+                 rf\delimiter_preg_quote( $var ) .
+                 static::$fetchDictionaryNamesRegex2;
+        $proceed = preg_match_all( $regex, $tpl, $matches );
+        if ( $proceed === 1 ) {
+            foreach ( $matches[1] as $match ) {
+                $s = explode( '.', $match );
+                $x = &$subs;
+                foreach ( $s as $l ) {
+                    if ( ! array_key_exists( $l, $x ) ) {
+                        $x[ $l ] = [];
+                    }
+                    $x = &$x[ $l ];
+                }
+                unset( $x );
+            }
+        }
+    }
+
+    /**
+     * if option is activated remove variables that are set from within the template
+     *
+     * @param  [mixed] &$vars list of main variable names
+     * @return void
+     */
+    private function removeSetVarsIfSet ( &$vars ) {
+        if ( $this->checkIgnoringSetVariables() ) {
+            $regf1 = rf\REGEX_DELIMITER . '\{\%\s*set\s*';
+            $regf2 = '\s*(=|\%\})' . rf\REGEX_DELIMITER . 'im';
+            foreach ( $vars as $id => $var ) {
+                $regex = $regf1 . rf\delimiter_preg_quote( $var ) . $regf2;
+                foreach ( $this->loader as $tpl ) {
+                    if ( preg_match( $regex, $tpl ) === 1 ) {
+                        unset( $vars[ $id ] );
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

@@ -22,6 +22,18 @@ docker exec -it -u www-data twigform composer install
 docker exec -it -u www-data twigform vendor/bin/behat
 ```
 
+## Documentation
+
+The functions within this repository are documented with DocBlock style. To visualize the documentation, the project is using [phpDocumentor](https://phpdoc.org/) to generate a viewable website with the documentation within the directory `/docs`.
+
+To create the latest documentation, simply run the following Docker command:
+
+```sh
+docker run --rm -v $(pwd):/data phpdoc/phpdoc:3 --setting=graphs.enabled=true -d src -t docs
+```
+
+*ATTENTION:* The phpDocumentor tag `latest` from Docker is somehow a very old one – one wants to use a version tag like the `:3` above.
+
 ## Licence
 
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en)

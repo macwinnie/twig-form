@@ -18,5 +18,9 @@
     "5": {
         "fkt": "createBlockTemplate",
         "file": "macwinnie\\TwigForm\\Template"
+    },
+    "6": {
+        "fkt": "checkDefaultValue",
+        "file": "macwinnie\\TwigForm\\Template"
     }
 }

@@ -1,0 +1,16 @@
+name: Update Composer dependencies
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '11 23 * * 0'
+
+jobs:
+  test_and_tag:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ToDo
+        run: echo "Workflow to be defined ..."
+        shell: bash

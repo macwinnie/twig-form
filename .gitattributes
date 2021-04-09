@@ -1,0 +1,7 @@
+/docs           export-ignore
+/tests          export-ignore
+/behat.yml      export-ignore
+/errors.json    export-ignore
+/.gitattributes export-ignore
+/.github        export-ignore
+/.editorconfig  export-ignore

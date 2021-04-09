@@ -167,7 +167,6 @@ Feature: Template
     And "lorem" is one variable name
     And "lorem.sit" is one variable name
 
-  @cur
   Scenario: For loop template
     Given the template
       """
@@ -177,5 +176,20 @@ Feature: Template
       """
     Then I should get 3 variables
     And "lorem" is one variable name
-    And "lorem.sit" is one variable name
+    And "lorem.dolor" is one variable name
     And "lorem.amet" is one variable name
+
+  Scenario: Nested for loop template
+    Given the template
+      """
+      {% for x in lorem %}
+        {% for y in x.ipsum %}
+            {{ loop.index }}: ipsum {{ y.dolor }} sit {{ y.amet }}
+          {% endfor %}
+      {% endfor %}
+      """
+    Then I should get 4 variables
+    And "lorem" is one variable name
+    And "lorem.ipsum" is one variable name
+    And "lorem.ipsum.amet" is one variable name
+    And "lorem.ipsum.dolor" is one variable name

@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "php": "^7.4|^8.0",
         "twig/twig": "^3.3",
         "twig/extra-bundle": "^3.3",
         "macwinnie/regexfunctions": "^1.0"

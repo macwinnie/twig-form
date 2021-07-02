@@ -551,7 +551,7 @@ class Template {
             throw new Exception("Template " . $template_name . " seems to be defined twice", 4);
         }
 
-        if ( !is_array( $persisted_keys[ $template_name ] ) ) {
+        if ( ! isset( $persisted_keys[ $template_name ] ) or ! is_array( $persisted_keys[ $template_name ] ) ) {
             $persisted_keys[ $template_name ] = [];
         }
         foreach ( $persist_start_keys as $k ) {

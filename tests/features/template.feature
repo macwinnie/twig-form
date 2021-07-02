@@ -184,8 +184,8 @@ Feature: Template
       """
       {% for x in lorem %}
         {% for y in x.ipsum %}
-            {{ loop.index }}: ipsum {{ y.dolor }} sit {{ y.amet }}
-          {% endfor %}
+          {{ loop.index }}: ipsum {{ y.dolor }} sit {{ y.amet }}
+        {% endfor %}
       {% endfor %}
       """
     Then I should get 4 variables

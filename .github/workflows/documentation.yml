@@ -1,4 +1,4 @@
-name: Run Documentation
+name: Update dependencies and run documentation
 
 on:
   push:
@@ -14,6 +14,74 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ToDo
-        run: echo "Workflow to be defined ..."
-        shell: bash
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run test suite
+        run: composer run-script test
+
+      - name: Run update
+        run: composer update
+
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: phpdoc/phpdoc:3
+          options: -v ${{ github.workspace }}:/data
+          run: |
+            --setting=graphs.enabled=true -d src -t docs
+
+      - name: check if git changes occur
+        id: gitcheck
+        run: |
+          set +e
+          git add -A
+          git update-index --refresh
+          git diff-index --quiet HEAD --
+          if [ $? -ne 0 ] && [ $(date +\%u) = 7 ]; then
+            echo "::set-output name=push::push"
+          else
+            echo "::set-output name=push::skip"
+          fi
+
+      - name: Run test suite after update
+        if: ${{ steps.gitcheck.outputs.push == 'push' }}
+        run: composer run-script test
+
+      - name: 'Get Previous tag'
+        if: ${{ steps.gitcheck.outputs.push == 'push' }}
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+      - name: 'Get next minor version'
+        if: ${{ steps.gitcheck.outputs.push == 'push' }}
+        id: semvers
+        uses: "WyriHaximus/github-action-next-semvers@v1"
+        with:
+          version: ${{ steps.previoustag.outputs.tag }}
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: ${{ steps.gitcheck.outputs.push == 'push' }}
+        with:
+          commit_message: Updated documentation
+          commit_user_name: GitHub Actions
+          commit_user_email: dev@macwinnie.me
+          tagging_message: '${{ steps.semvers.outputs.patch }}'

@@ -32,5 +32,8 @@
         "psr-4" : {
             "macwinnie\\TwigFormTests\\" : "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/behat"
     }
 }

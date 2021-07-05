@@ -13,7 +13,7 @@ use macwinnie\TwigForm\Template;
 /**
  * Defines application features from the specific context.
  */
-class DefaultContext implements Context {
+class TemplateContext implements Context {
 
     private $template  = '';
     private $variables = [];

@@ -3,7 +3,8 @@
     "description": "Create Form from TwigTemplate and JSON configuration if necessary",
     "type": "library",
     "license": "CC-BY-SA-4.0",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "macwinnie",
@@ -11,17 +12,15 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
-        "twig/twig": "^3.3",
-        "twig/extra-bundle": "^3.3",
-        "macwinnie/regexfunctions": "^1.0"
+        "php": "^7.4||^8.0",
+        "twig/twig": ">=3.3",
+        "twig/extra-bundle": ">=3.3",
+        "macwinnie/regexfunctions": ">=1.0"
     },
     "require-dev": {
         "behat/behat": ">=3.8",
         "phpunit/phpunit": ">=9.5",
-        "friends-of-behat/mink-extension": ">=2.5",
-        "behat/mink-goutte-driver": ">=1.2",
-        "wikimedia/composer-merge-plugin": ">=2.0"
+        "guzzlehttp/guzzle": "^7.3"
     },
     "autoload": {
         "psr-4" : {

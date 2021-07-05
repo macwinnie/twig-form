@@ -3,6 +3,7 @@ Feature: Template
   As a developer of PHP tools using Twig
   I need to be able analyze a given template
 
+  @template
   Scenario: Simple template variable extract
     Given the template
       """
@@ -12,6 +13,7 @@ Feature: Template
     And "dolor" is one variable name
     And "amet" is one variable name
 
+  @template
   Scenario: Simple Block extract
     Given the template
       """
@@ -25,6 +27,7 @@ Feature: Template
       """
     Then I should get 1 blocks
 
+  @template
   Scenario: Simple Block extract
     Given the template
       """
@@ -43,6 +46,7 @@ Feature: Template
       """
     Then I should get 2 blocks
 
+  @template
   Scenario: Nested Block extract with variables
     Given the template
       """
@@ -75,6 +79,7 @@ Feature: Template
     And "amet" is one variable name
     And "p_color" is one variable name
 
+  @template
   Scenario: Simple template variable extract with default value
     Given the template
       """
@@ -83,6 +88,7 @@ Feature: Template
     Then I should get 1 variables
     And variable "dolor" has default value "sit"
 
+  @template
   Scenario: Simple template variable extract with inherited default value
     Given the template
       """
@@ -92,6 +98,7 @@ Feature: Template
     Then I should get 2 variables
     And variable "consetetur" has default value "sit"
 
+  @template
   Scenario: Simple template variable extract without inherited default value
     Given the template
       """
@@ -101,6 +108,7 @@ Feature: Template
     Then I should get 2 variables
     And default value for "consetetur" exists but is inherited
 
+  @template
   Scenario: Simple template variable in function
     Given the template
       """
@@ -109,6 +117,7 @@ Feature: Template
     Then I should get 1 variables
     And "dolor" is one variable name
 
+  @template
   Scenario: Simple template variables in function
     Given the template
       """
@@ -118,6 +127,7 @@ Feature: Template
     And "dolor" is one variable name
     And "sit" is one variable name
 
+  @template
   Scenario: variable variable key
     Given the template
       """
@@ -127,6 +137,7 @@ Feature: Template
     And "ipsum" is one variable name
     And "dolor" is one variable name
 
+  @template
   Scenario: Set variables should be ignored
     Given the template
       """
@@ -135,6 +146,7 @@ Feature: Template
     And ignoring set variables
     Then I should get 0 variables
 
+  @template
   Scenario: Simple template dict
     Given the template
       """
@@ -144,6 +156,7 @@ Feature: Template
     And "dolor" is one variable name
     And "dolor.sit" is one variable name
 
+  @template
   Scenario: Simple template nested dict
     Given the template
       """
@@ -154,6 +167,7 @@ Feature: Template
     And "dolor.sit" is one variable name
     And "dolor.sit.amet" is one variable name
 
+  @template
   Scenario: template two nested dicts
     Given the template
       """
@@ -167,6 +181,7 @@ Feature: Template
     And "lorem" is one variable name
     And "lorem.sit" is one variable name
 
+  @template
   Scenario: For loop template
     Given the template
       """
@@ -179,6 +194,7 @@ Feature: Template
     And "lorem.dolor" is one variable name
     And "lorem.amet" is one variable name
 
+  @template
   Scenario: Nested for loop template
     Given the template
       """

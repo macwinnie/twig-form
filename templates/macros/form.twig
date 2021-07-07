@@ -1,5 +1,12 @@
 {% macro create(form, errors, method) %}
 
+{# possible keys for `form.create`
+ #
+ # * `method` (default `POST` – has to be a valid HTTP Request method)
+ # * `url`, `route` or `action` – those define the actual action path for the form.
+ # * `enctype` – will be overridden if `files` is set `true` by `multipart/form-data`
+ # * any other Attribute to be part of the `form` tag like `class`, `id`, ...
+ #}
 {{ form_open( form.create ) }}
 
     {% for row in form.rows %}

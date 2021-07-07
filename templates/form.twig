@@ -1,0 +1,7 @@
+{% extends 'base.twig' %}
+
+{% import "macros/form.twig" as forms %}
+
+{% block body %}
+    {{ forms.create( form_data, errors ) }}
+{% endblock %}

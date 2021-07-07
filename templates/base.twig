@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TwigForm Test</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <style>
+            html, body {
+                padding: none;
+                margin: none;
+                font-family: sans-serif;
+                height: 100%;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100%;
+            }
+            content {
+                flex: 1;
+            }
+            .container-fullwidth {
+                max-width: none !important;
+            }
+            a, summary {
+                outline: none;
+                text-decoration: underline;
+            }
+            a:hover, summary:hover {
+                text-decoration: none;
+            }
+            .null {
+                height: 0;
+                line-height: 0;
+            }
+            .clear {
+                float: none;
+                clear: both;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container m-0 container-fullwidth">
+                <div class="row p-5">
+                    <div class="col">
+                        {% block header %}<h1>{{ headline }}</h1>{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="clear null"></div>
+        <content>
+            <div class="container m-0 container-fullwidth">
+                <div class="row p-5">
+                    <div class="col">
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </content>
+        <div class="clear null"></div>
+        <footer>
+            <div class="container m-0 container-fullwidth">
+                <div class="row p-5">
+                    <div class="col">
+                        {% block footer %}
+                            &copy; {{ now | date("Y") }} by <a href="https://macwinnie.me" target="_blank">macwinnie</a>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

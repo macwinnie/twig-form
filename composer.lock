@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ca245e8b842c62d7c3720a228c386b1",
+    "content-hash": "1c1a3de588ea41ea14593acc46488064",
     "packages": [
         {
-            "name": "macwinnie/regexfunctions",
-            "version": "1.0.15",
+            "name": "macwinnie/phphelpers",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/macwinnie/RegexFunctions-PHP.git",
-                "reference": "6fed09c0ad678b5369101ae77a34a27e57548411"
+                "url": "https://github.com/macwinnie/PHP-Helpers.git",
+                "reference": "d49115fed45775ba4b0a5467a5d1012122833662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/macwinnie/RegexFunctions-PHP/zipball/6fed09c0ad678b5369101ae77a34a27e57548411",
-                "reference": "6fed09c0ad678b5369101ae77a34a27e57548411",
+                "url": "https://api.github.com/repos/macwinnie/PHP-Helpers/zipball/d49115fed45775ba4b0a5467a5d1012122833662",
+                "reference": "d49115fed45775ba4b0a5467a5d1012122833662",
                 "shasum": ""
             },
             "require-dev": {
@@ -40,12 +40,12 @@
                     "email": "dev@macwinnie.me"
                 }
             ],
-            "description": "reusable RegEx functions",
+            "description": "reusable PHP functions, e.g. RegEx ones",
             "support": {
-                "issues": "https://github.com/macwinnie/RegexFunctions-PHP/issues",
-                "source": "https://github.com/macwinnie/RegexFunctions-PHP/tree/1.0.15"
+                "issues": "https://github.com/macwinnie/PHP-Helpers/issues",
+                "source": "https://github.com/macwinnie/PHP-Helpers/tree/1.1.1"
             },
-            "time": "2021-06-27T23:25:44+00:00"
+            "time": "2021-07-11T16:01:18+00:00"
         },
         {
             "name": "psr/cache",
@@ -5801,7 +5801,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4||^8.0"
+        "php": "^7.4 || ^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

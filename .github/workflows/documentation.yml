@@ -21,33 +21,50 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
+      - name: setup containers
+        id: cnt
+        run: |
+          docker run -d --rm -v ${{ github.workspace }}:/var/www/html devopsansiblede/apache:php8 > /dev/null 2>&1
+          cnt8=$( docker ps --quiet )
+          docker run -d --rm -v ${{ github.workspace }}:/var/www/html devopsansiblede/apache > /dev/null 2>&1
+          cnt7=$( docker ps --quiet | sed '/${cnt8}/ d' )
+          echo "::set-output name=cnt8::${cnt8}"
+          echo "::set-output name=cnt7::${cnt7}"
 
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v2
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
+      - name: run checks with PHP 7
+        run: |
+          docker exec -i "${{ steps.cnt.outputs.cnt7 }}" composer validate
+          docker exec -i "${{ steps.cnt.outputs.cnt7 }}" composer update
+          docker exec -i "${{ steps.cnt.outputs.cnt7 }}" composer run-script test
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+      - name: run checks with PHP 8
+        run: |
+          docker exec -i "${{ steps.cnt.outputs.cnt8 }}" composer validate
+          docker exec -i "${{ steps.cnt.outputs.cnt8 }}" composer update
+          docker exec -i "${{ steps.cnt.outputs.cnt8 }}" composer run-script test
 
-      - name: Run test suite
-        run: composer run-script test
+      - name: cleanup containers
+        run: |
+          docker rm -f "${{ steps.cnt.outputs.cnt7 }}" "${{ steps.cnt.outputs.cnt8 }}"
 
-      - name: Run update
-        run: composer update
+      - name: renew and build documentation
+        run: |
+          rm -rf docs
+          docker run --rm -v ${{ github.workspace }}:/data phpdoc/phpdoc:3 \
+            --setting=graphs.enabled=true -d src -t docs \
+            --sourcecode --title=TwigForm --no-interaction
+          docker run -d -v ${{ github.workspace }}:/data -w /data ubuntu bash -c \
+          "cat <<EOF >> docs/css/base.css
 
-      - uses: addnab/docker-run-action@v3
-        with:
-          image: phpdoc/phpdoc:3
-          options: -v ${{ github.workspace }}:/data
-          run: |
-            --setting=graphs.enabled=true -d src -t docs
+          code.prettyprint {
+              background: var(--code-background-color);
+              border: 1px solid var(--code-border-color);
+              border-radius: var(--border-radius-base-size);
+              padding: 0.1em 0.4em;
+              margin: 0.1em 0.2em;
+          }
+          EOF
+          "
 
       - name: check if git changes occur
         id: gitcheck
@@ -61,10 +78,6 @@ jobs:
           else
             echo "::set-output name=push::skip"
           fi
-
-      - name: Run test suite after update
-        if: ${{ steps.gitcheck.outputs.push == 'push' }}
-        run: composer run-script test
 
       - name: 'Get Previous tag'
         if: ${{ steps.gitcheck.outputs.push == 'push' }}

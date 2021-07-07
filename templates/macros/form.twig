@@ -1,0 +1,61 @@
+{% macro create(form, errors, method) %}
+
+{{ form_open( form.create ) }}
+
+    {% for row in form.rows %}
+        <div class="form-group row{% if errors.has(row.name) %} has-error{% endif %}" {{ row.hidden ? 'hidden' }}>
+            {% if (not row.noTitle) or row.noTitle != true %}
+                <label for="{{ row.name }}" class="col-md-3 col-form-label">{{ row.title | default(row.name) }}</label>
+            {% endif %}
+
+            <div class="col-md-9">
+                {# @ToDo: datalist HTML5 #}
+                {# @ToDo: data-live-search="true" #}
+                {% if row.type in ['checkbox', 'radio'] %}
+                    {% for item in row.options %}
+                        <label for="{{ row.name }}{{loop.index}}" class="form-check-label"><input class="form-check-input {{ item.class | default( row.class | default(null)) }}" type="{{ row.type }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if (item.selected) or (item.value in request_data(row.name)) or (item.value == request_data(row.name)) %} checked{% endif %}  {{ row.checked ? 'checked' }}name="{{ row.name }}{% if row.type == 'checkbox' %}[]{% endif %}" id="{{ row.name }}{{loop.index}}" value="{{ item.value }}" /> {{ item.description | default(item.value) }}</label>
+                        {% if not loop.last %}<br/>{% endif %}
+                    {% endfor %}
+                {% elseif row.type == 'textarea' %}
+                    <textarea id="{{ row.name }}" class="form-control {{ row.class }}" name="{{ row.name }}"{{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.rows %} rows="{{ row.rows }}"{% endif %}{% if row.cols %} cols="{{ row.cols }}"{% endif %}{% if row.placeholder %} placeholder="{{row.placeholder}}"{% endif %}>{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}</textarea>
+                {% elseif row.type == 'select' %}
+                    <select id="{{ row.name }}" class="form-control {{ row.class }}"{% if row.required %} required{% endif %} {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.multiple %} multiple{% endif %} name="{{ row.name }}">
+                        {% for item in row.options %}
+                            <option id="{{ row.name }}{{loop.index}}"{{ item.disabled ? 'disabled' }}{% if (item.selected) or (item.value in request_data(row.name)) or (item.value == request_data(row.name)) %} selected{% endif %} value="{{ item.value }}">{{ item.description | default(item.value) }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input id="{{ row.name }}" class="{% if row.plaintext %}form-control-plaintext{% else %}{{ row.class }} form-control{% endif %}" {% if row.readonly %}readonly{% endif %} type="{{ row.type | default('text') }}" class="form-control" name="{{ row.name }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.placeholder and not row.disabled %} placeholder="{{row.placeholder}}"{% endif %} value="{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}" />
+                {% endif %}
+
+                {% if errors.has(row.name) %}
+                    <span class="help-block errormsg">
+                        <strong>{{ errors.first(row.name) }}</strong>
+                    </span>
+                {% endif %}
+
+                {% if row.help %}
+                    <small id="{{ row.name }}Help" class="form-text text-muted">{{ row.help | raw }}</small>
+                {% endif %}
+            </div>
+        </div>
+        {% if form.create.divideRows == true %}
+        <hr/>
+        {% endif %}
+    {% endfor %}
+    {% if form.buttons %}
+        {% for button in form.buttons %}
+            <button name="{{ button.name }}" value="{{ button.value }}" type="submit" class="{{ button.class }}" {{ button.hidden ? 'hidden' }}>{{ button.text }}</button>
+        {% endfor %}
+
+        {% if form.buttonAdditionals %}
+            {% for element in form.buttonAdditionals %}
+                &nbsp;{{ element | raw }}
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <input type="submit" name="{{ form.submit.name | default( 'submit' ) }}" value="{{ form.submit.value | default( 'submit' ) }}" class="{{ form.submit.class | default( 'btn btn-primary' ) }}" />
+    {% endif %}
+{{ form_close() }}
+
+{% endmacro %}

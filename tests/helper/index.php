@@ -1,24 +1,51 @@
 <?php
 
+error_reporting( E_ALL );
+
+require __DIR__ . '/../../vendor/autoload.php';
+
+use macwinnie\TwigForm\Twig\Helper as TwigHelper;
+
+$templates = ( new TwigHelper() )::getTemplates();
+
+
 if ( isset( $_REQUEST[ 'template' ] ) ) {
     /**
      * This part has to convert a template into a form definition JSON
      */
-    echo json_encode( $_REQUEST[ 'template' ] );
+    echo $templates[ 'base' ]->render([
+        'headline' => 'Template rendering to form',
+    ]);
 }
-elseif ( false ) {
+
+
+elseif ( isset( $_REQUEST[ 'json2form' ] ) ) {
     /**
-     * This part has to convert a form definition JSON into HTML
+     * This part has to convert a form definition JSON given as `json2form` into HTML
      */
+    $x = new macwinnie\TwigForm\Form();
+    $x->selectTemplate( 'formhtml' );
+    $x->loadJSON( $_REQUEST[ 'json2form' ] );
+    $x->addRenderAttribute( 'headline', 'JSON to HTML form' );
+    echo $x->renderForm();
 }
-elseif ( false ) {
+
+
+elseif ( isset( $_REQUEST[ 'formvalidate' ] ) ) {
     /**
      * This part has to validate form data against a form definition JSON
      */
+    echo $templates[ 'base' ]->render([
+        'headline' => 'Form-Submit validation',
+    ]);
 }
+
+
 else {
     /**
      * here, nothing has to be done ...
      */
-    echo 'Nothing to do.';
+    echo $templates[ 'base' ]->render([
+        'headline' => 'Nothing to do.',
+    ]);
 }

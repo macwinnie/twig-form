@@ -9,6 +9,8 @@ use PHPUnit\Framework\Assert;
 use Behat\Behat\Tester\Exception\PendingException;
 
 use GuzzleHttp\Client as Guzzle;
+use DOMDocument;
+use DOMXPath;
 
 /**
  * Defines basic functions for all browser (GuzzleHttp) using contexts
@@ -19,6 +21,7 @@ class HeadlessBrowserContext implements Context {
     protected $client;
     protected $requestPayload;
     protected $lastResponse;
+    protected $lastResponseDOM;
     protected $requestOptions;
 
     /**
@@ -86,6 +89,30 @@ class HeadlessBrowserContext implements Context {
     }
 
     /**
+     * get DOM representation of last response
+     *
+     * @return DOMDocument last response as DOM
+     */
+    protected function lastResponseDom() {
+        if ( $this->lastResponseDOM == NULL ) {
+            $this->lastResponseDOM = new DOMDocument();
+            // use `LIBXML_NOERROR` since HTML5 does nomore have DTD
+            // and also XHTML is not always used ...
+            $this->lastResponseDOM->loadHTML( $this->lastResponseBody(), LIBXML_NOERROR );
+        }
+        return $this->lastResponseDOM;
+    }
+
+    /**
+     * get Xpath search of last response
+     *
+     * @return DOMXpath
+     */
+    protected function lastResponseXPath() {
+        return new DOMXpath( $this->lastResponseDOM() );
+    }
+
+    /**
      * @Given I have the payload
      */
     public function iHaveThePayload( PyStringNode $payload ) {
@@ -114,7 +141,8 @@ class HeadlessBrowserContext implements Context {
      */
     public function iRequest( $rest, $uri ) {
 
-        $this->lastResponse = NULL;
+        $this->lastResponse    = NULL;
+        $this->lastResponseDOM = NULL;
 
         $options = $this->requestOptions;
         if ( !empty( $this->requestPayload ) ) {
@@ -134,6 +162,30 @@ class HeadlessBrowserContext implements Context {
     public function iShouldSeeAJsonResponse() {
         $tmp = json_decode( $this->lastResponseBody() );
         Assert::assertEquals( JSON_ERROR_NONE, json_last_error() );
+    }
+
+    /**
+     * @Then There should be a :tag tag with text :cnt
+     */
+    public function thereShouldBeATagWithText( $tag, $cnt ) {
+        $xpath   = '//' . $tag . '/text()';
+        $results = $this->lastResponseXPath()->query( $xpath );
+        $texts   = [];
+        if ( ! is_null( $results ) ) {
+            foreach ( $results as $result ) {
+                $texts[] = $result->nodeValue;
+            }
+        }
+        Assert::assertContains( $cnt, $texts );
+    }
+
+    /**
+     * @Then There should be a :tag tag with attribute :attr and value :val
+     */
+    public function thereShouldBeATagWithAttributeAndValue( $tag, $attr, $val ) {
+        $xpath = 'count(//' . $tag . '[@' . $attr . '=\'' . str_replace("'", "\\'", $val) . '\'])';
+        $results = $this->lastResponseXPath()->evaluate( $xpath );
+        Assert::assertGreaterThan( 0, $results );
     }
 
 }

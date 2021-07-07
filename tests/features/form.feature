@@ -12,7 +12,21 @@ Feature: Form
     Then I should see "Nothing to do."
 
   @form
-  Scenario: Check if template is translated to JSON
+  Scenario: Check if form JSON can be rendered as HTML form
+    Given I have the payload
+      """
+      {
+        "json2form": "{\"create\":{\"action\":\"\/tests\/helper\/?\"},\"buttons\":[{\"text\":\"submit\",\"class\":\"btn btn-primary\",\"name\":\"submitbutton\",\"value\":\"submit_val\"}],\"rows\":[{\"name\":\"text\",\"placeholder\":\"ph text\",\"type\":\"text\",\"title\":\"single line textfield\"}]}"
+      }
+      """
+    When I request "POST /tests/helper/"
+    Then There should be a "h1" tag with text "JSON to HTML form"
+    And There should be a "input" tag with attribute "name" and value "text"
+    And There should be a "input" tag with attribute "placeholder" and value "ph text"
+    And There should be a "button" tag with attribute "name" and value "submitbutton"
+
+  @form @skip
+  Scenario: Check if template is translated to JSON form
     Given I have the payload
       """
       {

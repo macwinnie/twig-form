@@ -26,5 +26,17 @@
     "7": {
         "fkt": "getNestedFors",
         "file": "macwinnie\\TwigForm\\Template"
+    },
+    "8": {
+        "fkt": "selectTemplate",
+        "file": "macwinnie\\TwigForm\\Form"
+    },
+    "9": {
+        "fkt": "renderForm",
+        "file": "macwinnie\\TwigForm\\Form"
+    },
+    "10": {
+        "fkt": "loadJSON",
+        "file": "macwinnie\\TwigForm\\Form"
     }
 }

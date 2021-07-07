@@ -2,3 +2,5 @@
 /vendor/
 /*.php
 .phpdoc
+cache/*
+!cache/.gitkeep

@@ -12,27 +12,26 @@
     {% for row in form.rows %}
         <div class="form-group row{% if errors.has(row.name) %} has-error{% endif %}" {{ row.hidden ? 'hidden' }}>
             {% if (not row.noTitle) or row.noTitle != true %}
-                <label for="{{ row.name }}" class="col-md-3 col-form-label">{{ row.title | default(row.name) }}</label>
+                <label for="{{ row.name }}" class="col-md-3 col-form-label"{% for aname, aval in row.label_attributes | default({})%} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %}>{{ row.title | default(row.name) }}</label>
             {% endif %}
 
             <div class="col-md-9">
                 {# @ToDo: datalist HTML5 #}
-                {# @ToDo: data-live-search="true" #}
                 {% if row.type in ['checkbox', 'radio'] %}
                     {% for item in row.options %}
-                        <label for="{{ row.name }}{{loop.index}}" class="form-check-label"><input class="form-check-input {{ item.class | default( row.class | default(null)) }}" type="{{ row.type }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if (item.selected) or (item.value in request_data(row.name)) or (item.value == request_data(row.name)) %} checked{% endif %}  {{ row.checked ? 'checked' }}name="{{ row.name }}{% if row.type == 'checkbox' %}[]{% endif %}" id="{{ row.name }}{{loop.index}}" value="{{ item.value }}" /> {{ item.description | default(item.value) }}</label>
+                        <label for="{{ row.name }}{{loop.index}}" class="form-check-label"{% for aname, aval in item.label_attributes | default( row.label_attributes | default({}) ) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %}><input class="form-check-input {{ item.class | default( row.class | default(null)) }}" type="{{ row.type }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if (item.selected) or (item.value in request_data(row.name)) or (item.value == request_data(row.name)) %} checked{% endif %}  {{ row.checked ? 'checked' }}name="{{ row.name }}{% if row.type == 'checkbox' %}[]{% endif %}" id="{{ row.name }}{{loop.index}}" value="{{ item.value }}"{% for aname, aval in item.attributes | default( row.option_attributes | default({}) ) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %} /> {{ item.description | default(item.value) }}</label>
                         {% if not loop.last %}<br/>{% endif %}
                     {% endfor %}
                 {% elseif row.type == 'textarea' %}
-                    <textarea id="{{ row.name }}" class="form-control {{ row.class }}" name="{{ row.name }}"{{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.rows %} rows="{{ row.rows }}"{% endif %}{% if row.cols %} cols="{{ row.cols }}"{% endif %}{% if row.placeholder %} placeholder="{{row.placeholder}}"{% endif %}>{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}</textarea>
+                    <textarea id="{{ row.name }}" class="form-control {{ row.class }}" name="{{ row.name }}"{{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.rows %} rows="{{ row.rows }}"{% endif %}{% if row.cols %} cols="{{ row.cols }}"{% endif %}{% if row.placeholder %} placeholder="{{row.placeholder}}"{% endif %}{% for aname, aval in row.attributes | default({}) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %}>{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}</textarea>
                 {% elseif row.type == 'select' %}
-                    <select id="{{ row.name }}" class="form-control {{ row.class }}"{% if row.required %} required{% endif %} {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.multiple %} multiple{% endif %} name="{{ row.name }}">
+                    <select id="{{ row.name }}" class="form-control {{ row.class }}"{% if row.required %} required{% endif %} {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.multiple %} multiple{% endif %} name="{{ row.name }}"{% for aname, aval in row.attributes | default({}) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %}>
                         {% for item in row.options %}
-                            <option id="{{ row.name }}{{loop.index}}"{{ item.disabled ? 'disabled' }}{% if (item.selected) or (item.value in request_data(row.name)) or (item.value == request_data(row.name)) %} selected{% endif %} value="{{ item.value }}">{{ item.description | default(item.value) }}</option>
+                            <option id="{{ row.name }}{{loop.index}}"{{ item.disabled ? 'disabled' }}{% if (item.selected) or (item.value in request_data(row.name)) or (item.value == request_data(row.name)) %} selected{% endif %} value="{{ item.value }}"{% for aname, aval in item.attributes | default( row.option_attributes | default({}) ) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %}>{{ item.description | default(item.value) }}</option>
                         {% endfor %}
                     </select>
                 {% else %}
-                    <input id="{{ row.name }}" class="{% if row.plaintext %}form-control-plaintext{% else %}{{ row.class }} form-control{% endif %}" {% if row.readonly %}readonly{% endif %} type="{{ row.type | default('text') }}" class="form-control" name="{{ row.name }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.placeholder and not row.disabled %} placeholder="{{row.placeholder}}"{% endif %} value="{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}" />
+                    <input id="{{ row.name }}" class="{% if row.plaintext %}form-control-plaintext{% else %}{{ row.class }} form-control{% endif %}" {% if row.readonly %}readonly{% endif %} type="{{ row.type | default('text') }}" class="form-control" name="{{ row.name }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.placeholder and not row.disabled %} placeholder="{{row.placeholder}}"{% endif %} value="{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}"{% for aname, aval in row.attributes | default({}) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %} />
                 {% endif %}
 
                 {% if errors.has(row.name) %}

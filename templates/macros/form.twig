@@ -10,7 +10,7 @@
 {{ form_open( form.create ) }}
 
     {% for row in form.rows %}
-        <div class="form-group row{% if errors.has(row.name) %} has-error{% endif %}" {{ row.hidden ? 'hidden' }}>
+        <div class="form-group row{% if row.name in errors | keys %} has-error{% endif %}" {{ row.hidden ? 'hidden' }}>
             {% if (not row.noTitle) or row.noTitle != true %}
                 <label for="{{ row.name }}" class="col-md-3 col-form-label"{% for aname, aval in row.label_attributes | default({})%} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %}>{{ row.title | default(row.name) }}</label>
             {% endif %}
@@ -34,9 +34,18 @@
                     <input id="{{ row.name }}" class="{% if row.plaintext %}form-control-plaintext{% else %}{{ row.class }} form-control{% endif %}" {% if row.readonly %}readonly{% endif %} type="{{ row.type | default('text') }}" class="form-control" name="{{ row.name }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.placeholder and not row.disabled %} placeholder="{{row.placeholder}}"{% endif %} value="{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}"{% for aname, aval in row.attributes | default({}) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %} />
                 {% endif %}
 
-                {% if errors.has(row.name) %}
+                {% if row.name in errors | keys %}
                     <span class="help-block errormsg">
-                        <strong>{{ errors.first(row.name) }}</strong>
+                        {% if errors[ row.name ] is iterable %}
+                            <ul>
+                            {% for e in errors[ row.name ] %}
+                                <li><strong>{{ e }}</strong></li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            {# users is probably a string #}
+                            <strong>{{ errors[ row.name ] }}</strong>
+                        {% endif %}
                     </span>
                 {% endif %}
 

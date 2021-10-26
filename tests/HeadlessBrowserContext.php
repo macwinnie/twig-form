@@ -160,7 +160,9 @@ class HeadlessBrowserContext implements Context {
      * @Then I should see a JSON response
      */
     public function iShouldSeeAJsonResponse() {
+        // var_dump( $this->lastResponseBody() );
         $tmp = json_decode( $this->lastResponseBody() );
+        var_dump( $tmp );
         Assert::assertEquals( JSON_ERROR_NONE, json_last_error() );
     }
 

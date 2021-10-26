@@ -25,7 +25,7 @@ Feature: Form
     And There should be a "input" tag with attribute "placeholder" and value "ph text"
     And There should be a "button" tag with attribute "name" and value "submitbutton"
 
-  @form @skip
+  @form @cur
   Scenario: Check if template is translated to JSON form
     Given I have the payload
       """

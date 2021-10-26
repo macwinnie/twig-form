@@ -6,8 +6,6 @@
 
 namespace macwinnie\TwigForm;
 
-use macwinnie\PHPHelpers as mwh;
-
 use \Twig\Environment;
 use \Twig\Loader\ArrayLoader;
 use \Twig\Extension\StringLoaderExtension;
@@ -155,7 +153,7 @@ class Template {
      */
     public function getBlocks() {
         $all_templates    = array_keys( $this->loader );
-        $block_name_regex = mwh\REGEX_DELIMITER . '^' . mwh\delimiter_preg_quote( static::$blockPrefix ) . '.+$' . mwh\REGEX_DELIMITER . 'im';
+        $block_name_regex = REGEX_DELIMITER . '^' . delimiter_preg_quote( static::$blockPrefix ) . '.+$' . REGEX_DELIMITER . 'im';
         $all_blocks       = preg_grep( $block_name_regex, $all_templates );
 
         return array_intersect_key( $this->loader, array_flip( $all_blocks ) );
@@ -418,7 +416,7 @@ class Template {
      */
     private static function findNestedFors ( $tpl, &$fors, &$nested, $for_persisted ) {
 
-        $regex  = mwh\format2regex( static::$include_tpl );
+        $regex  = format2regex( static::$include_tpl );
         preg_match_all( $regex, $tpl, $cur_fors );
 
         foreach ( $cur_fors[1] as $key ) {
@@ -434,8 +432,8 @@ class Template {
     /**
      * function to sort and group found marks
      *
-     * @param  array   $start_marks result of mwh\getRegexOccurences
-     * @param  array   $end_marks   result of mwh\getRegexOccurences
+     * @param  array   $start_marks result of getRegexOccurences
+     * @param  array   $end_marks   result of getRegexOccurences
      *
      * @return array                two arrays as array:
      *                               * first:  a list of all offsets
@@ -610,8 +608,8 @@ class Template {
      * @return array             see `\macwinnie\RegexFunctions\getRegexOccurences` – with `name` attribute
      */
     protected static function getBlockStarts( $template ) {
-        $regex = mwh\REGEX_DELIMITER . '\{%\s*block\s+(("([^"\\\\]*(\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(\\\\.[^\'\\\\]*)*)\')|([^\s]+))\s*%\}' . mwh\REGEX_DELIMITER . 'im';
-        return mwh\getRegexOccurences( $regex, $template, [ 'name' => [ 3, 5, 7 ] ] );
+        $regex = REGEX_DELIMITER . '\{%\s*block\s+(("([^"\\\\]*(\\\\.[^"\\\\]*)*)"|\'([^\'\\\\]*(\\\\.[^\'\\\\]*)*)\')|([^\s]+))\s*%\}' . REGEX_DELIMITER . 'im';
+        return getRegexOccurences( $regex, $template, [ 'name' => [ 3, 5, 7 ] ] );
     }
 
     /**
@@ -621,8 +619,8 @@ class Template {
      * @return array             see `\macwinnie\RegexFunctions\getRegexOccurences`
      */
     protected static function getBlockEnds( $template ) {
-        $regex = mwh\REGEX_DELIMITER . '\{%\s*endblock\s*%\}' . mwh\REGEX_DELIMITER . 'im';
-        return mwh\getRegexOccurences( $regex, $template );
+        $regex = REGEX_DELIMITER . '\{%\s*endblock\s*%\}' . REGEX_DELIMITER . 'im';
+        return getRegexOccurences( $regex, $template );
     }
 
     /** @var array key-group-mapping for "for" loop regex – see function `getForStarts` */
@@ -651,8 +649,8 @@ class Template {
      * @return array             see `\macwinnie\RegexFunctions\getRegexOccurences` – with different attributes
      */
     protected static function getForStarts( $template ) {
-        $regex = mwh\REGEX_DELIMITER . '\{\%\s*for\s+(([^\s,]+?)\s*,\s*)?([^\s]+?)\s+in\s+((([^\s]+?)\.\.([^\s]+?)|([^\s\|]+?))(\s*\|\s*([^\s]+?))?)\s*\%\}' . mwh\REGEX_DELIMITER . 'im';
-        return mwh\getRegexOccurences( $regex, $template, static::$for_attributes );
+        $regex = REGEX_DELIMITER . '\{\%\s*for\s+(([^\s,]+?)\s*,\s*)?([^\s]+?)\s+in\s+((([^\s]+?)\.\.([^\s]+?)|([^\s\|]+?))(\s*\|\s*([^\s]+?))?)\s*\%\}' . REGEX_DELIMITER . 'im';
+        return getRegexOccurences( $regex, $template, static::$for_attributes );
     }
 
     /**
@@ -662,8 +660,8 @@ class Template {
      * @return array             see `\macwinnie\RegexFunctions\getRegexOccurences`
      */
     protected static function getForEnds( $template ) {
-        $regex = mwh\REGEX_DELIMITER . '\{%\s*endfor\s*%\}' . mwh\REGEX_DELIMITER . 'im';
-        return mwh\getRegexOccurences( $regex, $template );
+        $regex = REGEX_DELIMITER . '\{%\s*endfor\s*%\}' . REGEX_DELIMITER . 'im';
+        return getRegexOccurences( $regex, $template );
     }
 
     /**
@@ -692,15 +690,15 @@ class Template {
     private function checkDefaults() {
 
         $vars       = $this->getVariables();
-        $f_regex    = $re = mwh\REGEX_DELIMITER . '\{\{\s*%s\s*\|\s*default\s*\((.*?)\)\s*\}\}' . mwh\REGEX_DELIMITER . 'mi';
+        $f_regex    = $re = REGEX_DELIMITER . '\{\{\s*%s\s*\|\s*default\s*\((.*?)\)\s*\}\}' . REGEX_DELIMITER . 'mi';
         $str_quotes = ['"', "'"];
 
         foreach ( $vars as $var ) {
-            $regex     = sprintf( $f_regex, mwh\delimiter_preg_quote( $var ) );
+            $regex     = sprintf( $f_regex, delimiter_preg_quote( $var ) );
             $templates = array_keys( $this->loader );
             $i = 0;
             while ( ! isset( $this->defaults[ $var ] ) and $i < count( $templates ) ) {
-                $default = mwh\getRegexOccurences(
+                $default = getRegexOccurences(
                     $regex,
                     $this->loader[ $templates[ $i ] ],
                     [ 'default' => [ 1 ] ]
@@ -818,9 +816,9 @@ class Template {
     }
 
     /** @var string part one of RegEx */
-    private static $fetchDictionaryNamesRegex1 = mwh\REGEX_DELIMITER . '\{\{\s*';
+    private static $fetchDictionaryNamesRegex1 = REGEX_DELIMITER . '\{\{\s*';
     /** @var string last part of RegEx */
-    private static $fetchDictionaryNamesRegex2 = '\.([^\s]+)\s*\}\}' . mwh\REGEX_DELIMITER . 'im';
+    private static $fetchDictionaryNamesRegex2 = '\.([^\s]+)\s*\}\}' . REGEX_DELIMITER . 'im';
 
     /**
      * fetch dictionary names from template
@@ -833,7 +831,7 @@ class Template {
      */
     protected static function fetchDictionaryNames ( $var, $tpl, &$subs ) {
         $regex = static::$fetchDictionaryNamesRegex1 .
-                 mwh\delimiter_preg_quote( $var ) .
+                 delimiter_preg_quote( $var ) .
                  static::$fetchDictionaryNamesRegex2;
         $proceed = preg_match_all( $regex, $tpl, $matches );
         if ( is_integer( $proceed ) and $proceed >= 1 ) {
@@ -860,10 +858,10 @@ class Template {
      */
     private function removeSetVarsIfSet ( &$vars ) {
         if ( $this->checkIgnoringSetVariables() ) {
-            $regf1 = mwh\REGEX_DELIMITER . '\{\%\s*set\s*';
-            $regf2 = '\s*(=|\%\})' . mwh\REGEX_DELIMITER . 'im';
+            $regf1 = REGEX_DELIMITER . '\{\%\s*set\s*';
+            $regf2 = '\s*(=|\%\})' . REGEX_DELIMITER . 'im';
             foreach ( $vars as $id => $var ) {
-                $regex = $regf1 . mwh\delimiter_preg_quote( $var ) . $regf2;
+                $regex = $regf1 . delimiter_preg_quote( $var ) . $regf2;
                 foreach ( $this->loader as $tpl ) {
                     if ( preg_match( $regex, $tpl ) === 1 ) {
                         unset( $vars[ $id ] );

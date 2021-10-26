@@ -6,7 +6,6 @@
 namespace macwinnie\TwigForm\Twig;
 
 use Twig\Extension\ExtensionInterface;
-use macwinnie\PHPHelpers as mwh;
 
 /**
  * Twig extension providing usefull functions for working with forms
@@ -97,13 +96,13 @@ class Extension implements ExtensionInterface {
             $attributes     = array_change_key_case ( $attributes , CASE_LOWER );
 
             // check method
-            $method = strtoupper( mwh\getArrayValue( $attributes, 'method', 'POST' ) );
+            $method = strtoupper( getArrayValue( $attributes, 'method', 'POST' ) );
             // any other method than `GET` has to be `POST` within the `<form>` tag and the
             // form has to be provided an additional input to transfer the actual method.
             $attributes['method'] = $method !== 'GET' ? 'POST' : $method;
 
             // extract token
-            $tkn = mwh\extractArrayValue( $attributes, 'token' );
+            $tkn = extractArrayValue( $attributes, 'token' );
 
             // enctype defaults to `multipart/form-data`
             if (

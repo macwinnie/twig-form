@@ -16,30 +16,70 @@ Search.appendIndex(
             "summary": "constructor\u0020of\u0020Form\u0020element",
             "url": "classes/macwinnie-TwigForm-Form.html#method___construct"
         },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Function\u0020to\u0020build\u0020and\u0020return\u0020JSON\u0020representation\u0020of\u0020the\u0020current\u0020form",
+            "url": "classes/macwinnie-TwigForm-Form.html#method___toString"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AgetFormCreate\u0028\u0029",
+            "name": "getFormCreate",
+            "summary": "function\u0020to\u0020provide\u0020create\u0020part\u0020of\u0020form\u0020definition",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_getFormCreate"
+        },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AloadJSON\u0028\u0029",
             "name": "loadJSON",
-            "summary": "load\u0020a\u0020Form\u0020by\u0020JSON\u0020description",
+            "summary": "Load\u0020a\u0020Form\u0020by\u0020JSON\u0020description",
             "url": "classes/macwinnie-TwigForm-Form.html#method_loadJSON"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AformGetIdent\u0028\u0029",
+            "name": "formGetIdent",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_formGetIdent"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AselectTemplate\u0028\u0029",
             "name": "selectTemplate",
-            "summary": "select\u0020another\u0020template\u0020to\u0020be\u0020rendered\u0020instead\u0020of\u0020\u0060form\u0060",
+            "summary": "Select\u0020another\u0020template\u0020to\u0020be\u0020rendered\u0020instead\u0020of\u0020\u0060form\u0060",
             "url": "classes/macwinnie-TwigForm-Form.html#method_selectTemplate"
         },                {
-            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AaddTemplate\u0028\u0029",
-            "name": "addTemplate",
-            "summary": "add\u0020additional\u0020Twig\u0020templates",
-            "url": "classes/macwinnie-TwigForm-Form.html#method_addTemplate"
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AaddTwigTemplate\u0028\u0029",
+            "name": "addTwigTemplate",
+            "summary": "Add\u0020additional\u0020Twig\u0020templates\u0020for\u0020being\u0020rendered\u003B\nis\u0020not\u0020meant\u0020to\u0020be\u0020used\u0020with\u0020instances\u0020of\u0020\\macwinnie\\TwigForm\\Template",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_addTwigTemplate"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AaddRenderAttribute\u0028\u0029",
             "name": "addRenderAttribute",
-            "summary": "add\u0020a\u0020render\u0020attribute\u0020\/\u0020TwigVariable",
+            "summary": "Add\u0020a\u0020render\u0020attribute\u0020\/\u0020TwigVariable",
             "url": "classes/macwinnie-TwigForm-Form.html#method_addRenderAttribute"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003ArenderForm\u0028\u0029",
             "name": "renderForm",
-            "summary": "function\u0020for\u0020final\u0020rendering\u0020the\u0020selected\u0020Template\u0020with\u0020the\u0020given\u0020form\u0020data",
+            "summary": "Function\u0020for\u0020final\u0020rendering\u0020the\u0020selected\u0020Template\u0020with\u0020the\u0020given\u0020form\u0020data",
             "url": "classes/macwinnie-TwigForm-Form.html#method_renderForm"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AaddHiddenField\u0028\u0029",
+            "name": "addHiddenField",
+            "summary": "add\u0020a\u0020hidden\u0020field\u0020to\u0020the\u0020current\u0020form",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_addHiddenField"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AsetFormID\u0028\u0029",
+            "name": "setFormID",
+            "summary": "set\u0020the\u0020form\u0020identifier",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_setFormID"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AsetMethod\u0028\u0029",
+            "name": "setMethod",
+            "summary": "set\u0020the\u0020form\u0020method",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_setMethod"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AsetFormEnctype\u0028\u0029",
+            "name": "setFormEnctype",
+            "summary": "set\u0020enctype\u0020for\u0020form",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_setFormEnctype"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AtransformTemplate\u0028\u0029",
+            "name": "transformTemplate",
+            "summary": "Basic\u0020transformation\u0020from\u0020Twig\u0020Template\u0020\u0028analyzed,\nso\u0020instance\u0020of\u0020\u0060macwinnie\\TwigForm\\Template\u0060\u0029\u0020to\nForm\u0020\u0028of\u0020\u0060static\u0060\u0020class\u0029\u0020object",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_transformTemplate"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024templates",
             "name": "templates",
@@ -65,6 +105,46 @@ Search.appendIndex(
             "name": "renderAttributes",
             "summary": "",
             "url": "classes/macwinnie-TwigForm-Form.html#property_renderAttributes"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formButtons",
+            "name": "formButtons",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formButtons"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formRows",
+            "name": "formRows",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formRows"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formID",
+            "name": "formID",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formID"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formMethod",
+            "name": "formMethod",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formMethod"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024fieldIDs",
+            "name": "fieldIDs",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_fieldIDs"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024hiddenFields",
+            "name": "hiddenFields",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_hiddenFields"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formAction",
+            "name": "formAction",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formAction"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formEnctype",
+            "name": "formEnctype",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formEnctype"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Template",
             "name": "Template",
@@ -330,11 +410,6 @@ Search.appendIndex(
             "name": "Helper",
             "summary": "Twig\u0020helper\u0020for\u0020working\u0020with\u0020TwigForm",
             "url": "classes/macwinnie-TwigForm-Twig-Helper.html"
-        },                {
-            "fqsen": "\\macwinnie\\TwigForm\\Twig\\Helper\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "constructor\u0020function\u0020to\u0020load\u0020TwigForm\u0020specific\u0020Twig\u0020templates",
-            "url": "classes/macwinnie-TwigForm-Twig-Helper.html#method___construct"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Twig\\Helper\u003A\u003AgetTemplates\u0028\u0029",
             "name": "getTemplates",

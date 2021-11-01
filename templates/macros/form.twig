@@ -1,12 +1,5 @@
-{% macro create(form, errors, method) %}
+{% macro create( form, errors = {} ) %}
 
-{# possible keys for `form.create`
- #
- # * `method` (default `POST` – has to be a valid HTTP Request method)
- # * `url`, `route` or `action` – those define the actual action path for the form.
- # * `enctype` – will be overridden if `files` is set `true` by `multipart/form-data`
- # * any other Attribute to be part of the `form` tag like `class`, `id`, ...
- #}
 {{ form_open( form.create ) }}
 
     {% for row in form.rows %}
@@ -30,7 +23,7 @@
                         {% endfor %}
                     </select>
                 {% else %}
-                    <input id="{{ row.name }}"{% if row.type == "datalist" %} list="{{ row.name }}s"{% endif %} class="{% if row.plaintext %}form-control-plaintext{% else %}{{ row.class }} form-control{% endif %}" {% if row.readonly %}readonly{% endif %} type="{{ row.type | default('text') }}" class="form-control" name="{{ row.name }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.placeholder and not row.disabled %} placeholder="{{row.placeholder}}"{% endif %} value="{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}"{% for aname, aval in row.attributes | default({}) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %} />{% if row.type == "datalist" %}
+                    <input id="{{ row.name }}"{% if row.type == "datalist" %} list="{{ row.name }}s"{% endif %} class="{% if row.readonly and row.plaintext %}form-control-plaintext{% else %}form-control{% endif %} {{ row.class }}" {% if row.readonly %}readonly{% endif %} type="{{ row.type | default('text') }}" class="form-control" name="{{ row.name }}" {{ row.required ? 'required' }} {{ row.autofocus ? 'autofocus' }} {{ row.disabled ? 'disabled' }} {% if row.placeholder and not row.disabled %} placeholder="{{row.placeholder}}"{% endif %} value="{% if request_data(row.name) %}{{ request_data(row.name) }}{% else %}{{ row.value }}{% endif %}"{% for aname, aval in row.attributes | default({}) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %} />{% if row.type == "datalist" %}
                     <datalist id="{{ row.name }}s">
                         {% for item in row.options %}
                             <option id="{{ row.name }}{{loop.index}}"{{ item.disabled ? 'disabled' }} value="{{ item.value }}"{% for aname, aval in item.attributes | default( row.option_attributes | default({}) ) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %} />

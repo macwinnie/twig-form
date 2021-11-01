@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>PHP-Helpers</title>
+    <title>TwigForm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -23,7 +23,7 @@
     </head>
 <body id="top">
     <header class="phpdocumentor-header phpdocumentor-section">
-    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">PHP-Helpers</a></h1>
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">TwigForm</a></h1>
     <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
     <label class="phpdocumentor-header__menu-icon" for="menu-button">
         <i class="fas fa-bars"></i>
@@ -111,13 +111,196 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">181</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.16"  class="phpdocumentor-element-found-in__source" data-line="16" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.181"  class="phpdocumentor-element-found-in__source" data-line="181" data-modal="source-view"></a>
     </aside>
 
-            <p class="phpdocumentor-summary">Exception class for TwigForm</p>
+            <p class="phpdocumentor-summary">Form class defining Forms by macwinnie\TwigForm.</p>
 
+    <section class="phpdocumentor-description"><hr/><hr/>
+<h3>Twig Macro <code class="prettyprint">form.twig</code></h3>
+<p>This class relies on the Twig macro <code class="prettyprint">form.twig</code> bundled with this package.
+To be able to use this class properly with that macro, it'll be described here.</p>
+<h4>Creator</h4>
+<!--
+`{` requires an escape sequence within phpDocumentor docblocks, which is `{}` –
+so the correct notation in docblock is `{}`
+-->
+<p>The macro constructor looks like <code class="prettyprint">{% macro create( form, errors = {} ) %}</code>.
+In the following macro documentation, we'll have a look on all important
+configuration options for the macro.</p>
+<p><details><summary style="cursor: pointer;"><strong>▶ Click to show minimal Twig example code using the macro...</strong></summary>
+<pre class="prettyprint"><code class="language-twig">{% import &quot;macros/form.twig&quot; as forms %}
+
+{% set form = {
+    &quot;create&quot;:
+    {
+        &quot;method&quot;: &quot;get&quot;
+    },
+    &quot;rows&quot;:
+    [
+        {
+            &quot;name&quot;: &quot;formelement&quot;,
+            &quot;placeholder&quot;: &quot;text shown as placeholder&quot;,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;title&quot;: &quot;single line textfield&quot;
+        }
+    ]
+} %}
+
+{% set errors = {
+    'formelement': 'This error will be shown.'
+} %}
+
+{{ forms.create( form, errors ) }}
+</code></pre>
+<p>Rendering this Twig template will result in this HTML snippet:</p>
+<pre class="prettyprint"><code class="language-html">&lt;form method=&quot;GET&quot; enctype=&quot;multipart/form-data&quot; class=&quot;form-horizontal&quot; &gt;
+    &lt;div class=&quot;form-group row has-error&quot; &gt;
+        &lt;label for=&quot;formelement&quot; class=&quot;col-md-3 col-form-label&quot;&gt;single line textfield&lt;/label&gt;
+        &lt;div class=&quot;col-md-9&quot;&gt;
+            &lt;input id=&quot;formelement&quot; class=&quot; form-control&quot; type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;formelement&quot; placeholder=&quot;text shown as placeholder&quot; value=&quot;&quot; /&gt;
+            &lt;span class=&quot;help-block errormsg&quot;&gt;
+                &lt;strong&gt;This error will be shown.&lt;/strong&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;submit&quot; class=&quot;btn btn-primary&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+</details></p>
+<hr/>
+<p>The Macro can be initiated given an object <code class="prettyprint">form</code>, which will be described in detail below.</p>
+<p>The optional dictionary <code class="prettyprint">errors</code> is used to populate all input rows (and so fields) with errors
+that occured e.g. while validating the sent form data. It has to be a dictionary with
+the <code class="prettyprint">row.name</code> as key and the error message to be displayed as value.</p>
+<h4>The <code class="prettyprint">form</code> object</h4>
+<pre class="prettyprint"><code class="language-js">{
+    &quot;create&quot;: {},
+    &quot;buttons&quot;: [],
+    &quot;submit&quot;: {},
+    &quot;rows&quot;: []
+}
+</code></pre>
+<p>The form object in general can consist out of three sub-objects: the <code class="prettyprint">create</code> and the <code class="prettyprint">rows</code>
+objects are mandatory, the <code class="prettyprint">buttons</code> object is optional.</p>
+<p><em>All given attributes within this Macro documentation are case sensitive!</em></p>
+<h5>The <code class="prettyprint">create</code> sub-object</h5>
+<p>This is a key-value dictionary that can consist out of those keys:</p>
+<ul>
+<li>
+<code class="prettyprint">method</code> (default <code class="prettyprint">POST</code> – has to be a valid HTTP Request method)</li>
+<li>
+<code class="prettyprint">url</code>, <code class="prettyprint">route</code> or <code class="prettyprint">action</code> – those define the actual action path for the form.</li>
+<li>
+<code class="prettyprint">enctype</code> – will be overridden if <code class="prettyprint">files</code> is set <code class="prettyprint">true</code> by <code class="prettyprint">multipart/form-data</code>
+</li>
+<li>any other Attribute to be part of the <code class="prettyprint">form</code> tag like <code class="prettyprint">class</code>, <code class="prettyprint">id</code>, ...</li>
+</ul>
+<h5>The <code class="prettyprint">submit</code> sub-object or the (optional) <code class="prettyprint">buttons</code> sub-list</h5>
+<p>By default and if <code class="prettyprint">buttons</code> sub-list is not defined, you'll get a simple <code class="prettyprint">submit</code> input
+form element at the end of your form. That element can be configured by the <code class="prettyprint">submit</code>
+sub-object of the whole form object with these attributes:</p>
+<ul>
+<li>
+<code class="prettyprint">name</code> – equivalent to the <code class="prettyprint">&lt;input&gt;</code> attribute name, defaults to <code class="prettyprint">submit</code>
+</li>
+<li>
+<code class="prettyprint">value</code> – equivalent to the <code class="prettyprint">&lt;input&gt;</code> attribute value, defaults to <code class="prettyprint">submit</code>
+</li>
+<li>
+<code class="prettyprint">class</code> – equivalent to the <code class="prettyprint">&lt;input&gt;</code> attribute class, defaults to <code class="prettyprint">btn btn-primary</code>
+</li>
+</ul>
+<p>As said above, if the <code class="prettyprint">buttons</code> sub-list is defined, the <code class="prettyprint">submit</code> sub-object is fully ignored.</p>
+<p>That's because of the fact, that the <code class="prettyprint">buttons</code> sub-list tells the macro per definition,
+that the form actions are all managed by those buttons. So the <code class="prettyprint">buttons</code> sub-list is a list of
+button definition dictionaries whith those attributes:</p>
+<ul>
+<li>
+<code class="prettyprint">name</code> – equivalent to the <code class="prettyprint">&lt;button&gt;</code> attribute name</li>
+<li>
+<code class="prettyprint">value</code> – equivalent to the <code class="prettyprint">&lt;button&gt;</code> attribute value</li>
+<li>
+<code class="prettyprint">class</code> – equivalent to the <code class="prettyprint">&lt;button&gt;</code> attribute class</li>
+<li>
+<code class="prettyprint">text</code>– equivalent to the (shown) value between opening and closing <code class="prettyprint">&lt;button&gt;</code> tags</li>
+</ul>
+<p>For buttons, you have to define all those attributes since they'll stay empty otherwise.</p>
+<h5>The <code class="prettyprint">rows</code> sub-list</h5>
+<p>A form created by this form Twig macro is structured into different rows – each row
+holds one field of the form.</p>
+<h6>common attributes</h6>
+<ul>
+<li>
+<code class="prettyprint">name</code> – the name of the rows input field, turned into the <code class="prettyprint">id</code> attribute and the <code class="prettyprint">name</code> attribute. It's the only mandatory attribute for each single row.</li>
+<li>
+<code class="prettyprint">type</code> – defines the type of current row form element. May be one out of <code class="prettyprint">checkbox</code>, <code class="prettyprint">radio</code>, <code class="prettyprint">textarea</code>, <code class="prettyprint">select</code> or <code class="prettyprint">datalist</code> – every other value will cause an <code class="prettyprint">&lt;input&gt;</code> tag with the <code class="prettyprint">type</code> attribute set to given value. Value defaults to <code class="prettyprint">text</code>.</li>
+<li>
+<code class="prettyprint">value</code> – if no <code class="prettyprint">&lt;option&gt;</code> tags are required, this attribute may set the value of the form element to be sent; defaults to already sent value if possible to retrieve</li>
+<li>
+<code class="prettyprint">help</code> – HTML content to be shown beneath the form element to help the user to correctly fill the form.</li>
+<li>
+<code class="prettyprint">title</code> - content of the rows <code class="prettyprint">&lt;label&gt;</code> tag; defaults to <code class="prettyprint">name</code>
+</li>
+<li>
+<code class="prettyprint">noTitle</code> – turns off the showing of a label in / for current input row</li>
+<li>
+<code class="prettyprint">class</code> – CSS class(es) of the form elements of the current row.</li>
+<li>
+<code class="prettyprint">placeholder</code> – sets the placeholder attribute on <code class="prettyprint">&lt;textarea&gt;</code> and regular <code class="prettyprint">&lt;input&gt;</code> tags</li>
+<li>
+<code class="prettyprint">autofocus</code> – if defined, the current element is provided the <code class="prettyprint">autofocus</code> attribute. Don't provide, if you don't want to apply!</li>
+<li>
+<code class="prettyprint">disabled</code> – if defined, option attribute <code class="prettyprint">disabled</code> is set. Don't provide, if you don't want to apply!</li>
+<li>
+<code class="prettyprint">hidden</code> – turns an <code class="prettyprint">input</code> field (and the whole row) into a hidden row / input. Don't provide, if you don't want to apply!</li>
+<li>
+<code class="prettyprint">readonly</code> – turns the form element of current row into a read-only one. Don't provide, if you don't want to apply!</li>
+<li>
+<code class="prettyprint">plaintext</code> – if row is readonly, Bootstrap allows to view the form element as plain text instead of form element. This attributes allows you to apply that.  Don't provide, if you don't want to apply!</li>
+<li>
+<code class="prettyprint">required</code> – activates the HTML / Browser check for required form elements: the element of current row has to be filled for being able to submit the form. Don't provide, if you don't want to apply!</li>
+<li>
+<code class="prettyprint">label_attributes</code> – attributes that are applied to the label of the row</li>
+<li>
+<code class="prettyprint">option_attributes</code> – default attributes to be added to all <code class="prettyprint">&lt;option&gt;</code> tags belonging to the current row, if no <code class="prettyprint">attributes</code> attribute defined within <code class="prettyprint">options</code> sub-object item (see below)</li>
+</ul>
+<h6><code class="prettyprint">&lt;textarea&gt;</code> specific attributes</h6>
+<ul>
+<li>
+<code class="prettyprint">cols</code> – columns of the textarea</li>
+<li>
+<code class="prettyprint">rows</code> – rows of the thextarea</li>
+</ul>
+<h6><code class="prettyprint">&lt;select&gt;</code> specific attributes</h6>
+<ul>
+<li>
+<code class="prettyprint">multiple</code> – if set, one can select multiple values from current row <code class="prettyprint">&lt;select&gt;</code> element. Don't provide, if you don't want to apply!</li>
+</ul>
+<h6>the sub-object <code class="prettyprint">options</code> with attributes for form elements with options</h6>
+<p>Those form elements are <code class="prettyprint">&lt;select&gt;</code>, <code class="prettyprint">&lt;input&gt;</code> of types <code class="prettyprint">checkbox</code> or <code class="prettyprint">radio</code> and <code class="prettyprint">&lt;input&gt;</code> in addition of a <code class="prettyprint">&lt;datalist&gt;</code> tag.</p>
+<p>For the <code class="prettyprint">&lt;input&gt;</code> tag in combination with the <code class="prettyprint">&lt;datalist&gt;</code> tag only the marked <code class="prettyprint">(*)</code> attributes are useable since <code class="prettyprint">&lt;datalist&gt;</code>s children <code class="prettyprint">&lt;option&gt;</code> are not (directly) visible.</p>
+<ul>
+<li>
+<code class="prettyprint">attributes</code> – override <code class="prettyprint">option_attributes</code>. Has to be a key-value-dictionary, so the tag will be expanded to <code class="prettyprint">&lt;tag key=&quot;value&quot;&gt;</code>. Double quotes <code class="prettyprint">&quot;</code> are replaced by <code class="prettyprint">&amp;quote;</code> within values. <code class="prettyprint">(*)</code>
+</li>
+<li>
+<code class="prettyprint">class</code> – CSS class(es) of the option; defaults to <code class="prettyprint">class</code> attribute of current <code class="prettyprint">row</code> (only <code class="prettyprint">&lt;input&gt;</code> of types <code class="prettyprint">checkbox</code> and <code class="prettyprint">radio</code>)</li>
+<li>
+<code class="prettyprint">description</code> – visible text fo the current opiton; defaults to <code class="prettyprint">value</code> attribute.</li>
+<li>
+<code class="prettyprint">disabled</code> – if defined, option attribute <code class="prettyprint">disabled</code> is set. So if you don't want to disable an option, just don't define that attribute. <code class="prettyprint">(*)</code>
+</li>
+<li>
+<code class="prettyprint">selected</code> – if set, the <code class="prettyprint">selected</code> attribute for current option is set. Is also set, if the value is set within <code class="prettyprint">request_data</code> twig function for current row, which reflects <code class="prettyprint">$_REQUEST</code> variable.</li>
+<li>
+<code class="prettyprint">value</code> – the actual value sent with form submission. <code class="prettyprint">(*)</code>
+</li>
+</ul>
+<hr/><hr/>
+</section>
 
 
 
@@ -352,9 +535,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">194</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.29"  class="phpdocumentor-element-found-in__source" data-line="29" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.194"  class="phpdocumentor-element-found-in__source" data-line="194" data-modal="source-view"></a>
     </aside>
 
     
@@ -387,9 +570,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.31"  class="phpdocumentor-element-found-in__source" data-line="31" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.196"  class="phpdocumentor-element-found-in__source" data-line="196" data-modal="source-view"></a>
     </aside>
 
     
@@ -422,9 +605,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">189</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.24"  class="phpdocumentor-element-found-in__source" data-line="24" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.189"  class="phpdocumentor-element-found-in__source" data-line="189" data-modal="source-view"></a>
     </aside>
 
     
@@ -457,9 +640,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">184</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.19"  class="phpdocumentor-element-found-in__source" data-line="19" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.184"  class="phpdocumentor-element-found-in__source" data-line="184" data-modal="source-view"></a>
     </aside>
 
     
@@ -492,9 +675,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">197</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.32"  class="phpdocumentor-element-found-in__source" data-line="32" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.197"  class="phpdocumentor-element-found-in__source" data-line="197" data-modal="source-view"></a>
     </aside>
 
     
@@ -527,9 +710,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.26"  class="phpdocumentor-element-found-in__source" data-line="26" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.191"  class="phpdocumentor-element-found-in__source" data-line="191" data-modal="source-view"></a>
     </aside>
 
     
@@ -562,9 +745,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">186</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.21"  class="phpdocumentor-element-found-in__source" data-line="21" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.186"  class="phpdocumentor-element-found-in__source" data-line="186" data-modal="source-view"></a>
     </aside>
 
     
@@ -597,9 +780,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">193</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.28"  class="phpdocumentor-element-found-in__source" data-line="28" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.193"  class="phpdocumentor-element-found-in__source" data-line="193" data-modal="source-view"></a>
     </aside>
 
     
@@ -632,9 +815,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.25"  class="phpdocumentor-element-found-in__source" data-line="25" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.190"  class="phpdocumentor-element-found-in__source" data-line="190" data-modal="source-view"></a>
     </aside>
 
     
@@ -667,9 +850,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">195</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.30"  class="phpdocumentor-element-found-in__source" data-line="30" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.195"  class="phpdocumentor-element-found-in__source" data-line="195" data-modal="source-view"></a>
     </aside>
 
     
@@ -702,9 +885,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.22"  class="phpdocumentor-element-found-in__source" data-line="22" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.187"  class="phpdocumentor-element-found-in__source" data-line="187" data-modal="source-view"></a>
     </aside>
 
     
@@ -737,9 +920,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">185</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.20"  class="phpdocumentor-element-found-in__source" data-line="20" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.185"  class="phpdocumentor-element-found-in__source" data-line="185" data-modal="source-view"></a>
     </aside>
 
     
@@ -772,9 +955,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">183</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.18"  class="phpdocumentor-element-found-in__source" data-line="18" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.183"  class="phpdocumentor-element-found-in__source" data-line="183" data-modal="source-view"></a>
     </aside>
 
     
@@ -811,9 +994,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">202</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.37"  class="phpdocumentor-element-found-in__source" data-line="37" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.202"  class="phpdocumentor-element-found-in__source" data-line="202" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">constructor of Form element</p>
@@ -845,9 +1028,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">211</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.46"  class="phpdocumentor-element-found-in__source" data-line="46" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.211"  class="phpdocumentor-element-found-in__source" data-line="211" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Function to build and return JSON representation of the current form</p>
@@ -881,9 +1064,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">339</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.174"  class="phpdocumentor-element-found-in__source" data-line="174" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.339"  class="phpdocumentor-element-found-in__source" data-line="339" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">add a hidden field to the current form</p>
@@ -936,9 +1119,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">310</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.145"  class="phpdocumentor-element-found-in__source" data-line="145" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.310"  class="phpdocumentor-element-found-in__source" data-line="310" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Add a render attribute / TwigVariable</p>
@@ -991,9 +1174,9 @@ Form (of `static` class) object</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">300</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.135"  class="phpdocumentor-element-found-in__source" data-line="135" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.300"  class="phpdocumentor-element-found-in__source" data-line="300" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Add additional Twig templates for being rendered;
@@ -1047,9 +1230,9 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">267</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.102"  class="phpdocumentor-element-found-in__source" data-line="102" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.267"  class="phpdocumentor-element-found-in__source" data-line="267" data-modal="source-view"></a>
     </aside>
 
     
@@ -1081,9 +1264,9 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">257</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.92"  class="phpdocumentor-element-found-in__source" data-line="92" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.257"  class="phpdocumentor-element-found-in__source" data-line="257" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Load a Form by JSON description</p>
@@ -1143,9 +1326,9 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">319</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.154"  class="phpdocumentor-element-found-in__source" data-line="154" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.319"  class="phpdocumentor-element-found-in__source" data-line="319" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Function for final rendering the selected Template with the given form data</p>
@@ -1179,9 +1362,9 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">283</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.118"  class="phpdocumentor-element-found-in__source" data-line="118" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.283"  class="phpdocumentor-element-found-in__source" data-line="283" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Select another template to be rendered instead of `form`</p>
@@ -1250,9 +1433,9 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">248</span>
+    <span class="phpdocumentor-element-found-in__line">413</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.248"  class="phpdocumentor-element-found-in__source" data-line="248" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.413"  class="phpdocumentor-element-found-in__source" data-line="413" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set enctype for form</p>
@@ -1306,9 +1489,9 @@ https://wiki.selfhtml.org/wiki/HTML/Elemente/form</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">189</span>
+    <span class="phpdocumentor-element-found-in__line">354</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.189"  class="phpdocumentor-element-found-in__source" data-line="189" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.354"  class="phpdocumentor-element-found-in__source" data-line="354" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set the form identifier</p>
@@ -1362,9 +1545,9 @@ overridden by $new; defaults to <code class="prettyprint">true</code></p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">211</span>
+    <span class="phpdocumentor-element-found-in__line">376</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.211"  class="phpdocumentor-element-found-in__source" data-line="211" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.376"  class="phpdocumentor-element-found-in__source" data-line="376" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set the form method</p>
@@ -1412,9 +1595,9 @@ https://datatracker.ietf.org/doc/html/rfc7231#section-4.3</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">271</span>
+    <span class="phpdocumentor-element-found-in__line">436</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.271"  class="phpdocumentor-element-found-in__source" data-line="271" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.436"  class="phpdocumentor-element-found-in__source" data-line="436" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Basic transformation from Twig Template (analyzed,
@@ -1471,9 +1654,9 @@ Form (of `static` class) object</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">233</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.68"  class="phpdocumentor-element-found-in__source" data-line="68" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.233"  class="phpdocumentor-element-found-in__source" data-line="233" data-modal="source-view"></a>
     </aside>
 
         <p class="phpdocumentor-summary">function to provide create part of form definition</p>

@@ -34,15 +34,19 @@ To create the latest documentation, simply run the following Docker command:
 ```sh
 docker pull phpdoc/phpdoc:3
 rm -rf docs
-docker run --rm -v $(pwd):/data phpdoc/phpdoc:3 --setting=graphs.enabled=true -d src -t docs --sourcecode --title=TwigForm
+docker run --rm -v $(pwd):/data phpdoc/phpdoc:3 --setting=graphs.enabled=true -d src -t docs --sourcecode --title=TwigForm --no-interaction
 cat <<EOF >> docs/css/base.css
 
 code.prettyprint {
-    background: var(--code-background-color);
+    background: var(--primary-color-lighten);
     border: 1px solid var(--code-border-color);
     border-radius: var(--border-radius-base-size);
     padding: 0.1em 0.4em;
     margin: 0.1em 0.2em;
+    font-size: 0.9em !important;
+}
+pre.prettyprint {
+    font-size: 0.8em !important;
 }
 EOF
 ```

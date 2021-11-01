@@ -13,9 +13,9 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0",
-        "twig/twig": ">=3.3",
-        "twig/extra-bundle": ">=3.3",
-        "macwinnie/phphelpers": ">=1.0"
+        "twig/twig": "^3",
+        "twig/extra-bundle": "^3",
+        "macwinnie/phphelpers": "^2"
     },
     "require-dev": {
         "behat/behat": ">=3.8",

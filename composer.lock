@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c1a3de588ea41ea14593acc46488064",
+    "content-hash": "9db75079105f6d6404dbf4bbbf27e106",
     "packages": [
         {
             "name": "macwinnie/phphelpers",

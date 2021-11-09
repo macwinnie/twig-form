@@ -33,10 +33,13 @@ To create the latest documentation, simply run the following Docker command:
 
 ```sh
 docker pull phpdoc/phpdoc:3
+docker pull macwinnie/md2rst:latest
 rm -rf docs
-docker run --rm -v $(pwd):/data phpdoc/phpdoc:3 --setting=graphs.enabled=true -d src -t docs --sourcecode --title=TwigForm --no-interaction
+docker run --rm -v $( pwd )/guides:/data -t macwinnie/md2rst:latest
+docker run --rm -v $( pwd ):/data phpdoc/phpdoc:3 --sourcecode
 cat <<EOF >> docs/css/base.css
 
+code,
 code.prettyprint {
     background: var(--primary-color-lighten);
     border: 1px solid var(--code-border-color);
@@ -50,6 +53,8 @@ pre.prettyprint {
 }
 EOF
 ```
+
+As long as `md` isn't supported officially by phpDocumentors Guides, we need to translate the additional `md` Documentations to `rst` format. For that, the additional docker run is used.
 
 *ATTENTION:* The phpDocumentor tag `latest` from Docker is somehow a very old one – one wants to use a version tag like the `:3` above.
 

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TwigForm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-okaidia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">TwigForm</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+        </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
+                    <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Documentation</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="guide/twig/index.html" class=""></a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="guide/twig/form-macro.html" class="-active">Twig Macro: form.twig</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/macwinnie.html" class="">macwinnie</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/macwinnie-twigform.html" class="">TwigForm</a>
+                
+            </li>
+            </ul>
+
+                        </section>
+                <section class="phpdocumentor-sidebar__category">
+            <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Application.html" class="">Application</a>
+</h4>
+
+                        </section>
+            
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="graphs/classes.html">Class Diagram</a></h3>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -eight phpdocumentor-content">
+                    <div class="section" id="twig-macro-form-twig">
+<h1>Twig Macro: form.twig</h1>
+<p>This project relies on the Twig macro <code>form.twig</code> bundled with this package.
+To be able to use this class properly with that macro, it'll be described here.</p>
+<div class="section" id="creator">
+<h2>Creator</h2>
+<p>The macro constructor looks like <code>{% macro create( form, errors = {} ) %}</code> .
+In the following macro documentation, we'll have a look on all important
+configuration options for the macro.</p>
+<pre><code class="language-twig " >{% import &quot;macros/form.twig&quot; as forms %}
+
+{% set form = {
+  &quot;create&quot;:
+  {
+      &quot;method&quot;: &quot;get&quot;
+  },
+  &quot;rows&quot;:
+  [
+      {
+          &quot;name&quot;: &quot;formelement&quot;,
+          &quot;placeholder&quot;: &quot;text shown as placeholder&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;title&quot;: &quot;single line textfield&quot;
+      }
+  ]
+} %}
+
+{% set errors = {
+ &#039;formelement&#039;: &#039;This error will be shown.&#039;
+} %}
+
+{{ forms.create( form, errors ) }}
+</code></pre>
+<p>Rendering this Twig template will result in this HTML snippet:</p>
+<pre><code class="language-html " >&lt;form method=&quot;GET&quot; enctype=&quot;multipart/form-data&quot; class=&quot;form-horizontal&quot; &gt;
+    &lt;div class=&quot;form-group row has-error&quot; &gt;
+        &lt;label for=&quot;formelement&quot; class=&quot;col-md-3 col-form-label&quot;&gt;single line textfield&lt;/label&gt;
+        &lt;div class=&quot;col-md-9&quot;&gt;
+            &lt;input id=&quot;formelement&quot; class=&quot; form-control&quot; type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;formelement&quot; placeholder=&quot;text shown as placeholder&quot; value=&quot;&quot; /&gt;
+            &lt;span class=&quot;help-block errormsg&quot;&gt;
+                &lt;strong&gt;This error will be shown.&lt;/strong&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;submit&quot; class=&quot;btn btn-primary&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+<p>The Macro can be initiated given an object <code>form</code> – which will be described in detail below.</p>
+<p>The optional dictionary <code>errors</code> is used to populate all input rows (and so fields) with errors
+that occured e.g. while validating the sent form data. It has to be a dictionary with
+the <code>row.name</code> as key and the error message to be displayed as value.</p>
+</div>
+<div class="section" id="the-2a284ee7efa15a557955b346f64c4fe79c1b4949-object">
+<h2>The <code>form</code> object</h2>
+<pre><code class="language-js " >{
+  &quot;create&quot;: {},
+  &quot;buttons&quot;: [],
+  &quot;submit&quot;: {},
+  &quot;rows&quot;: []
+}
+</code></pre>
+<p>The form object in general can consist out of three sub-objects: the <code>create</code> and the <code>rows</code>
+objects are mandatory, the <code>buttons</code> object is optional.</p>
+<p><em>All given attributes within this Macro documentation are case sensitive!</em></p>
+<div class="section" id="the-f5441961a424997daab36ffb9c6c3724cc9ac8ca-sub-object">
+<h3>The <code>create</code> sub-object</h3>
+<p>This is a key-value dictionary that can consist out of those keys:</p>
+
+
+<ul>
+    <li>
+            <code>method</code> (default <code>POST</code> – has to be a valid HTTP Request method)
+        </li>
+    <li>
+            <code>url</code>\ , <code>route</code> or <code>action</code> – those define the actual action path for the form.
+        </li>
+    <li>
+            <code>enctype</code> – will be overridden if <code>files</code> is set <code>true</code> by <code>multipart/form-data</code>
+        </li>
+    <li>
+            any other Attribute to be part of the <code>form</code> tag like <code>class</code> , <code>id</code> , ...
+        </li>
+</ul>
+</div>
+<div class="section" id="the-e3d116bb31ca73e02bcb8c401af9e0116a24fbde-sub-object-or-the-optional-35a151df5ae9b35eba145362aba88cbbe44e05da-sub-list">
+<h3>The <code>submit</code> sub-object or the (optional) <code>buttons</code> sub-list</h3>
+<p>By default and if <code>buttons</code> sub-list is not defined, you'll get a simple <code>submit</code> input
+form element at the end of your form. That element can be configured by the <code>submit</code>
+sub-object of the whole form object with these attributes:</p>
+
+
+<ul>
+    <li>
+            <code>name</code> – equivalent to the attribute <code>name</code> of <code>input</code> tag, defaults to <code>submit</code>
+        </li>
+    <li>
+            <code>value</code> – equivalent to the attribute <code>value</code> of <code>input</code> tag, defaults to <code>submit</code>
+        </li>
+    <li>
+            <code>class</code> – equivalent to the attribute <code>class</code> of <code>input</code> tag, defaults to <code>btn btn-primary</code>
+        </li>
+</ul>
+<p>As said above, if the <code>buttons</code> sub-list is defined, the <code>submit</code> sub-object is fully ignored.</p>
+<p>That's because of the fact, that the <code>buttons</code> sub-list tells the macro per definition,
+that the form actions are all managed by those buttons. So the <code>buttons</code> sub-list is a list of
+button definition dictionaries whith those attributes:</p>
+
+
+<ul>
+    <li>
+            <code>name</code> – equivalent to the attribute <code>name</code> of the <code>button</code> tag
+        </li>
+    <li>
+            <code>value</code> – equivalent to the attribute <code>value</code> of the <code>button</code> tag
+        </li>
+    <li>
+            <code>class</code> – equivalent to the attribute <code>class</code> of the <code>button</code> tag
+        </li>
+    <li>
+            <code>text</code> – equivalent to the (shown) value between opening and closing <code>button</code> tags
+        </li>
+</ul>
+<p>For buttons, you have to define all those attributes since they'll stay empty otherwise.</p>
+</div>
+<div class="section" id="the-6179089a4f2f0ef99c6305d1538960b108252cfa-sub-list">
+<h3>The <code>rows</code> sub-list</h3>
+<p>A form created by this form Twig macro is structured into different rows – each row
+holds one field of the form.</p>
+<div class="section" id="common-attributes">
+<h4>common attributes</h4>
+
+
+<ul>
+    <li>
+            <code>name</code> – the name of the rows input field, turned into the <code>id</code> attribute and the <code>name</code> attribute. It's the only mandatory attribute for each single row.
+        </li>
+    <li>
+            <code>type</code> – defines the type of current row form element. May be one out of <code>checkbox</code> , <code>radio</code> , <code>textarea</code> , <code>select</code> or <code>datalist</code> – every other value will cause an <code>input</code> tag with the <code>type</code> attribute set to given value. Value defaults to <code>text</code> .
+        </li>
+    <li>
+            <code>value</code> – if no <code>option</code> tags are required, this attribute may set the value of the form element to be sent; defaults to already sent value if possible to retrieve
+        </li>
+    <li>
+            <code>help</code> – HTML content to be shown beneath the form element to help the user to correctly fill the form.
+        </li>
+    <li>
+            <code>title</code> - content of the rows <code>label</code> tag; defaults to <code>name</code>
+        </li>
+    <li>
+            <code>noTitle</code> – turns off the showing of a label in / for current input row
+        </li>
+    <li>
+            <code>class</code> – CSS class(es) of the form elements of the current row.
+        </li>
+    <li>
+            <code>placeholder</code> – sets the placeholder attribute on <code>textarea</code> and regular <code>input</code> tags
+        </li>
+    <li>
+            <code>autofocus</code> – if defined, the current element is provided the <code>autofocus</code> attribute. Don't provide, if you don't want to apply!
+        </li>
+    <li>
+            <code>disabled</code> – if defined, option attribute <code>disabled</code> is set. Don't provide, if you don't want to apply!
+        </li>
+    <li>
+            <code>hidden</code> – turns an <code>input</code> field (and the whole row) into a hidden row / input. Don't provide, if you don't want to apply!
+        </li>
+    <li>
+            <code>readonly</code> – turns the form element of current row into a read-only one. Don't provide, if you don't want to apply!
+        </li>
+    <li>
+            <code>plaintext</code> – if row is readonly, Bootstrap allows to view the form element as plain text instead of form element. This attributes allows you to apply that.  Don't provide, if you don't want to apply!
+        </li>
+    <li>
+            <code>required</code> – activates the HTML / Browser check for required form elements: the element of current row has to be filled for being able to submit the form. Don't provide, if you don't want to apply!
+        </li>
+    <li>
+            <code>label_attributes</code> – attributes that are applied to the label of the row
+        </li>
+    <li>
+            <code>option_attributes</code> – default attributes to be added to all <code>option</code> tags belonging to the current row, if no <code>attributes</code> attribute defined within <code>options</code> sub-object item (see below)
+        </li>
+</ul>
+</div>
+<div class="section" id="db879a1ab000a0074aa29e49c4fb7f987c69286d-specific-attributes">
+<h4><code>textarea</code> specific attributes</h4>
+
+
+<ul>
+    <li>
+            <code>cols</code> – columns of the textarea
+        </li>
+    <li>
+            <code>rows</code> – rows of the thextarea
+        </li>
+</ul>
+</div>
+<div class="section" id="1718c72a707e2ac582ca0f0fe0f44920c1fac3fe-specific-attributes">
+<h4><code>select</code> specific attributes</h4>
+
+
+<ul>
+    <li>
+            <code>multiple</code> – if set, one can select multiple values from current row <code>select</code> element. Don't provide, if you don't want to apply!
+        </li>
+</ul>
+</div>
+<div class="section" id="the-sub-object-9bd1adb251be7229295468e0d48e64ddee3f637a-with-attributes-for-form-elements-with-options">
+<h4>the sub-object <code>options</code> with attributes for form elements with options</h4>
+<p>Those form elements are <code>select</code> , <code>input</code> of types <code>checkbox</code> or <code>radio</code> and <code>input</code> in addition of a <code>datalist</code> tag.</p>
+<p>For the <code>input</code> tag in combination with the <code>datalist</code> tag only the marked <code>(*)</code> attributes are useable since <code>datalist</code> children <code>option</code> are not (directly) visible.</p>
+
+
+<ul>
+    <li>
+            <code>attributes</code> – override <code>option_attributes</code> . Has to be a key-value-dictionary, so the tag will be expanded by <code>key="value"</code> . Double quotes <code>"</code> are replaced by <code>&amp;quote;</code> within values. <code>(*)</code>
+        </li>
+    <li>
+            <code>class</code> – CSS class(es) of the option; defaults to <code>class</code> attribute of current <code>row</code> (only <code>input</code> of types <code>checkbox</code> and <code>radio</code> )
+        </li>
+    <li>
+            <code>description</code> – visible text fo the current opiton; defaults to <code>value</code> attribute.
+        </li>
+    <li>
+            <code>disabled</code> – if defined, option attribute <code>disabled</code> is set. So if you don't want to disable an option, just don't define that attribute. <code>(*)</code>
+        </li>
+    <li>
+            <code>selected</code> – if set, the <code>selected</code> attribute for current option is set. Is also set, if the value is set within <code>request_data</code> twig function for current row, which reflects <code>$_REQUEST</code> variable.
+        </li>
+    <li>
+            <code>value</code> – the actual value sent with form submission. <code>(*)</code>
+        </li>
+</ul>
+</div>
+</div>
+
+                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+            </div>
+        </div>
+        <a href="#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+</body>
+</html>

@@ -1103,6 +1103,7 @@ td.phpdocumentor-cell:last-child {
     float: left;
 }
 
+code,
 code.prettyprint {
     background: var(--primary-color-lighten);
     border: 1px solid var(--code-border-color);

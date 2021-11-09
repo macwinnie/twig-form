@@ -8,7 +8,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form",
             "name": "Form",
-            "summary": "Form\u0020class\u0020defining\u0020Forms\u0020by\u0020macwinnie\\TwigForm.",
+            "summary": "Form\u0020class\u0020to\u0020build\u0020form\u0020configurations\u0020and\u0020render\u0020them",
             "url": "classes/macwinnie-TwigForm-Form.html"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A__construct\u0028\u0029",

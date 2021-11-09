@@ -50,6 +50,7 @@ jobs:
       - name: renew and build documentation
         run: |
           rm -rf docs
+          docker run --rm -v $( pwd )/guides:/data -t macwinnie/md2rst:latest
           docker run --rm -v ${{ github.workspace }}:/data phpdoc/phpdoc:3 \
             --setting=graphs.enabled=true -d src -t docs \
             --sourcecode --title=TwigForm --no-interaction

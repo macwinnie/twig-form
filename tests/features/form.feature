@@ -35,3 +35,20 @@ Feature: Form
       """
     When I request "POST /tests/helper/"
     Then I should see a JSON response
+    And the JSON should contain not-NULL key-tree "create"
+    And the JSON should have value "twigform" at key-tree "create.id"
+    And the JSON should contain key-tree "rows" with "2" sub-elements
+    # And the value in JSON at key-tree "" should match RegEx ""
+
+  @form
+  Scenario: Check if named template returns named form
+    Given I have the payload
+      """
+      {
+        "template": "Lorem ipsum {{ dolor }} sit {{ amet }}",
+        "formid":   "lorem_test"
+      }
+      """
+    When I request "POST /tests/helper/"
+    Then I should see a JSON response
+    And the JSON should have value "lorem_test" at key-tree "create.id"

@@ -38,5 +38,9 @@
     "10": {
         "fkt": "loadJSON",
         "file": "macwinnie\\TwigForm\\Form"
+    },
+    "11": {
+        "fkt": "getSubmit",
+        "file": "macwinnie\\TwigForm\\Form"
     }
 }

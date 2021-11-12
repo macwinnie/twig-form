@@ -24,4 +24,31 @@ class FormContext extends HeadlessBrowserContext {
         parent::__construct();
     }
 
+    /**
+     * @Then the JSON should contain key-tree :keytree with :count sub-elements
+     */
+    public function theJsonShouldContainKeyTreeWithSubElements( $keytree, $count ) {
+        $json  = json_decode( $this->lastResponseBody(), true );
+        $value = getArrayValue( $json, $keytree );
+        Assert::assertEquals( $count, count( $value ) );
+    }
+
+    /**
+     * @Then the JSON should contain not-NULL key-tree :keytree
+     */
+    public function theJsonShouldContainNotNullKeyTree( $keytree ) {
+        $json    = json_decode( $this->lastResponseBody(), true );
+        $value   = getArrayValue( $json, $keytree );
+        Assert::assertNotNull( $value );
+    }
+
+    /**
+     * @Then the JSON should have value :value at key-tree :keytree
+     */
+    public function theJsonShouldHaveValueAtKeyTree( $val, $keytree ) {
+        $json  = json_decode( $this->lastResponseBody(), true );
+        $value = getArrayValue( $json, $keytree );
+        Assert::assertEquals( $val, $value );
+    }
+
 }

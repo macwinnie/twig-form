@@ -58,7 +58,7 @@
     {% endfor %}
     {% if form.buttons %}
         {% for button in form.buttons %}
-            <button name="{{ button.name }}" value="{{ button.value }}" type="submit" class="{{ button.class }}" {{ button.hidden ? 'hidden' }}>{{ button.text }}</button>
+            <button name="{{ button.name }}" value="{{ button.value }}" type="submit" class="{{ button.class }}" {{ button.hidden ? 'hidden' }}{% for aname, aval in button.attributes | default( form.button_attributes | default({})) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %}>{{ button.text }}</button>
         {% endfor %}
 
         {% if form.buttonAdditionals %}
@@ -67,7 +67,7 @@
             {% endfor %}
         {% endif %}
     {% else %}
-        <input type="submit" name="{{ form.submit.name | default( 'submit' ) }}" value="{{ form.submit.value | default( 'submit' ) }}" class="{{ form.submit.class | default( 'btn btn-primary' ) }}" />
+        <input type="submit" name="{{ form.submit.name | default( 'submit' ) }}" value="{{ form.submit.value | default( 'submit' ) }}" class="{{ form.submit.class | default( 'btn btn-primary' ) }}"{% for aname, aval in form.submit.attributes | default({}) %} {{ aname }}="{{ aval | replace({'"': '&quote;'}) }}"{% endfor %} />
     {% endif %}
 {{ form_close() }}
 

@@ -70,7 +70,7 @@ the `row.name` as key and the error message to be displayed as value.
 ```
 
 The form object in general can consist out of three sub-objects: the `create` and the `rows`
-objects are mandatory, the `buttons` object is optional.
+objects are mandatory, the `submit` / `buttons` object is optional.
 
 *All given attributes within this Macro documentation are case sensitive!*
 
@@ -90,7 +90,8 @@ sub-object of the whole form object with these attributes:
 
 * `name` – equivalent to the attribute `name` of `input` tag, defaults to `submit`
 * `value` – equivalent to the attribute `value` of `input` tag, defaults to `submit`
-* `class` – equivalent to the attribute `class` of `input` tag, defaults to `btn btn-primary`
+* `class` – equivalent to the attribute `class` of `input` tag, defaults to `btn btn-primary` ([Bootstrap](https://getbootstrap.com/docs/))
+* `attributes` – additional attributes for the currently described `button` tag as dictionary (key is attribute name, value is attribute value)
 
 As said above, if the `buttons` sub-list is defined, the `submit` sub-object is fully ignored.
 
@@ -102,6 +103,7 @@ button definition dictionaries whith those attributes:
 * `value` – equivalent to the attribute `value` of the `button` tag
 * `class` – equivalent to the attribute `class` of the `button` tag
 * `text` – equivalent to the (shown) value between opening and closing `button` tags
+* `attributes` – additional attributes for the currently described `button` tag as dictionary (key is attribute name, value is attribute value) – the `button_attributes` dictionary at top level of the `form` object will be overridden by this local dictionary.
 
 For buttons, you have to define all those attributes since they'll stay empty otherwise.
 

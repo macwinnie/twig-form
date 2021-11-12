@@ -21,6 +21,7 @@ class HeadlessBrowserContext implements Context {
     protected $client;
     protected $requestPayload;
     protected $lastResponse;
+    protected $lastResponseBody;
     protected $lastResponseDOM;
     protected $requestOptions;
 
@@ -85,7 +86,10 @@ class HeadlessBrowserContext implements Context {
      * @return string
      */
     protected function lastResponseBody() {
-        return $this->lastResponse->getBody()->getContents();
+        if ( $this->lastResponseBody == NULL ) {
+            $this->lastResponseBody = $this->lastResponse->getBody()->getContents();
+        }
+        return $this->lastResponseBody;
     }
 
     /**
@@ -160,9 +164,7 @@ class HeadlessBrowserContext implements Context {
      * @Then I should see a JSON response
      */
     public function iShouldSeeAJsonResponse() {
-        // var_dump( $this->lastResponseBody() );
         $tmp = json_decode( $this->lastResponseBody() );
-        var_dump( $tmp );
         Assert::assertEquals( JSON_ERROR_NONE, json_last_error() );
     }
 

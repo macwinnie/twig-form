@@ -16,7 +16,12 @@ if ( isset( $_REQUEST[ 'template' ] ) ) {
      * This part has to convert a template into a form definition JSON
      */
     $x = new Template( $_REQUEST[ 'template' ] );
-    echo Form::transformTemplate( $x );
+    if ( isset( $_REQUEST[ 'formid' ] ) ) {
+        echo Form::transformTemplate( $x, $_REQUEST[ 'formid' ] );
+    }
+    else {
+        echo Form::transformTemplate( $x );
+    }
 }
 
 

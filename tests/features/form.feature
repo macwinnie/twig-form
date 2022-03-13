@@ -25,7 +25,7 @@ Feature: Form
     And There should be a "input" tag with attribute "placeholder" and value "ph text"
     And There should be a "button" tag with attribute "name" and value "submitbutton"
 
-  @form @cur
+  @form
   Scenario: Check if template is translated to JSON form
     Given I have the payload
       """
@@ -38,7 +38,9 @@ Feature: Form
     And the JSON should contain not-NULL key-tree "create"
     And the JSON should have value "twigform" at key-tree "create.id"
     And the JSON should contain key-tree "rows" with "2" sub-elements
-    # And the value in JSON at key-tree "" should match RegEx ""
+    And the JSON should have value "dolor" at key-tree "rows.0.name"
+    And the JSON should have value "amet" at key-tree "rows.1.name"
+    And the JSON should have value "text" at key-tree "rows.1.type"
 
   @form
   Scenario: Check if named template returns named form

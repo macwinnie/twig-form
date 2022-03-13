@@ -55,7 +55,13 @@ class Form {
             // regular case if no submit definition was done => continue
         }
         $buttons = $this->formButtons;
-        $rows    = $this->formRows;
+        $rows    = [];
+        foreach ( $this->formRows as $row ) {
+            $rows[] = json_decode(
+                strval( $row ),
+                true
+            );
+        }
 
         $combine = [ 'create', 'rows' ];
 
@@ -73,6 +79,7 @@ class Form {
         }
 
         $stringify = compact( $combine );
+
         $string    = json_encode( $stringify );
         return $string;
     }
@@ -351,6 +358,15 @@ class Form {
     }
 
     /**
+     * add a row to the form
+     *
+     * @param string $rowName row name has to be non-empty and not `NULL`.
+     */
+    protected function addRow ( $rowName ) {
+        $this->formRows[] = new Row( $rowName );
+    }
+
+    /**
      * Basic transformation from Twig Template (analyzed,
      * so instance of `macwinnie\TwigForm\Template`) to
      * Form (of `static` class) object
@@ -363,6 +379,11 @@ class Form {
     public static function transformTemplate ( Template $tpl, $id = NULL ) {
         $instance = new static();
         $instance->setFormID( $id );
+
+        $tplVars = $tpl->getVariables();
+        foreach ( $tplVars as $varname ) {
+            $instance->addRow( $varname );
+        }
 
         return $instance;
     }

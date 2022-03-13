@@ -42,5 +42,9 @@
     "11": {
         "fkt": "getSubmit",
         "file": "macwinnie\\TwigForm\\Form"
+    },
+    "12": {
+        "fkt": "__construct",
+        "file": "macwinnie\\TwigForm\\Row"
     }
 }

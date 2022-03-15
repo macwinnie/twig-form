@@ -46,5 +46,9 @@
     "12": {
         "fkt": "__construct",
         "file": "macwinnie\\TwigForm\\Row"
+    },
+    "13": {
+        "fkt": "getOptions",
+        "file": "macwinnie\\TwigForm\\Row"
     }
 }

@@ -4,35 +4,20 @@ namespace macwinnie\TwigForm;
 
 /**
  * Class that represents a row within the form.twig Macro of this package
- *
- * May have those attributes:
- *   * row."hidden"
- *   * row."noTitle"
- *   * row."title"
- *   * row."label_attributes"
- *   * row."checked"
- *   * row."rows"
- *   * row."cols"
- *   * row."multiple"
- *   * row."plaintext"
- *   * row."class"
- *   * row."readonly"
- *   * row."required"
- *   * row."autofocus"
- *   * row."disabled"
- *   * row."placeholder"
- *   * row."value"
- *   * row."attributes"
- *   * row."type"
- *   * row."options"
- *   * row."option_attributes"
- *   * row."help"
  */
 class Row {
 
-    private $name = NULL;
+    private $name       = NULL;
+    private $options    = [];
     private $attributes = [
         "type" => "text",
+    ];
+
+    protected static $option_types = [
+        "select",
+        "checkbox",
+        "radio",
+        "datalist",
     ];
 
     protected static $possible_attributes = [
@@ -54,7 +39,6 @@ class Row {
         "placeholder",
         "value",
         "attributes",
-        "options",
         "option_attributes",
         "help",
     ];
@@ -87,13 +71,45 @@ class Row {
      * @return string JSON representation
      */
     public function __toString () {
-        $stringify = array_merge (
+
+        $stringify = [
             $this->attributes,
             [
                 'name' => $this->name
             ]
+        ];
+
+        $stringify = array_merge(
+            $stringify,
+            $this->getOptions()
         );
+
+        $stringify = call_user_func_array( 'array_merge', $stringify );
         $string    = json_encode( $stringify );
         return $string;
+    }
+
+    /**
+     * return options if they are set
+     *
+     * @return array list of options
+     */
+    protected function getOptions() {
+
+        $type = $this->attributes [ 'type' ];
+
+        if ( in_array( $type, static::$option_types ) ) {
+            if ( empty( $this->options ) ) {
+                throw new \Exception( sprintf( 'Row of type “%s” needs at least one option!', $type ), 13 );
+            }
+            else {
+                return [
+                    'options' => $this->options,
+                ];
+            }
+        }
+        else {
+            return [];
+        }
     }
 }

@@ -23,16 +23,7 @@ jobs:
         run: |
           docker run -d --rm -v ${{ github.workspace }}:/var/www/html devopsansiblede/apache:php8 > /dev/null 2>&1
           cnt8=$( docker ps --quiet )
-          docker run -d --rm -v ${{ github.workspace }}:/var/www/html devopsansiblede/apache > /dev/null 2>&1
-          cnt7=$( docker ps --quiet | sed '/${cnt8}/ d' )
-          echo "::set-output name=cnt8::${cnt8}"
-          echo "::set-output name=cnt7::${cnt7}"
-
-      - name: run checks with PHP 7
-        run: |
-          docker exec -i "${{ steps.cnt.outputs.cnt7 }}" composer validate
-          docker exec -i "${{ steps.cnt.outputs.cnt7 }}" composer update
-          docker exec -i "${{ steps.cnt.outputs.cnt7 }}" composer run-script test
+          echo "cnt8=${cnt8}" >> $GITHUB_OUTPUT
 
       - name: run checks with PHP 8
         run: |
@@ -48,9 +39,9 @@ jobs:
           git update-index --refresh
           git diff-index --quiet HEAD --
           if [ $? -ne 0 ] && [ $(date +\%u) = 7 ]; then
-            echo "::set-output name=push::push"
+            echo "push=push" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=push::skip"
+            echo "push=skip" >> $GITHUB_OUTPUT
           fi
 
       - name: 'Get Previous tag'

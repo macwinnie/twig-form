@@ -11,6 +11,17 @@ use macwinnie\TwigForm\Form;
 $templates = TwigHelper::getTemplates();
 
 
+if ( empty( $_REQUEST ) ) {
+    try {
+        $raw = file_get_contents('php://input');
+        if ( strlen( $raw ) > 1 ) {
+            $_REQUEST = json_decode( $raw, true );
+        }
+    } catch (\Exception $e) {}
+
+}
+
+
 if ( isset( $_REQUEST[ 'template' ] ) ) {
     /**
      * This part has to convert a template into a form definition JSON

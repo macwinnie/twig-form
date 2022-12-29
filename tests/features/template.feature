@@ -131,11 +131,12 @@ Feature: Template
   Scenario: variable variable key
     Given the template
       """
-      lorem {{ ipsum[ dolor ] }}
+      lorem {{ ipsum[ dolor ] }} sit {{ amet }}
       """
-    Then I should get 2 variables
-    And "ipsum" is one variable name
+    Then I should get 3 variables
+    And "ipsum{}" is one variable name
     And "dolor" is one variable name
+    And "amet" is one variable name
 
   @template
   Scenario: Set variables should be ignored
@@ -153,7 +154,7 @@ Feature: Template
       Lorem ipsum {{ dolor.sit }}
       """
     Then I should get 2 variables
-    And "dolor" is one variable name
+    And "dolor{}" is one variable name
     And "dolor.sit" is one variable name
 
   @template
@@ -163,22 +164,23 @@ Feature: Template
       Lorem ipsum {{ dolor.sit.amet }}
       """
     Then I should get 3 variables
-    And "dolor" is one variable name
-    And "dolor.sit" is one variable name
+    And "dolor{}" is one variable name
+    And "dolor.sit{}" is one variable name
     And "dolor.sit.amet" is one variable name
 
   @template
   Scenario: template two nested dicts
     Given the template
       """
-      {{ lorem }} ipsum dolor {{ lorem.sit }}
+      {{ lorem.ipsum }} dolor {{ lorem.sit }}
       Lorem ipsum {{ dolor.sit.amet }}
       """
-    Then I should get 5 variables
-    And "dolor" is one variable name
-    And "dolor.sit" is one variable name
+    Then I should get 6 variables
+    And "dolor{}" is one variable name
+    And "dolor.sit{}" is one variable name
     And "dolor.sit.amet" is one variable name
-    And "lorem" is one variable name
+    And "lorem{}" is one variable name
+    And "lorem.ipsum" is one variable name
     And "lorem.sit" is one variable name
 
   @template
@@ -190,9 +192,9 @@ Feature: Template
       {% endfor %}
       """
     Then I should get 3 variables
-    And "lorem" is one variable name
-    And "lorem.dolor" is one variable name
-    And "lorem.amet" is one variable name
+    And "lorem[]" is one variable name
+    And "lorem.#.dolor" is one variable name
+    And "lorem.#.amet" is one variable name
 
   @template
   Scenario: Nested for loop template
@@ -205,7 +207,29 @@ Feature: Template
       {% endfor %}
       """
     Then I should get 4 variables
-    And "lorem" is one variable name
-    And "lorem.ipsum" is one variable name
-    And "lorem.ipsum.amet" is one variable name
-    And "lorem.ipsum.dolor" is one variable name
+    And "lorem[]" is one variable name
+    And "lorem.#.ipsum[]" is one variable name
+    And "lorem.#.ipsum.#.amet" is one variable name
+    And "lorem.#.ipsum.#.dolor" is one variable name
+
+  @template
+  Scenario: Key-Value for loops have to be well-handled
+    Given the template
+      """
+      {% for k, v in lorem %}
+          Key “{{ k }}” has value “{{ v }}”
+      {% endfor %}
+      """
+    Then I should get 1 variables
+    And "lorem{}" is one variable name
+
+  @template
+  Scenario: variable variable key in nested object
+    Given the template
+      """
+      lorem {{ ipsum.dolor[ sit ] }} amet
+      """
+    Then I should get 3 variables
+    And "ipsum{}" is one variable name
+    And "ipsum.dolor{}" is one variable name
+    And "sit" is one variable name

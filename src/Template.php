@@ -89,34 +89,59 @@ class Template {
 
         $this->appendForVariables( $this->variables );
 
-        return static::flattenVariables( $this->variables );
+        return static::flattenVariables( $this->variables, $this->loader );
     }
 
     /**
      * create representation of variable names
      *
      * @param  mixed    $variables variable array to work with
+     * @param  array    $tpls      list of templates used – should be $this->loader in most calls
      * @param  string   $glue      glue for flat path representation
      *
      * @return array               dot representation of variables
      */
-    protected static function flattenVariables ( $variables, $glue = '.' ) {
+    protected static function flattenVariables ( $variables, $tpls, $glue = '.' ) {
         $vars = [];
         if ( ! empty( $variables ) ) {
             foreach ($variables as $key => $sub) {
-                $var    = $key;
+                $varSuffix = '';
+                $var = $key;
+                $dictCheck = false;
+                if (is_array($tpls) and !empty($tpls)) {
+                    foreach ( $tpls as $tpl ) {
+                        $dictCheck = static::checkForDictionaryCall( $var, $tpl );
+                    }
+                }
                 if (
-                    is_array( $sub ) and
-                    ! empty( $sub )
+                    $dictCheck // variable was recognized to be a dictionary
                 ) {
-                    foreach ( static::flattenVariables( $sub ) as $subvar ) {
+                    $varSuffix = '{}';
+                }
+                if (
+                    is_array( $sub )
+                ) {
+                    if (
+                        ! empty($sub) // keys in $sub so it's definitly a dictionary
+                    ) {
+                        $varSuffix = '{}';
+                    }
+                    foreach ( static::flattenVariables( $sub, $tpls ) as $subvar ) {
+                        if (preg_match('/^#\..+$/', $subvar) == 1) {
+                            $varSuffix = '[]';
+                        }
                         $vars[] = $var . $glue . $subvar;
                     }
                 }
-                $vars[] = $var;
+                // add $var to $vars if $key is not the identifier of a list `#`
+                // or dict `*`
+                if ( ! in_array($key, [ "#", "*" ]) ) {
+                    $vars[] = $var . $varSuffix;
+                }
             }
         }
-        return $vars;
+
+        return array_unique($vars);
     }
 
     /**
@@ -338,7 +363,7 @@ class Template {
                 throw new Exception("The template contains unmapped for loops.", 7);
             }
 
-            static::analyseForVariables( $nested );
+            static::analyseForVariables( $nested, $this->loader );
 
             $this->fors = $nested;
         }
@@ -371,6 +396,14 @@ class Template {
                         $vars = array_merge_recursive ( $vars, static::treeFromFlattened( $flat ) );
                     }
                 }
+                // is there a k-v-dictionary or a simple list used?
+                elseif (
+                    isset( $top_for[ 'key' ] ) and
+                    strlen( $top_for[ 'key' ] ) > 0 and
+                    empty( $vars[ $top_for[ 'array' ] ] )
+                ) {
+                    $vars[ $top_for[ 'array' ] ][ '*' ] = [];
+                }
             }
         }
     }
@@ -379,15 +412,16 @@ class Template {
      * function to finally get and map the variable names from for loops
      *
      * @param  array &$nested list of fors to work on
+     * @param  array $tpls    list of templates used – should be $this->loader in most calls
      *
      * @return void
      */
-    private static function analyseForVariables ( &$nested ) {
+    private static function analyseForVariables ( &$nested, $tpls ) {
 
         foreach ( $nested as $key => &$for ) {
             // start with the children
             if ( !empty( $for[ 'children' ] ) ) {
-                static::analyseForVariables( $for[ 'children' ] );
+                static::analyseForVariables( $for[ 'children' ], $tpls );
             }
 
             $vars = [];
@@ -399,8 +433,8 @@ class Template {
             }
 
             $for[ 'vars' ] = [];
-            foreach ( static::flattenVariables( $vars ) as $var) {
-                $for[ 'vars' ][] = $for[ 'array' ] . '.' . $var;
+            foreach ( static::flattenVariables( $vars, $tpls ) as $var) {
+                $for[ 'vars' ][] = $for[ 'array' ] . '.#.' . $var;
             }
         }
     }
@@ -818,7 +852,7 @@ class Template {
     /** @var string part one of RegEx */
     private static $fetchDictionaryNamesRegex1 = REGEX_DELIMITER . '\{\{\s*';
     /** @var string last part of RegEx */
-    private static $fetchDictionaryNamesRegex2 = '\.([^\s]+)\s*\}\}' . REGEX_DELIMITER . 'im';
+    private static $fetchDictionaryNamesRegex2 = '\.([^\s]+)(\s*\[.+\])?\s*\}\}' . REGEX_DELIMITER . 'im';
 
     /**
      * fetch dictionary names from template
@@ -847,6 +881,30 @@ class Template {
                 unset( $x );
             }
         }
+    }
+
+    /** @var string part one of RegEx */
+    private static $fetchDictionaryNamesRegex3 = REGEX_DELIMITER . '\{\{\s*([^\.]+\.)?';
+    /** @var string last part of RegEx */
+    private static $fetchDictionaryNamesRegex4 = '\s*\[\s*([^\s]+)\s*\]\s*\}\}' . REGEX_DELIMITER . 'im';
+
+    /**
+     * check if a variable is used as dictionary within the given template
+     * by `{{ var[ xxx ] }}` syntax
+     *
+     * @param  string $var   variable name to fetch subs from
+     * @param  string $tpl   template string to work with
+     *
+     * @return boolean     value if variable is used as dictionary
+     */
+    protected static function checkForDictionaryCall( $var, $tpl ) {
+        $regex = static::$fetchDictionaryNamesRegex3 .
+                 delimiter_preg_quote( $var ) .
+                 static::$fetchDictionaryNamesRegex4;
+
+        $result = preg_match_all( $regex, $tpl );
+
+        return ( is_integer( $result ) and $result >= 1 );
     }
 
     /**

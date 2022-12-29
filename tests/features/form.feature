@@ -54,3 +54,24 @@ Feature: Form
     When I request "POST /tests/helper/"
     Then I should see a JSON response
     And the JSON should have value "lorem_test" at key-tree "create.id"
+    And the JSON should contain key-tree "rows" with "2" sub-elements
+    And the JSON should have value "dolor" at key-tree "rows.*.name"
+    And the JSON should have value "amet" at key-tree "rows.*.name"
+
+  @form
+  Scenario: One form should be returned even if block is used
+    Given I have the payload
+      """
+      {
+        "template": "Lorem ipsum {{ dolor }} {% block sit %}{{ amet }}{% endblock %}"
+      }
+      """
+    When I request "POST /tests/helper/"
+    Then I should see a JSON response
+    And the JSON should have value "twigform" at key-tree "create.id"
+    And the JSON should contain key-tree "create" with "3" sub-elements
+    And the JSON should contain key-tree "rows" with "2" sub-elements
+    And the JSON should have value "text" at key-tree "rows.0.type"
+    And the JSON should have value "text" at key-tree "rows.1.type"
+    And the JSON should have value "dolor" at key-tree "rows.*.name"
+    And the JSON should have value "amet" at key-tree "rows.*.name"

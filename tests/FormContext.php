@@ -47,8 +47,28 @@ class FormContext extends HeadlessBrowserContext {
      */
     public function theJsonShouldHaveValueAtKeyTree( $val, $keytree ) {
         $json  = json_decode( $this->lastResponseBody(), true );
-        $value = getArrayValue( $json, $keytree );
-        Assert::assertEquals( $val, $value );
+        $wildcard_rx = '/\.\*\.?/';
+        $kts = new \ArrayObject( preg_split( $wildcard_rx, $keytree ) );
+        $ktsi = $kts->getIterator();
+        $haystack = [ $json ];
+        while( $ktsi->valid() ) {
+            $kt = $ktsi->current();
+            $ktsi->next();
+            $nextHaystack = [];
+            foreach ( $haystack as $h ) {
+                $result = getArrayValue( $h, $kt );
+                // there still exists another key-tree to check ...
+                if ( is_array( $result ) ) {
+                    $nextHaystack = array_merge( $nextHaystack, $result );
+                }
+                else {
+                    $nextHaystack[] = $result;
+                }
+
+            }
+            $haystack = $nextHaystack;
+        }
+        Assert::assertContains( $val, $haystack );
     }
 
 }

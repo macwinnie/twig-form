@@ -39,7 +39,7 @@ jobs:
               devopsansiblede/baseimage bash -c "git add -A
               git update-index --refresh
               git diff-index --quiet HEAD --" > /dev/null
-          if [ $? -ne 0 ] && [ $(date +\%u) = 7 ]; then
+          if [ $? -ne 0 ]; then
             echo "push=push" >> $GITHUB_OUTPUT
           else
             echo "push=skip" >> $GITHUB_OUTPUT

@@ -7,7 +7,7 @@ Feature: Form
   I need to validate these values
 
   @form
-  Scenario: Simple template variable extract
+  Scenario: Test availability of helper endpoint
     Given I am on "/tests/helper"
     Then I should see "Nothing to do."
 

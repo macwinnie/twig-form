@@ -66,9 +66,10 @@ jobs:
         id: gitcheck
         run: |
           set +e
-          git add -A
-          git update-index --refresh
-          git diff-index --quiet HEAD --
+          docker run -t -v ${{ github.workspace }}:/data -w /data \
+              devopsansiblede/baseimage bash -c "git add -A
+              git update-index --refresh
+              git diff-index --quiet HEAD --" > /dev/null
           if [ $? -ne 0 ] && [ $(date +\%u) = 7 ]; then
             echo "push=push" >> $GITHUB_OUTPUT
           else

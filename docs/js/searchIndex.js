@@ -21,6 +21,11 @@ Search.appendIndex(
             "summary": "Function\u0020to\u0020build\u0020and\u0020return\u0020JSON\u0020representation\u0020of\u0020the\u0020current\u0020form",
             "url": "classes/macwinnie-TwigForm-Form.html#method___toString"
         },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AsetAction\u0028\u0029",
+            "name": "setAction",
+            "summary": "function\u0020to\u0020set\u0020form\u0020action",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_setAction"
+        },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AgetFormCreate\u0028\u0029",
             "name": "getFormCreate",
             "summary": "function\u0020to\u0020provide\u0020create\u0020part\u0020of\u0020form\u0020definition",
@@ -33,7 +38,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AformGetIdent\u0028\u0029",
             "name": "formGetIdent",
-            "summary": "",
+            "summary": "function\u0020to\u0020gather\u0020the\u0020current\u0020form\u0020identifier",
             "url": "classes/macwinnie-TwigForm-Form.html#method_formGetIdent"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AselectTemplate\u0028\u0029",
@@ -75,6 +80,26 @@ Search.appendIndex(
             "name": "setFormEnctype",
             "summary": "set\u0020enctype\u0020for\u0020form",
             "url": "classes/macwinnie-TwigForm-Form.html#method_setFormEnctype"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AsetFormAttribute\u0028\u0029",
+            "name": "setFormAttribute",
+            "summary": "set\u0020attributes\u0020used\u0020within\u0020main\u0020form\u0020element",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_setFormAttribute"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AgetSubmit\u0028\u0029",
+            "name": "getSubmit",
+            "summary": "get\u0020submit\u0020input\u0020data\u0020for\u0020string\u0020representation",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_getSubmit"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AsetSubmitAttribute\u0028\u0029",
+            "name": "setSubmitAttribute",
+            "summary": "set\u0020attributes\u0020for\u0020regular\u0020submit\u0020input",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_setSubmitAttribute"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AaddRow\u0028\u0029",
+            "name": "addRow",
+            "summary": "add\u0020a\u0020row\u0020to\u0020the\u0020form",
+            "url": "classes/macwinnie-TwigForm-Form.html#method_addRow"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003AtransformTemplate\u0028\u0029",
             "name": "transformTemplate",
@@ -121,6 +146,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/macwinnie-TwigForm-Form.html#property_formID"
         },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formAttributes",
+            "name": "formAttributes",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formAttributes"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formSubmit",
+            "name": "formSubmit",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_formSubmit"
+        },                {
             "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024formMethod",
             "name": "formMethod",
             "summary": "",
@@ -145,6 +180,56 @@ Search.appendIndex(
             "name": "formEnctype",
             "summary": "",
             "url": "classes/macwinnie-TwigForm-Form.html#property_formEnctype"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Form\u003A\u003A\u0024defaultTwigForm",
+            "name": "defaultTwigForm",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Form.html#property_defaultTwigForm"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row",
+            "name": "Row",
+            "summary": "Class\u0020that\u0020represents\u0020a\u0020row\u0020within\u0020the\u0020form.twig\u0020Macro\u0020of\u0020this\u0020package",
+            "url": "classes/macwinnie-TwigForm-Row.html"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "constructor\u0020of\u0020form\u0020row",
+            "url": "classes/macwinnie-TwigForm-Row.html#method___construct"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "function\u0020to\u0020transform\u0020Row\u0020into\u0020JSON\u0020String",
+            "url": "classes/macwinnie-TwigForm-Row.html#method___toString"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003AgetOptions\u0028\u0029",
+            "name": "getOptions",
+            "summary": "return\u0020options\u0020if\u0020they\u0020are\u0020set",
+            "url": "classes/macwinnie-TwigForm-Row.html#method_getOptions"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Row.html#property_name"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003A\u0024options",
+            "name": "options",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Row.html#property_options"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003A\u0024attributes",
+            "name": "attributes",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Row.html#property_attributes"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003A\u0024option_types",
+            "name": "option_types",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Row.html#property_option_types"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Row\u003A\u003A\u0024possible_attributes",
+            "name": "possible_attributes",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Row.html#property_possible_attributes"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Template",
             "name": "Template",
@@ -296,6 +381,11 @@ Search.appendIndex(
             "summary": "fetch\u0020dictionary\u0020names\u0020from\u0020template",
             "url": "classes/macwinnie-TwigForm-Template.html#method_fetchDictionaryNames"
         },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Template\u003A\u003AcheckForDictionaryCall\u0028\u0029",
+            "name": "checkForDictionaryCall",
+            "summary": "check\u0020if\u0020a\u0020variable\u0020is\u0020used\u0020as\u0020dictionary\u0020within\u0020the\u0020given\u0020template\nby\u0020\u0060\u007B\u007B\u0020var\u005B\u0020xxx\u0020\u005D\u0020\u007D\u007D\u0060\u0020syntax",
+            "url": "classes/macwinnie-TwigForm-Template.html#method_checkForDictionaryCall"
+        },                {
             "fqsen": "\\macwinnie\\TwigForm\\Template\u003A\u003AremoveSetVarsIfSet\u0028\u0029",
             "name": "removeSetVarsIfSet",
             "summary": "if\u0020option\u0020is\u0020activated\u0020remove\u0020variables\u0020that\u0020are\u0020set\u0020from\u0020within\u0020the\u0020template",
@@ -370,6 +460,16 @@ Search.appendIndex(
             "name": "fetchDictionaryNamesRegex2",
             "summary": "",
             "url": "classes/macwinnie-TwigForm-Template.html#property_fetchDictionaryNamesRegex2"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Template\u003A\u003A\u0024fetchDictionaryNamesRegex3",
+            "name": "fetchDictionaryNamesRegex3",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Template.html#property_fetchDictionaryNamesRegex3"
+        },                {
+            "fqsen": "\\macwinnie\\TwigForm\\Template\u003A\u003A\u0024fetchDictionaryNamesRegex4",
+            "name": "fetchDictionaryNamesRegex4",
+            "summary": "",
+            "url": "classes/macwinnie-TwigForm-Template.html#property_fetchDictionaryNamesRegex4"
         },                {
             "fqsen": "\\macwinnie\\TwigForm\\Twig\\Extension",
             "name": "Extension",

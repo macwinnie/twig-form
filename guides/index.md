@@ -1,3 +1,0 @@
-# Documentation
-
-Here some additional documentation for the `TwigForm` package will be established by time ...

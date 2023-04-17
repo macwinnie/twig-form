@@ -18,7 +18,7 @@
         </api>
         <guide format="rst">
             <source dsn=".">
-                <path>guides</path>
+                <path>notes</path>
             </source>
             <output>guide</output>
         </guide>

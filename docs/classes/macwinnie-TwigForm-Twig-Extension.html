@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>TwigForm</title>
+            <title>TwigForm</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -18,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -51,15 +53,19 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
-            <h2 class="phpdocumentor-sidebar__category-header">Documentation</h2>
+            <h2 class="phpdocumentor-sidebar__category-header">documentation</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="guide/twig/index.html" class=""></a>
+    <a href="guide/twig/index.html#twig-macro-form-twig" class="">Twig Macro: form.twig</a>
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="guide/twig/form-macro.html" class="">Twig Macro: form.twig</a>
+                <a href="guide/twig/index.html#creator" class="">Creator</a>
+                
+            </li>
+                    <li>
+                <a href="guide/twig/index.html#the-form-object" class="">The form object</a>
                 
             </li>
             </ul>
@@ -100,8 +106,9 @@
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/macwinnie.html">macwinnie</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/macwinnie-twigform.html">TwigForm</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/macwinnie-twigform-twig.html">Twig</a></li>
@@ -125,12 +132,17 @@
     
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Twig/Extension.php"><a href="files/src-twig-extension.html"><abbr title="src/Twig/Extension.php">Extension.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
-            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.13"  class="phpdocumentor-element-found-in__source" data-line="13" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.13" class="phpdocumentor-element-found-in__source" data-line="13" data-modal="source-view" data-src="files/src/Twig/Extension.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">Twig extension providing usefull functions for working with forms</p>
@@ -140,69 +152,78 @@
 
 
 
-
-<h3 id="interfaces_class_traits">
-    Interfaces, Classes and Traits
-    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
-</h3>
-
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Twig\Extension\ExtensionInterface">ExtensionInterface</abbr></dt>
-        <dd></dd>
-    
-    
-    </dl>
-
-
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/macwinnie-TwigForm-Twig-Extension.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/macwinnie-TwigForm-Twig-Extension.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Twig\Extension\ExtensionInterface">ExtensionInterface</abbr></dt>    </dl>
+
+
+
+
+
+
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/macwinnie-TwigForm-Twig-Extension.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -method -public">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getFilters">getFilters()</a>
     <span>
-                        &nbsp;: array&lt;string|int, <abbr title="\Twig\TwigFilter">TwigFilter</abbr>&gt;    </span>
+                                &nbsp;: array&lt;string|int, <abbr title="\Twig\TwigFilter">TwigFilter</abbr>&gt;    </span>
 </dt>
 <dd>Returns a list of filters to add to the existing list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getFunctions">getFunctions()</a>
     <span>
-                        &nbsp;: array&lt;string|int, <abbr title="\Twig\TwigFunction">TwigFunction</abbr>&gt;    </span>
+                                &nbsp;: array&lt;string|int, <abbr title="\Twig\TwigFunction">TwigFunction</abbr>&gt;    </span>
 </dt>
 <dd>Returns a list of functions to add to the existing list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getNodeVisitors">getNodeVisitors()</a>
     <span>
-                        &nbsp;: array&lt;string|int, <abbr title="\Twig\NodeVisitor\NodeVisitorInterface">NodeVisitorInterface</abbr>&gt;    </span>
+                                &nbsp;: array&lt;string|int, <abbr title="\Twig\NodeVisitor\NodeVisitorInterface">NodeVisitorInterface</abbr>&gt;    </span>
 </dt>
 <dd>Returns the node visitor instances to add to the existing list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getOperators">getOperators()</a>
     <span>
-                        &nbsp;: array&lt;string|int, array&lt;string|int, mixed&gt;&gt;    </span>
+                                &nbsp;: array&lt;string|int, array&lt;string|int, mixed&gt;&gt;    </span>
 </dt>
 <dd>Returns a list of operators to add to the existing list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getTests">getTests()</a>
     <span>
-                        &nbsp;: array&lt;string|int, <abbr title="\Twig\TwigTest">TwigTest</abbr>&gt;    </span>
+                                &nbsp;: array&lt;string|int, <abbr title="\Twig\TwigTest">TwigTest</abbr>&gt;    </span>
 </dt>
 <dd>Returns a list of tests to add to the existing list.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getTokenParsers">getTokenParsers()</a>
     <span>
-                        &nbsp;: array&lt;string|int, <abbr title="\Twig\TokenParser\TokenParserInterface">TokenParserInterface</abbr>&gt;    </span>
+                                &nbsp;: array&lt;string|int, <abbr title="\Twig\TokenParser\TokenParserInterface">TokenParserInterface</abbr>&gt;    </span>
 </dt>
 <dd>Returns the token parser instances to add to the existing list.</dd>
 
-        </dl>
+    </dl>
+
 
 
 
@@ -214,6 +235,7 @@
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/macwinnie-TwigForm-Twig-Extension.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -224,21 +246,24 @@
     <h4 class="phpdocumentor-element__name" id="method_getFilters">
         getFilters()
         <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getFilters" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Twig/Extension.php"><a href="files/src-twig-extension.html"><abbr title="src/Twig/Extension.php">Extension.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">209</span>
 
-            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.209"  class="phpdocumentor-element-found-in__source" data-line="209" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.209" class="phpdocumentor-element-found-in__source" data-line="209" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Returns a list of filters to add to the existing list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getFilters</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFilter">TwigFilter</abbr>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getFilters</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFilter">TwigFilter</abbr>&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><blockquote>
 <p>Not used until now ...</p>
 </blockquote>
@@ -247,11 +272,11 @@
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFilter">TwigFilter</abbr>&gt;</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFilter">TwigFilter</abbr>&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -262,29 +287,33 @@
     <h4 class="phpdocumentor-element__name" id="method_getFunctions">
         getFunctions()
         <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getFunctions" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Twig/Extension.php"><a href="files/src-twig-extension.html"><abbr title="src/Twig/Extension.php">Extension.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">84</span>
 
-            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.84"  class="phpdocumentor-element-found-in__source" data-line="84" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.84" class="phpdocumentor-element-found-in__source" data-line="84" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Returns a list of functions to add to the existing list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getFunctions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFunction">TwigFunction</abbr>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getFunctions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFunction">TwigFunction</abbr>&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFunction">TwigFunction</abbr>&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><h5>Twig function <code class="prettyprint">form_open</code></h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigFunction">TwigFunction</abbr>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><h5>Twig function <code class="prettyprint">form_open</code></h5>
 <p>Twig function to open an HTML form by a provisioned <code class="prettyprint">&lt;form&gt;</code> tag.</p>
 <p>Usage:</p>
 <pre class="prettyprint"><code class="language-twig">{{ form_open( attributes ) }}
@@ -339,7 +368,8 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
 </ul>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -350,21 +380,24 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     <h4 class="phpdocumentor-element__name" id="method_getNodeVisitors">
         getNodeVisitors()
         <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getNodeVisitors" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Twig/Extension.php"><a href="files/src-twig-extension.html"><abbr title="src/Twig/Extension.php">Extension.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">199</span>
 
-            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.199"  class="phpdocumentor-element-found-in__source" data-line="199" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.199" class="phpdocumentor-element-found-in__source" data-line="199" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Returns the node visitor instances to add to the existing list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getNodeVisitors</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\NodeVisitor\NodeVisitorInterface">NodeVisitorInterface</abbr>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getNodeVisitors</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\NodeVisitor\NodeVisitorInterface">NodeVisitorInterface</abbr>&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><blockquote>
 <p>Not used until now ...</p>
 </blockquote>
@@ -373,11 +406,11 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\NodeVisitor\NodeVisitorInterface">NodeVisitorInterface</abbr>&gt;</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\NodeVisitor\NodeVisitorInterface">NodeVisitorInterface</abbr>&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -388,21 +421,24 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     <h4 class="phpdocumentor-element__name" id="method_getOperators">
         getOperators()
         <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getOperators" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Twig/Extension.php"><a href="files/src-twig-extension.html"><abbr title="src/Twig/Extension.php">Extension.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">229</span>
 
-            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.229"  class="phpdocumentor-element-found-in__source" data-line="229" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.229" class="phpdocumentor-element-found-in__source" data-line="229" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Returns a list of operators to add to the existing list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getOperators</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getOperators</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><blockquote>
 <p>Not used until now ...</p>
 </blockquote>
@@ -411,13 +447,15 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>First array of unary operators, second array of binary operators</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, array&lt;string|int, mixed&gt;&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>First array of unary operators, second array of binary operators</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -428,21 +466,24 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     <h4 class="phpdocumentor-element__name" id="method_getTests">
         getTests()
         <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getTests" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Twig/Extension.php"><a href="files/src-twig-extension.html"><abbr title="src/Twig/Extension.php">Extension.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">219</span>
 
-            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.219"  class="phpdocumentor-element-found-in__source" data-line="219" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.219" class="phpdocumentor-element-found-in__source" data-line="219" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Returns a list of tests to add to the existing list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getTests</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigTest">TwigTest</abbr>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getTests</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigTest">TwigTest</abbr>&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><blockquote>
 <p>Not used until now ...</p>
 </blockquote>
@@ -451,11 +492,11 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigTest">TwigTest</abbr>&gt;</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TwigTest">TwigTest</abbr>&gt;</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -466,21 +507,24 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     <h4 class="phpdocumentor-element__name" id="method_getTokenParsers">
         getTokenParsers()
         <a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getTokenParsers" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Twig/Extension.php"><a href="files/src-twig-extension.html"><abbr title="src/Twig/Extension.php">Extension.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">189</span>
 
-            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.189"  class="phpdocumentor-element-found-in__source" data-line="189" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Twig-Extension.html#source-view.189" class="phpdocumentor-element-found-in__source" data-line="189" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Returns the token parser instances to add to the existing list.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getTokenParsers</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TokenParser\TokenParserInterface">TokenParserInterface</abbr>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getTokenParsers</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TokenParser\TokenParserInterface">TokenParserInterface</abbr>&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><blockquote>
 <p>Not used until now ...</p>
 </blockquote>
@@ -489,11 +533,11 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TokenParser\TokenParserInterface">TokenParserInterface</abbr>&gt;</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <abbr title="\Twig\TokenParser\TokenParserInterface">TokenParserInterface</abbr>&gt;</span>
+            </section>
+
 </article>
             </section>
 
@@ -501,75 +545,127 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-        <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Twig/Extension.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Twig/Extension.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
-        <button data-exit-button class="phpdocumentor-modal__close">X</button>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
 </div>
 
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                                                <li><a href="classes/macwinnie-TwigForm-Twig-Extension.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li><a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getFilters">getFilters()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getFunctions">getFunctions()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getNodeVisitors">getNodeVisitors()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getOperators">getOperators()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getTests">getTests()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Twig-Extension.html#method_getTokenParsers">getTokenParsers()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -580,7 +676,6 @@ the function defaults it to <code class="prettyprint">NULL</code> and then will 
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/macwinnie-TwigForm-Twig-Extension.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

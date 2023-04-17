@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>TwigForm</title>
+            <title>TwigForm</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -18,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -51,15 +53,19 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
-            <h2 class="phpdocumentor-sidebar__category-header">Documentation</h2>
+            <h2 class="phpdocumentor-sidebar__category-header">documentation</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="guide/twig/index.html" class=""></a>
+    <a href="guide/twig/index.html#twig-macro-form-twig" class="">Twig Macro: form.twig</a>
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="guide/twig/form-macro.html" class="">Twig Macro: form.twig</a>
+                <a href="guide/twig/index.html#creator" class="">Creator</a>
+                
+            </li>
+                    <li>
+                <a href="guide/twig/index.html#the-form-object" class="">The form object</a>
                 
             </li>
             </ul>
@@ -100,8 +106,9 @@
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/macwinnie.html">macwinnie</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/macwinnie-twigform.html">TwigForm</a></li>
     </ul>
@@ -121,12 +128,17 @@
     
     </h2>
 
+<div class="phpdocumentor-label-line">
+
+
+</div>
+
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.13"  class="phpdocumentor-element-found-in__source" data-line="13" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.13" class="phpdocumentor-element-found-in__source" data-line="13" data-modal="source-view" data-src="files/src/Form.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">Form class to build form configurations and render them</p>
@@ -136,138 +148,162 @@
 
 
 
-
-
-
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/macwinnie-TwigForm-Form.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+
+
+
+
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/macwinnie-TwigForm-Form.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
-                <dt class="phpdocumentor-table-of-contents__entry -property -private">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/macwinnie-TwigForm-Form.html#property_defaultTwigForm">$defaultTwigForm</a>
+    <span>
+                        &nbsp;: mixed            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_fieldIDs">$fieldIDs</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formAction">$formAction</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/macwinnie-TwigForm-Form.html#property_formAttributes">$formAttributes</a>
+    <span>
+                        &nbsp;: mixed            </span>
+</dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formButtons">$formButtons</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formDefinition">$formDefinition</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formEnctype">$formEnctype</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formID">$formID</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formIdentifier">$formIdentifier</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formMethod">$formMethod</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_formRows">$formRows</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/macwinnie-TwigForm-Form.html#property_formSubmit">$formSubmit</a>
+    <span>
+                        &nbsp;: mixed            </span>
+</dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_hiddenFields">$hiddenFields</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_renderAttributes">$renderAttributes</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_selectedTemplate">$selectedTemplate</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/macwinnie-TwigForm-Form.html#property_templates">$templates</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd></dd>
 
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/macwinnie-TwigForm-Form.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method___construct">__construct()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>constructor of Form element</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method___toString">__toString()</a>
     <span>
-                        &nbsp;: string    </span>
+                                &nbsp;: string    </span>
 </dt>
 <dd>Function to build and return JSON representation of the current form</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_addHiddenField">addHiddenField()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>add a hidden field to the current form</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_addRenderAttribute">addRenderAttribute()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>Add a render attribute / TwigVariable</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_addTwigTemplate">addTwigTemplate()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>Add additional Twig templates for being rendered;
 is not meant to be used with instances of \macwinnie\TwigForm\Template</dd>
@@ -275,69 +311,105 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_formGetIdent">formGetIdent()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: string    </span>
 </dt>
-<dd></dd>
+<dd>function to gather the current form identifier</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_loadJSON">loadJSON()</a>
     <span>
-                        &nbsp;: void    </span>
+                                &nbsp;: void    </span>
 </dt>
 <dd>Load a Form by JSON description</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_renderForm">renderForm()</a>
     <span>
-                        &nbsp;: string    </span>
+                                &nbsp;: string    </span>
 </dt>
 <dd>Function for final rendering the selected Template with the given form data</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_selectTemplate">selectTemplate()</a>
     <span>
-                        &nbsp;: void    </span>
+                                &nbsp;: void    </span>
 </dt>
 <dd>Select another template to be rendered instead of `form`</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/macwinnie-TwigForm-Form.html#method_setAction">setAction()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>function to set form action</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/macwinnie-TwigForm-Form.html#method_setFormAttribute">setFormAttribute()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>set attributes used within main form element</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_setFormEnctype">setFormEnctype()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>set enctype for form</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_setFormID">setFormID()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>set the form identifier</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_setMethod">setMethod()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd>set the form method</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/macwinnie-TwigForm-Form.html#method_setSubmitAttribute">setSubmitAttribute()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>set attributes for regular submit input</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/macwinnie-TwigForm-Form.html#method_transformTemplate">transformTemplate()</a>
     <span>
-                        &nbsp;: static    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Basic transformation from Twig Template (analyzed,
 so instance of `macwinnie\TwigForm\Template`) to
 Form (of `static` class) object</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/macwinnie-TwigForm-Form.html#method_addRow">addRow()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>add a row to the form</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/macwinnie-TwigForm-Form.html#method_getFormCreate">getFormCreate()</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd>function to provide create part of form definition</dd>
 
-        </dl>
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a href="classes/macwinnie-TwigForm-Form.html#method_getSubmit">getSubmit()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>get submit input data for string representation</dd>
+
+    </dl>
+
 
 
 
@@ -348,7 +420,42 @@ Form (of `static` class) object</dd>
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
             <a href="classes/macwinnie-TwigForm-Form.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_defaultTwigForm">
+        $defaultTwigForm
+        <a href="classes/macwinnie-TwigForm-Form.html#property_defaultTwigForm" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">33</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.33" class="phpdocumentor-element-found-in__source" data-line="33" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$defaultTwigForm</span>
+     = <span class="phpdocumentor-signature__default-value">&#039;twigform&#039;</span></code>
+
+    
+    
+    
+
+</article>
                     <article
         class="
             phpdocumentor-element
@@ -359,15 +466,16 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_fieldIDs">
         $fieldIDs
         <a href="classes/macwinnie-TwigForm-Form.html#property_fieldIDs" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.26"  class="phpdocumentor-element-found-in__source" data-line="26" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.28" class="phpdocumentor-element-found-in__source" data-line="28" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -377,10 +485,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$fieldIDs</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -394,15 +500,16 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formAction">
         $formAction
         <a href="classes/macwinnie-TwigForm-Form.html#property_formAction" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.28"  class="phpdocumentor-element-found-in__source" data-line="28" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.30" class="phpdocumentor-element-found-in__source" data-line="30" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -412,10 +519,42 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formAction</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
-        <section class="phpdocumentor-description"></section>
+    
+    
+    
 
-        <section class="phpdocumentor-description"></section>
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_formAttributes">
+        $formAttributes
+        <a href="classes/macwinnie-TwigForm-Form.html#property_formAttributes" class="headerlink"><i class="fas fa-link"></i></a>
 
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.24" class="phpdocumentor-element-found-in__source" data-line="24" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$formAttributes</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
     
 
 </article>
@@ -429,6 +568,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formButtons">
         $formButtons
         <a href="classes/macwinnie-TwigForm-Form.html#property_formButtons" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -437,7 +577,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">21</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.21"  class="phpdocumentor-element-found-in__source" data-line="21" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.21" class="phpdocumentor-element-found-in__source" data-line="21" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -447,10 +587,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formButtons</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -464,6 +602,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formDefinition">
         $formDefinition
         <a href="classes/macwinnie-TwigForm-Form.html#property_formDefinition" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -472,7 +611,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">16</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.16"  class="phpdocumentor-element-found-in__source" data-line="16" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.16" class="phpdocumentor-element-found-in__source" data-line="16" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -482,10 +621,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formDefinition</span>
      = <span class="phpdocumentor-signature__default-value">NULL</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -499,15 +636,16 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formEnctype">
         $formEnctype
         <a href="classes/macwinnie-TwigForm-Form.html#property_formEnctype" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.29"  class="phpdocumentor-element-found-in__source" data-line="29" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.31" class="phpdocumentor-element-found-in__source" data-line="31" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -517,10 +655,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formEnctype</span>
      = <span class="phpdocumentor-signature__default-value">&#039;multipart/form-data&#039;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -534,6 +670,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formID">
         $formID
         <a href="classes/macwinnie-TwigForm-Form.html#property_formID" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -542,7 +679,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">23</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.23"  class="phpdocumentor-element-found-in__source" data-line="23" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.23" class="phpdocumentor-element-found-in__source" data-line="23" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -552,10 +689,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formID</span>
      = <span class="phpdocumentor-signature__default-value">NULL</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -569,6 +704,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formIdentifier">
         $formIdentifier
         <a href="classes/macwinnie-TwigForm-Form.html#property_formIdentifier" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -577,7 +713,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">18</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.18"  class="phpdocumentor-element-found-in__source" data-line="18" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.18" class="phpdocumentor-element-found-in__source" data-line="18" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -587,10 +723,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formIdentifier</span>
      = <span class="phpdocumentor-signature__default-value">&#039;form_data&#039;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -604,15 +738,16 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formMethod">
         $formMethod
         <a href="classes/macwinnie-TwigForm-Form.html#property_formMethod" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.25"  class="phpdocumentor-element-found-in__source" data-line="25" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.27" class="phpdocumentor-element-found-in__source" data-line="27" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -622,10 +757,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formMethod</span>
      = <span class="phpdocumentor-signature__default-value">&#039;POST&#039;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -639,6 +772,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_formRows">
         $formRows
         <a href="classes/macwinnie-TwigForm-Form.html#property_formRows" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -647,7 +781,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">22</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.22"  class="phpdocumentor-element-found-in__source" data-line="22" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.22" class="phpdocumentor-element-found-in__source" data-line="22" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -657,10 +791,42 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$formRows</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
-        <section class="phpdocumentor-description"></section>
+    
+    
+    
 
-        <section class="phpdocumentor-description"></section>
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_formSubmit">
+        $formSubmit
+        <a href="classes/macwinnie-TwigForm-Form.html#property_formSubmit" class="headerlink"><i class="fas fa-link"></i></a>
 
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.25" class="phpdocumentor-element-found-in__source" data-line="25" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$formSubmit</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
     
 
 </article>
@@ -674,15 +840,16 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_hiddenFields">
         $hiddenFields
         <a href="classes/macwinnie-TwigForm-Form.html#property_hiddenFields" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.27"  class="phpdocumentor-element-found-in__source" data-line="27" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.29" class="phpdocumentor-element-found-in__source" data-line="29" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -692,10 +859,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$hiddenFields</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -709,6 +874,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_renderAttributes">
         $renderAttributes
         <a href="classes/macwinnie-TwigForm-Form.html#property_renderAttributes" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -717,7 +883,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.19"  class="phpdocumentor-element-found-in__source" data-line="19" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.19" class="phpdocumentor-element-found-in__source" data-line="19" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -727,10 +893,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$renderAttributes</span>
      = <span class="phpdocumentor-signature__default-value">[]</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -744,6 +908,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_selectedTemplate">
         $selectedTemplate
         <a href="classes/macwinnie-TwigForm-Form.html#property_selectedTemplate" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -752,7 +917,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">17</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.17"  class="phpdocumentor-element-found-in__source" data-line="17" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.17" class="phpdocumentor-element-found-in__source" data-line="17" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -762,10 +927,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$selectedTemplate</span>
      = <span class="phpdocumentor-signature__default-value">&#039;form&#039;</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -779,6 +942,7 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="property_templates">
         $templates
         <a href="classes/macwinnie-TwigForm-Form.html#property_templates" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -787,7 +951,7 @@ Form (of `static` class) object</dd>
     :
     <span class="phpdocumentor-element-found-in__line">15</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.15"  class="phpdocumentor-element-found-in__source" data-line="15" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.15" class="phpdocumentor-element-found-in__source" data-line="15" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
     
@@ -797,10 +961,8 @@ Form (of `static` class) object</dd>
     <span class="phpdocumentor-signature__name">$templates</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -810,6 +972,7 @@ Form (of `static` class) object</dd>
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/macwinnie-TwigForm-Form.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -820,29 +983,28 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
         <a href="classes/macwinnie-TwigForm-Form.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.34"  class="phpdocumentor-element-found-in__source" data-line="34" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.38" class="phpdocumentor-element-found-in__source" data-line="38" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">constructor of Form element</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -854,32 +1016,37 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
         <a href="classes/macwinnie-TwigForm-Form.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.43"  class="phpdocumentor-element-found-in__source" data-line="43" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.47" class="phpdocumentor-element-found-in__source" data-line="47" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Function to build and return JSON representation of the current form</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">__toString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>JSON</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>JSON</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -890,21 +1057,24 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="method_addHiddenField">
         addHiddenField()
         <a href="classes/macwinnie-TwigForm-Form.html#method_addHiddenField" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">171</span>
+    <span class="phpdocumentor-element-found-in__line">225</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.171"  class="phpdocumentor-element-found-in__source" data-line="171" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.225" class="phpdocumentor-element-found-in__source" data-line="225" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">add a hidden field to the current form</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">addHiddenField</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">addHiddenField</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -930,10 +1100,6 @@ Form (of `static` class) object</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -945,21 +1111,24 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="method_addRenderAttribute">
         addRenderAttribute()
         <a href="classes/macwinnie-TwigForm-Form.html#method_addRenderAttribute" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.142"  class="phpdocumentor-element-found-in__source" data-line="142" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.196" class="phpdocumentor-element-found-in__source" data-line="196" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Add a render attribute / TwigVariable</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">addRenderAttribute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">addRenderAttribute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -985,10 +1154,6 @@ Form (of `static` class) object</dd>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1000,13 +1165,14 @@ Form (of `static` class) object</dd>
     <h4 class="phpdocumentor-element__name" id="method_addTwigTemplate">
         addTwigTemplate()
         <a href="classes/macwinnie-TwigForm-Form.html#method_addTwigTemplate" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">186</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.132"  class="phpdocumentor-element-found-in__source" data-line="132" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.186" class="phpdocumentor-element-found-in__source" data-line="186" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Add additional Twig templates for being rendered;
@@ -1014,8 +1180,10 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">addTwigTemplate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Twig\TemplateWrapper">TemplateWrapper</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$template</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">addTwigTemplate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Twig\TemplateWrapper">TemplateWrapper</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$template</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1041,10 +1209,6 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1056,30 +1220,37 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <h4 class="phpdocumentor-element__name" id="method_formGetIdent">
         formGetIdent()
         <a href="classes/macwinnie-TwigForm-Form.html#method_formGetIdent" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">153</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.99"  class="phpdocumentor-element-found-in__source" data-line="99" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.153" class="phpdocumentor-element-found-in__source" data-line="153" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
-    
+        <p class="phpdocumentor-summary">function to gather the current form identifier</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">formGetIdent</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">formGetIdent</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
+    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>form identifier</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1090,21 +1261,24 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <h4 class="phpdocumentor-element__name" id="method_loadJSON">
         loadJSON()
         <a href="classes/macwinnie-TwigForm-Form.html#method_loadJSON" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.89"  class="phpdocumentor-element-found-in__source" data-line="89" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.138" class="phpdocumentor-element-found-in__source" data-line="138" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Load a Form by JSON description</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">loadJSON</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$json</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">loadJSON</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$json</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1122,7 +1296,8 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/macwinnie-TwigForm-Form.html#method_loadJSON#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
@@ -1135,12 +1310,8 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
 </section>
 
                                     </dd>
-                        </dl>
+                                            </dl>
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1152,32 +1323,37 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <h4 class="phpdocumentor-element__name" id="method_renderForm">
         renderForm()
         <a href="classes/macwinnie-TwigForm-Form.html#method_renderForm" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">151</span>
+    <span class="phpdocumentor-element-found-in__line">205</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.151"  class="phpdocumentor-element-found-in__source" data-line="151" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.205" class="phpdocumentor-element-found-in__source" data-line="205" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Function for final rendering the selected Template with the given form data</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">renderForm</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">renderForm</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>HTML content of the selected template with the form</p>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>HTML content of the selected template with the form</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1188,21 +1364,24 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <h4 class="phpdocumentor-element__name" id="method_selectTemplate">
         selectTemplate()
         <a href="classes/macwinnie-TwigForm-Form.html#method_selectTemplate" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.115"  class="phpdocumentor-element-found-in__source" data-line="115" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.169" class="phpdocumentor-element-found-in__source" data-line="169" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Select another template to be rendered instead of `form`</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">selectTemplate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$formIdentifier</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;form_data&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">selectTemplate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$formIdentifier</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;form_data&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1229,7 +1408,8 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/macwinnie-TwigForm-Form.html#method_selectTemplate#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h5>
     <dl class="phpdocumentor-tag-list">
                                     <dt class="phpdocumentor-tag-list__entry">
@@ -1242,12 +1422,116 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
 </section>
 
                                     </dd>
-                        </dl>
+                                            </dl>
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setAction">
+        setAction()
+        <a href="classes/macwinnie-TwigForm-Form.html#method_setAction" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">93</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.93" class="phpdocumentor-element-found-in__source" data-line="93" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">function to set form action</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setAction</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dest</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;url&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dest</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>value to be set – according to $type</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$type</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;url&#039;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>default is <code class="prettyprint">url</code> ... may be <code class="prettyprint">route</code> or <code class="prettyprint">action</code> (Laravel specific)</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setFormAttribute">
+        setFormAttribute()
+        <a href="classes/macwinnie-TwigForm-Form.html#method_setFormAttribute" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">320</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.320" class="phpdocumentor-element-found-in__source" data-line="320" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">set attributes used within main form element</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setFormAttribute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$name</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>name of attribute</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>value of attribute</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
     
 </article>
                     <article
@@ -1259,21 +1543,24 @@ is not meant to be used with instances of \macwinnie\TwigForm\Template</p>
     <h4 class="phpdocumentor-element__name" id="method_setFormEnctype">
         setFormEnctype()
         <a href="classes/macwinnie-TwigForm-Form.html#method_setFormEnctype" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">245</span>
+    <span class="phpdocumentor-element-found-in__line">301</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.245"  class="phpdocumentor-element-found-in__source" data-line="245" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.301" class="phpdocumentor-element-found-in__source" data-line="301" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set enctype for form</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setFormEnctype</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enctype</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$force</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">setFormEnctype</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enctype</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$force</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1300,10 +1587,6 @@ https://wiki.selfhtml.org/wiki/HTML/Elemente/form</p>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1315,21 +1598,24 @@ https://wiki.selfhtml.org/wiki/HTML/Elemente/form</p>
     <h4 class="phpdocumentor-element__name" id="method_setFormID">
         setFormID()
         <a href="classes/macwinnie-TwigForm-Form.html#method_setFormID" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">240</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.186"  class="phpdocumentor-element-found-in__source" data-line="186" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.240" class="phpdocumentor-element-found-in__source" data-line="240" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set the form identifier</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setFormID</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$new</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$override</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">setFormID</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$new</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$override</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1356,10 +1642,6 @@ overridden by $new; defaults to <code class="prettyprint">true</code></p>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1371,21 +1653,24 @@ overridden by $new; defaults to <code class="prettyprint">true</code></p>
     <h4 class="phpdocumentor-element__name" id="method_setMethod">
         setMethod()
         <a href="classes/macwinnie-TwigForm-Form.html#method_setMethod" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">208</span>
+    <span class="phpdocumentor-element-found-in__line">264</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.208"  class="phpdocumentor-element-found-in__source" data-line="208" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.264" class="phpdocumentor-element-found-in__source" data-line="264" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">set the form method</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setMethod</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$method</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">setMethod</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$method</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><p><code class="prettyprint">GET</code> and <code class="prettyprint">POST</code> are regular methods, specials are supported as
 defined in RFC 7231
 https://datatracker.ietf.org/doc/html/rfc7231#section-4.3</p>
@@ -1406,10 +1691,60 @@ https://datatracker.ietf.org/doc/html/rfc7231#section-4.3</p>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setSubmitAttribute">
+        setSubmitAttribute()
+        <a href="classes/macwinnie-TwigForm-Form.html#method_setSubmitAttribute" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">346</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.346" class="phpdocumentor-element-found-in__source" data-line="346" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">set attributes for regular submit input</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setSubmitAttribute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$key</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>attribute to be set</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>value to be set</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
     
 </article>
                     <article
@@ -1421,13 +1756,14 @@ https://datatracker.ietf.org/doc/html/rfc7231#section-4.3</p>
     <h4 class="phpdocumentor-element__name" id="method_transformTemplate">
         transformTemplate()
         <a href="classes/macwinnie-TwigForm-Form.html#method_transformTemplate" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">268</span>
+    <span class="phpdocumentor-element-found-in__line">379</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.268"  class="phpdocumentor-element-found-in__source" data-line="268" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.379" class="phpdocumentor-element-found-in__source" data-line="379" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Basic transformation from Twig Template (analyzed,
@@ -1436,8 +1772,10 @@ Form (of `static` class) object</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>    <span class="phpdocumentor-signature__name">transformTemplate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/macwinnie-TwigForm-Template.html"><abbr title="\macwinnie\TwigForm\Template">Template</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tpl</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">transformTemplate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/macwinnie-TwigForm-Template.html"><abbr title="\macwinnie\TwigForm\Template">Template</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tpl</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">NULL</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1463,11 +1801,58 @@ Form (of `static` class) object</p>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>result of basic transformation</p>
+        <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>result of basic transformation</p>
 </section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_addRow">
+        addRow()
+        <a href="classes/macwinnie-TwigForm-Form.html#method_addRow" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">365</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.365" class="phpdocumentor-element-found-in__source" data-line="365" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">add a row to the form</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">addRow</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rowName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$rowName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>row name has to be non-empty and not <code class="prettyprint">NULL</code>.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
 
     
 </article>
@@ -1480,32 +1865,95 @@ Form (of `static` class) object</p>
     <h4 class="phpdocumentor-element__name" id="method_getFormCreate">
         getFormCreate()
         <a href="classes/macwinnie-TwigForm-Form.html#method_getFormCreate" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
-            <a href="classes/macwinnie-TwigForm-Form.html#source-view.65"  class="phpdocumentor-element-found-in__source" data-line="65" data-modal="source-view"></a>
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.108" class="phpdocumentor-element-found-in__source" data-line="108" data-modal="source-view" data-src="files/.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">function to provide create part of form definition</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">getFormCreate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getFormCreate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>create part of form definition</p>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>create part of form definition</p>
 </section>
 
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSubmit">
+        getSubmit()
+        <a href="classes/macwinnie-TwigForm-Form.html#method_getSubmit" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Form.php"><a href="files/src-form.html"><abbr title="src/Form.php">Form.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">331</span>
+
+            <a href="classes/macwinnie-TwigForm-Form.html#source-view.331" class="phpdocumentor-element-found-in__source" data-line="331" data-modal="source-view" data-src="files/.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">get submit input data for string representation</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getSubmit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
     
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/macwinnie-TwigForm-Form.html#method_getSubmit#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/macwinnie-TwigForm-Exception.html"><abbr title="\macwinnie\TwigForm\Exception">Exception</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>if submit is empty</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>form submit definition</p>
+</section>
+
+            </section>
+
 </article>
             </section>
 
@@ -1513,75 +1961,162 @@ Form (of `static` class) object</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-        <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Form.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Form.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
-        <button data-exit-button class="phpdocumentor-modal__close">X</button>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
 </div>
 
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                            <li><a href="classes/macwinnie-TwigForm-Form.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/macwinnie-TwigForm-Form.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_defaultTwigForm">$defaultTwigForm<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_fieldIDs">$fieldIDs<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formAction">$formAction<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formAttributes">$formAttributes<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formButtons">$formButtons<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formDefinition">$formDefinition<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formEnctype">$formEnctype<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formID">$formID<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formIdentifier">$formIdentifier<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formMethod">$formMethod<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formRows">$formRows<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_formSubmit">$formSubmit<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_hiddenFields">$hiddenFields<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_renderAttributes">$renderAttributes<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_selectedTemplate">$selectedTemplate<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                                    <li><a href="classes/macwinnie-TwigForm-Form.html#property_templates">$templates<a href="classes/macwinnie-TwigForm-Form.html"></li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method___construct">__construct()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method___toString">__toString()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_addHiddenField">addHiddenField()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_addRenderAttribute">addRenderAttribute()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_addTwigTemplate">addTwigTemplate()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_formGetIdent">formGetIdent()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_loadJSON">loadJSON()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_renderForm">renderForm()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_selectTemplate">selectTemplate()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_setAction">setAction()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_setFormAttribute">setFormAttribute()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_setFormEnctype">setFormEnctype()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_setFormID">setFormID()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_setMethod">setMethod()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_setSubmitAttribute">setSubmitAttribute()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_transformTemplate">transformTemplate()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_addRow">addRow()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_getFormCreate">getFormCreate()</a></li>
+                                            <li><a href="classes/macwinnie-TwigForm-Form.html#method_getSubmit">getSubmit()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -1592,7 +2127,6 @@ Form (of `static` class) object</p>
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/macwinnie-TwigForm-Form.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

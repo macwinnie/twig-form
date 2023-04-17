@@ -21,12 +21,16 @@ class Form {
     private $formButtons      = [];
     private $formRows         = [];
     private $formID           = NULL;
+    private $formAttributes   = [];
+    private $formSubmit       = [];
 
     private $formMethod       = 'POST';
     private $fieldIDs         = [];
     private $hiddenFields     = [];
     private $formAction       = [];
     private $formEnctype      = 'multipart/form-data';
+
+    private $defaultTwigForm  = 'twigform';
 
     /**
      * constructor of Form element
@@ -42,19 +46,58 @@ class Form {
      */
     public function __toString() {
 
-        $this->setFormID( 'twigform', false );
+        $this->setFormID( $this->defaultTwigForm, false );
 
-        $string = json_encode( [
-            # * `method` (default `POST` – has to be a valid HTTP Request method)
-            # * `url`, `route` or `action` – those define the actual action path for the form.
-            # * `enctype` – will be overridden if `files` is set `true` by `multipart/form-data`
-            # * any other Attribute to be part of the `form` tag like `class`, `id`, ...
-            'create'  => $this->getFormCreate(),
-            'rows'    => [],
-            'buttons' => [],
-        ] );
+        $create  = $this->getFormCreate();
+        try {
+            $submit  = $this->getSubmit();
+        } catch ( \Exception $e ) {
+            // regular case if no submit definition was done => continue
+        }
+        $buttons = $this->formButtons;
+        $rows    = [];
+        foreach ( $this->formRows as $row ) {
+            $rows[] = json_decode(
+                strval( $row ),
+                true
+            );
+        }
 
+        $combine = [ 'create', 'rows' ];
+
+        // buttons override submit
+        if ( is_array( $buttons ) and ! empty( $buttons ) ) {
+            $combine[] = 'buttons';
+        }
+        // submit can be customized – only then it's needed
+        elseif (
+            isset( $submit ) and
+            is_array( $submit ) and
+            ! empty( $submit )
+        ) {
+            $combine[] = 'submit';
+        }
+
+        $stringify = compact( $combine );
+
+        $string    = json_encode( $stringify );
         return $string;
+    }
+
+    /**
+     * function to set form action
+     *
+     * @param string $dest value to be set – according to $type
+     * @param string $type default is `url` ... may be `route` or `action` (Laravel specific)
+     */
+    public function setAction( $dest, $type = 'url' ) {
+        if ( ! in_array( $type, [ 'url', 'route', 'action' ] ) ) {
+            $type = 'url';
+        }
+        $this->formAction = [
+            'key'   => $type,
+            'value' => $dest,
+        ];
     }
 
     /**
@@ -75,7 +118,13 @@ class Form {
         // enctype
         $create['enctype'] = $this->formEnctype;
 
+        // ident
         $create['id'] = $this->formGetIdent();
+
+        // additional form attributes
+        array_merge( $this->formAttributes, $create );
+
+        return $create;
     }
 
     /**
@@ -96,11 +145,16 @@ class Form {
         }
     }
 
+    /**
+     * function to gather the current form identifier
+     *
+     * @return string form identifier
+     */
     public function formGetIdent () {
         if ( $this->formID == NULL ) {
-            $this->setFormID(  );
+            $this->setFormID( $this->defaultTwigForm );
         }
-        return $this->formID();
+        return $this->formID;
     }
 
     /**
@@ -184,15 +238,17 @@ class Form {
      *                          overridden by $new; defaults to `true`
      */
     public function setFormID ( $new, $override = true ) {
-        $new = trim( $new );
-        if (
-            ! in_array( $new, [ NULL, '' ] ) and
-            (
-                $this->formID == NULL or
-                $override = true
-            )
-        ) {
-            $this->formID = $new;
+        if ( $new != NULL) {
+            $new = trim( $new );
+            if (
+                ! in_array( $new, [ '' ] ) and
+                (
+                    $this->formID == NULL or
+                    $override == true
+                )
+            ) {
+                $this->formID = $new;
+            }
         }
     }
 
@@ -231,7 +287,7 @@ class Form {
             $this->formMethod = $method;
         }
         elseif ( getenv( 'DEBUG' ) ) {
-            // Logger::error( 'Method `' . $method . '` is no valid method according to RFC 7231.' );
+            Logger::error( 'Method `' . $method . '` is no valid method according to RFC 7231.' );
         }
     }
 
@@ -256,6 +312,61 @@ class Form {
     }
 
     /**
+     * set attributes used within main form element
+     *
+     * @param string $name  name of attribute
+     * @param string $value value of attribute
+     */
+    public function setFormAttribute ( $name, $value ) {
+        $this->formAttributes[ $name ] = $value;
+    }
+
+    /**
+     * get submit input data for string representation
+     *
+     * @return mixed form submit definition
+     *
+     * @throws Exception if submit is empty
+     */
+    private function getSubmit() {
+        if ( !empty( $this->formSubmit ) ) {
+            return $this->formSubmit;
+        }
+        else {
+            throw new Exception( "Submit is empty", 11 );
+        }
+    }
+
+    /**
+     * set attributes for regular submit input
+     *
+     * @param string $key   attribute to be set
+     * @param string $value value to be set
+     */
+    public function setSubmitAttribute ( $key, $value ) {
+        $reserved = [ "name", "value", "class" ];
+        if ( in_array( strtolower( $key ), $reserved ) ) {
+            $this->submit[ strtolower( $key ) ] = $value;
+        }
+        else {
+            $mk = 'attributes';
+            if ( ! isset( $this->submit[ $mk ] ) ) {
+                $this->submit[ $mk ] = [];
+            }
+            $this->submit[ $mk ][ $key ] = $value;
+        }
+    }
+
+    /**
+     * add a row to the form
+     *
+     * @param string $rowName row name has to be non-empty and not `NULL`.
+     */
+    protected function addRow ( $rowName ) {
+        $this->formRows[] = new Row( $rowName );
+    }
+
+    /**
      * Basic transformation from Twig Template (analyzed,
      * so instance of `macwinnie\TwigForm\Template`) to
      * Form (of `static` class) object
@@ -269,6 +380,12 @@ class Form {
         $instance = new static();
         $instance->setFormID( $id );
 
+        $tplVars = $tpl->getVariables();
+        foreach ( $tplVars as $varname ) {
+            $instance->addRow( $varname );
+        }
+
         return $instance;
     }
+
 }

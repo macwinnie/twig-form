@@ -56,6 +56,7 @@ jobs:
           docker run -t --rm -v ${{ github.workspace }}:/data -w /data ubuntu bash -c \
           "cat <<EOF >> docs/css/base.css
 
+          code,
           code.prettyprint {
               background: var(--primary-color-lighten);
               border: 1px solid var(--code-border-color);

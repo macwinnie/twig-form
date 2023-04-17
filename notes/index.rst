@@ -11,4 +11,5 @@
 Documentation
 =============
 
-Here some additional documentation for the :code:``TwigForm`` package will be established by time ...
+Here some additional documentation for the :code:``TwigForm`` package will be
+established by time ...

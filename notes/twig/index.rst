@@ -48,15 +48,20 @@ Rendering this Twig template will result in this HTML snippet:
 
    <form method="GET" enctype="multipart/form-data" class="form-horizontal" >
        <div class="form-group row has-error" >
-           <label for="formelement" class="col-md-3 col-form-label">single line textfield</label>
+           <label for="formelement" class="col-md-3 col-form-label">
+               single line textfield
+           </label>
            <div class="col-md-9">
-               <input id="formelement" class=" form-control" type="text" class="form-control" name="formelement" placeholder="text shown as placeholder" value="" />
+               <input id="formelement" class=" form-control" type="text"
+                   class="form-control" name="formelement"
+                   placeholder="text shown as placeholder" value="" />
                <span class="help-block errormsg">
                    <strong>This error will be shown.</strong>
                </span>
            </div>
        </div>
-       <input type="submit" name="submit" value="submit" class="btn btn-primary" />
+       <input type="submit" name="submit" value="submit"
+           class="btn btn-primary" />
    </form>
 
 The Macro can be initiated given an object ``form`` – which will be
